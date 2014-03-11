@@ -4,3 +4,6 @@
 node_modules/
 *.iml
 dump.rdb
+
+public/css
+public/js

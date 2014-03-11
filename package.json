@@ -4,27 +4,27 @@
   "description": "raising environmental consciousness within an organization",
   "author": "rspapps developers",
   "main": "index.js",
-  "scripts":
-  {
+  "scripts": {
     "test": "grunt test",
     "start": "node index.js"
   },
-  "engines":
-  {
+  "engines": {
     "node": ">=0.10.0"
   },
-  "dependencies":
-  {
-    "kraken-js": "~0.7.0",
-    "express": "~3.4.4",
-    "adaro": "~0.1.x",
-    "nconf": "~0.6.8",
-    "dustjs-linkedin": "~2.0.3",
-    "dustjs-helpers": "~1.1.1",
-    "makara": "~0.3.0"
+  "dependencies": {
+    "kraken-js": "0.7.0",
+    "express": "3.4.4",
+    "adaro": "0.1.x",
+    "nconf": "0.6.8",
+    "dustjs-linkedin": "2.0.3",
+    "dustjs-helpers": "1.1.1",
+    "makara": "0.3.3",
+    "mocha": "1.17.0",
+    "supertest": "0.8.2",
+    "gulp": "3.5.5",
+    "node-sass": "0.8.1"
   },
   "devDependencies": {
-    "mocha": "~1.17.0",
-    "supertest": "~0.8.2"
+    "gulp-ruby-sass": "^0.4.0"
   }
 }
