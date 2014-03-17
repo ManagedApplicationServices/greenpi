@@ -5,7 +5,7 @@
   "author": "rspapps developers",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*",
+    "test": "mocha test/models/*.js",
     "start": "node index.js"
   },
   "engines": {
@@ -21,6 +21,7 @@
     "makara": "0.3.3",
     "less": "1.6.1",
     "mocha": "1.17.0",
+    "chai": "1.9.0",
     "supertest": "0.8.2",
     "gulp": "3.5.5",
     "node-sass": "0.8.1"

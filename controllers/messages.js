@@ -1,6 +1,8 @@
 'use strict';
 
-var MessageModel = require('../models/message');
+var path = require('path');
+
+var MessageModel = require(path.join(appPath,'models' ,'message'));
 
 module.exports = function (app) {
 
