@@ -1,16 +1,13 @@
 'use strict';
+require('./test-helper');
 
-var app = require('../index'),
-kraken = require('kraken-js'),
-request = require('supertest'),
-assert = require('assert');
 
 describe('index', function () {
 
   var mock;
 
   beforeEach(function (done) {
-    kraken.create(app).listen(function (err, server) {
+    kraken.create(app).listen(9000,function (err, server) {
       mock = server;
       done(err);
     });
