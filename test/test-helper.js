@@ -1,4 +1,5 @@
 var path = require('path');
+GLOBAL.Redis = require("redis").createClient();
 
 GLOBAL.request   = require('supertest'),
 GLOBAL.expect    = require('chai').expect;
@@ -10,7 +11,8 @@ GLOBAL.testPath  = path.join(GLOBAL.appPath, "test");
 require('chai').should();
 
 before(function (done) {
-  kraken.create(GLOBAL.app).listen(9000,function (err, krakenServer) {
+  GLOBAL.Redis.select("1");
+  kraken.create(GLOBAL.app).listen(9001, function (err, krakenServer) {
     GLOBAL.server = krakenServer;
     done(err);
   });
@@ -18,5 +20,6 @@ before(function (done) {
 
 after(function (done) {
   GLOBAL.server.close(done);
+  GLOBAL.Redis.quit();
 });
 
