@@ -25,12 +25,13 @@
     "supertest": "0.8.2",
     "gulp": "3.5.5",
     "node-sass": "0.8.1",
-    "redis": "^0.10.1",
-    "hiredis": "^0.1.16"
+    "redis": "0.10.1",
+    "hiredis": "0.1.16",
+    "connect-redis": "1.4.7"
   },
   "devDependencies": {
-    "gulp-ruby-sass": "^0.4.0",
-    "gulp-minify-css": "^0.3.0",
-    "gulp-concat": "^2.1.7"
+    "gulp-ruby-sass": "0.4.0",
+    "gulp-minify-css": "0.3.0",
+    "gulp-concat": "2.1.7"
   }
 }

@@ -3,6 +3,7 @@
 {<body}
 
 <h1>Hello, {model.name}!</h1>
+<h2>{subtitle}</h2>
 <div class="tree"></div>
 
 <h2>Tree radius</h2>
