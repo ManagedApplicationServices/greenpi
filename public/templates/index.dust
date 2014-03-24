@@ -1,6 +1,26 @@
 {>"layouts/master" /}
 
 {<body}
-    <h1>Hello, {name}!</h1>
-    <div class="tree"></div>
+
+<h1>Hello, {model.name}!</h1>
+<div class="tree"></div>
+
+<h2>Tree radius</h2>
+<ol>
+  {#trees.trees}<li>{leaves}</li>{/trees.trees}
+</ol>
+
+<h2>Messages</h2>
+<ol>
+  {#messages.messages}<li>{content}</li>{/messages.messages}
+</ol>
 {/body}
+
+
+<script>
+  var treeSize = {trees.trees[0].leaves};
+  var tree = document.getElementsByClassName('tree')[0];
+
+  tree.style.width = tree.offsetWidth *treeSize + 'px';
+  tree.style.height = tree.offsetHeight *treeSize + 'px';
+</script>

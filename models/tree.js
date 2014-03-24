@@ -2,7 +2,8 @@
 
 module.exports = function TreeModel() {
   return {
-    trees: [
+    trees:
+    [
       { id: 1, leaves: 0.8  },
       { id: 2, leaves: 0.5  },
       { id: 3, leaves: 0.95 },
