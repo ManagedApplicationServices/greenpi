@@ -13,12 +13,19 @@ module.exports = function (app) {
   var tree = new TreeModel();
   var message = new MessageModel();
 
-  var subtitle = ''
+  var subtitle = '';
+  var tree1 = 0;
 
   client.set('subtitle', 'raising environmental consciousness within an organization', redis.print);
 
   client.get('subtitle', function (err, reply) {
     subtitle = reply.toString();
+  });
+
+  client.set('tree1', 100);
+
+  client.decr('tree1', function (err, reply) {
+    tree1 = reply;
   });
 
   app.get('/', function (req, res) {
@@ -27,7 +34,8 @@ module.exports = function (app) {
         model: model,
         trees: tree,
         messages: message,
-        subtitle: subtitle
+        subtitle: subtitle,
+        tree1: tree1
       }
     );
   });

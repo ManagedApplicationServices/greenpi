@@ -11,6 +11,8 @@
   {#trees.trees}<li>{leaves}</li>{/trees.trees}
 </ol>
 
+{tree1}
+
 <h2>Messages</h2>
 <ol>
   {#messages.messages}<li>{content}</li>{/messages.messages}
@@ -18,10 +20,17 @@
 {/body}
 
 
+<script src="js/lib/socketio.js"></script>
+
 <script>
   var treeSize = {trees.trees[0].leaves};
   var tree = document.getElementsByClassName('tree')[0];
 
   tree.style.width = tree.offsetWidth *treeSize + 'px';
   tree.style.height = tree.offsetHeight *treeSize + 'px';
+
+  var socket = io.connect('/');
+  socket.on('ping', function (data) {
+    console.log(data);
+  });
 </script>
