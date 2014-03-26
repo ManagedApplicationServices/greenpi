@@ -1,0 +1,115 @@
+$tree-branch: #4a3811
+
+.tree1, .tree2, .tree3, .tree4, .tree5
+  border-radius: 50%
+  display: inline-block
+  text-align: center
+
+.tree1
+  width: 300px
+  height: 300px
+  background: coral
+
+.tree2
+  width: 250px
+  height: 250px
+  background: bisque
+
+.tree3
+  width: 200px
+  height: 200px
+  background: cadetblue
+
+.tree4
+  width: 300px
+  height: 300px
+  background: tan
+
+.tree5
+  width: 150px
+  height: 150px
+  background: lightskyblue
+
+.tree
+  border-left: 2vh solid transparent
+  border-bottom: 56vh solid #4c3100
+  border-right: 2vh solid transparent
+  width: 0
+  height: 0
+
+.tree-1
+  position: absolute
+  bottom: 10vh
+  left: 15vw
+
+.tree-2
+  position: absolute
+  bottom: 10vh
+  left: 30vw
+
+.leaves
+  width: 50vh
+  height: 50vh
+  border-radius: 50%
+  background-color: green
+  display: block
+
+.leaves-1
+  position: absolute
+  bottom: 26vh
+  left: 2vw
+  opacity: 0.8
+
+.leaves-2
+  position: absolute
+  bottom: 26vh
+  left: 17vw
+  opacity: 0.8
+
+.branch-left
+  width: 5vh
+  height: 2vh
+  background-color: $tree-branch
+  position: absolute
+  bottom: -43vh
+  left: -6vh
+  -webkit-transform: rotate(18deg)
+  &:before,
+  &:after
+    content: ''
+    width: 5vh
+    height: 1vh
+    background-color: $tree-branch
+    position: absolute
+    -webkit-transform: rotate(18deg)
+  &:before
+    bottom: 8vh
+    left: -2vh
+  &:after
+    bottom: 17vh
+    left: -4vh
+
+.branch-right
+  width: 5vh
+  height: 1vh
+  background-color: $tree-branch
+  position: absolute
+  bottom: -43vh
+  left: 1vh
+  -webkit-transform: rotate(162deg)
+  &:before,
+  &:after
+    content: ''
+    width: 5vh
+    height: 1vh
+    background-color: $tree-branch
+    position: absolute
+    -webkit-transform: rotate(162deg)
+  &:before
+    bottom: -8vh
+    left: -2vh
+  &:after
+    bottom: -17vh
+    left: -4vh
+
+

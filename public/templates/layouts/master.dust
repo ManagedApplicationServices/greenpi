@@ -6,7 +6,7 @@
   <title>{+title /}</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/green.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -24,8 +24,8 @@
   var socket = io.connect('/');
   socket.on('ping', function (data) {
     treeSize = treeSizeOriginal[currentTree-1]*(data/leavesPerTree) + 'px';
-    document.getElementById('t' + currentTree).style.width = treeSize;
-    document.getElementById('t' + currentTree).style.height = treeSize;
+    // document.getElementById('t' + currentTree).style.width = treeSize;
+    // document.getElementById('t' + currentTree).style.height = treeSize;
     if(data === 0) currentTree += 1;
   });
 </script>

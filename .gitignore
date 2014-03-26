@@ -7,3 +7,4 @@ dump.rdb
 
 # build files
 css/style.css
+css/sass/*.css
