@@ -4,12 +4,12 @@
 
 <h1>Hello, {model.name}!</h1>
 <h2>{subtitle}</h2>
-<div class="tree"></div>
 
-<h2>Tree radius</h2>
-<ol>
-  {#trees.trees}<li>{leaves}</li>{/trees.trees}
-</ol>
+<div class="tree1" id="t1">1</div>
+<div class="tree2" id="t2">2</div>
+<div class="tree3" id="t3">3</div>
+<div class="tree4" id="t4">4</div>
+<div class="tree5" id="t5">5</div>
 
 <h2>Messages</h2>
 <ol>
@@ -18,10 +18,3 @@
 {/body}
 
 
-<script>
-  var treeSize = {trees.trees[0].leaves};
-  var tree = document.getElementsByClassName('tree')[0];
-
-  tree.style.width = tree.offsetWidth *treeSize + 'px';
-  tree.style.height = tree.offsetHeight *treeSize + 'px';
-</script>
