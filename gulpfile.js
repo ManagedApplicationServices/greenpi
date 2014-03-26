@@ -12,9 +12,13 @@ gulp.task('style', function() {
   return gulp.src(paths.style)
     .pipe(sass())
     .pipe(gulp.dest('css'))
-    .pipe(concat('green.css'))
+    .pipe(concat('style.css'))
     .pipe(minifyCSS())
-    .pipe(gulp.dest('public/css'));
+    .pipe(gulp.dest('public'));
 });
 
-gulp.task('default', ['style']);
+gulp.task('watch', function() {
+  gulp.watch(paths.style, ['style']);
+});
+
+gulp.task('default', ['style', 'watch']);
