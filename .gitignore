@@ -6,6 +6,5 @@ node_modules/
 dump.rdb
 
 # build files
-public/css
 public/js
 css/style.css
