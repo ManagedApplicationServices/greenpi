@@ -16,9 +16,17 @@
 
 <script src="js/lib/socketio.js"></script>
 <script>
+  var currentTree = 1;
+  var percentSize = 0;
+  var leavesPerTree = 100;
+  var treeSizeOriginal = [300, 250, 200, 300, 150];
+
   var socket = io.connect('/');
   socket.on('ping', function (data) {
-    console.log(data);
+    treeSize = treeSizeOriginal[currentTree-1]*(data/leavesPerTree) + 'px';
+    document.getElementById('t' + currentTree).style.width = treeSize;
+    document.getElementById('t' + currentTree).style.height = treeSize;
+    if(data === 0) currentTree += 1;
   });
 </script>
 
