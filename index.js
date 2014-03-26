@@ -13,7 +13,7 @@ app.requestStart = function requestStart(server) {
 };
 
 app.requestBeforeRoute = function requestBeforeRoute(server) {
-  // Run before any routes have been added.
+  require('dustjs-linkedin').optimizers.format = function(ctx, node) { return node };
 };
 
 app.requestAfterRoute = function requestAfterRoute(server) {
