@@ -12,6 +12,11 @@ $cloud-bgr: #fff
   -o-animation: $name $duration $delay $timing-function $iteration-count
   animation: $name $duration $delay $timing-function $iteration-count
 
+@mixin scale($amount)
+  -webkit-transform: scale($amount)
+  -moz-transform: scale($amount)
+  transform: scale($amount)
+
 .sun
   display: block
   width: 10vw
@@ -30,6 +35,11 @@ $cloud-bgr: #fff
   bottom: 0
   right: 0
 
+.message
+  padding: 1.4vw
+  font-size: 1.3em
+  margin: -4vh 0 0 1vh
+
 [class^="cloud-"]
   position: absolute
   right: 120%
@@ -37,6 +47,7 @@ $cloud-bgr: #fff
   height: 6vw
   background: $cloud-bgr
   border-radius: 20vw
+  box-shadow: 0 0 30px #eee
 
 [class^="cloud-"]:before, [class^="cloud-"]:after
   content: ''
@@ -48,53 +59,38 @@ $cloud-bgr: #fff
   background: $cloud-bgr
   border-radius: 10vw
   @include rotate(30deg)
+  z-index: -10
 
 [class^="cloud-"]:after
   top: -9vh
   left: auto
   right: 1.5vw
-  width: 12vw
+  width: 13vw
   height: 12vw
 
 .cloud-1
-  top: 9vh
-  -webkit-animation: moveclouds 30s linear infinite
-  -moz-animation: moveclouds 30s linear infinite
-  -o-animation: moveclouds 30s linear infinite
-  animation: moveclouds 30s linear infinite
+  top: 17vh
+  opacity: 0.95
+  @include scale(1.4)
+  @include animation(moveclouds, 300s, 0s, linear, infinite)
 
 .cloud-2
   top: 18vh
   opacity: 0.8
-  -webkit-transform: scale(0.8)
-  -moz-transform: scale(0.8)
-  transform: scale(0.8)
-  -webkit-animation: moveclouds 45s linear infinite
-  -moz-animation: moveclouds 45s linear infinite
-  -o-animation: moveclouds 45s linear infinite
-  animation: moveclouds 45s linear infinite
-  -webkit-animation-delay: 5s
-  -moz-animation-delay: 5s
-  animation-delay: 5s
+  @include scale(0.3)
+  @include animation(moveclouds, 60s, 0s, linear, infinite)
 
 .cloud-3
-  top: 27vh
+  top: 5vh
   opacity: 0.6
-  -webkit-transform: scale(0.6)
-  -moz-transform: scale(0.6)
-  transform: scale(0.6)
-  -webkit-animation: moveclouds 40s linear infinite
-  -moz-animation: moveclouds 40s linear infinite
-  -o-animation: moveclouds 40s linear infinite
-  animation: moveclouds 40s linear infinite
+  @include scale(0.5)
+  @include animation(moveclouds, 90s, 120s, linear, infinite)
 
 .cloud-4
-  top: 20vw
+  top: 10vw
   opacity: 0.75
-  -webkit-transform: scale(0.75)
-  -moz-transform: scale(0.75)
-  transform: scale(0.75)
-  @include animation(moveclouds, 26s, 8s, linear, infinite)
+  @include scale(0.2)
+  @include animation(moveclouds, 120s, 180s, linear, infinite)
 
 @-webkit-keyframes moveclouds
   0%
