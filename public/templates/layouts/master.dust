@@ -24,9 +24,16 @@
   var min = 0;
   var max = 0;
   var position = '';
+  var lostWords = '';
+  var lost = ''
 
   var socket = io.connect('/');
   socket.on('ping', function (data) {
+
+    document.getElementById('left').style.width = Math.round(data/10) + '%';
+    var lost = 100 - Math.round(data/10) + '%';
+    document.getElementById('lost').style.width = lost;
+    document.getElementById('lost').innerHTML = lost + ' forrest lost ';
 
     if(data > 900 && data <= 1000) {
       min = 900;

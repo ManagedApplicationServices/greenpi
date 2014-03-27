@@ -67,8 +67,8 @@
   </div>
 
   <div class="ground">
-    <div class="forest-remaining"></div>
-    <div class="forest-lost">20% forest lost</div>
+    <div class="forest-left" id="left"></div>
+    <div class="forest-lost" id="lost"></div>
   </div>
 
 </div>
