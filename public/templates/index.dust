@@ -41,19 +41,19 @@
     <div class="leaves leaves5" id="t5"></div>
 
     <div class="stem stem-1"></div>
-    <div class="flower flower-1"></div>
+    <div class="flower flower-1" id="f1"></div>
 
     <div class="stem stem-2"></div>
-    <div class="flower flower-2"></div>
+    <div class="flower flower-2" id="f2"></div>
 
     <div class="stem stem-3"></div>
-    <div class="flower flower-3"></div>
+    <div class="flower flower-3" id="f3"></div>
 
     <div class="stem stem-4"></div>
-    <div class="flower flower-4"></div>
+    <div class="flower flower-4" id="f4"></div>
 
     <div class="stem stem-5"></div>
-    <div class="flower flower-5"></div>
+    <div class="flower flower-5" id="f5"></div>
 
   </div>
 
