@@ -18,15 +18,69 @@
 <script>
   var currentTree = 1;
   var percentSize = 0;
-  var leavesPerTree = 100;
-  var treeSizeOriginal = [300, 250, 200, 300, 150];
+  var treeSizeOriginal = [20, 40, 35, 30, 25];
+  var treeLeftPosition = [11, 26, 46, 72, 86];
+  var treeSizeUnit = 'vw';
+  var min = 0;
+  var max = 0;
+  var position = '';
 
   var socket = io.connect('/');
   socket.on('ping', function (data) {
-    treeSize = treeSizeOriginal[currentTree-1]*(data/leavesPerTree) + 'px';
-    // document.getElementById('t' + currentTree).style.width = treeSize;
-    // document.getElementById('t' + currentTree).style.height = treeSize;
-    if(data === 0) currentTree += 1;
+
+    if(data > 900 && data <= 1000) {
+      min = 900;
+      max = 1000
+      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
+      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
+      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
+
+      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
+
+    }
+    else if(data > 550 && data <= 900) {
+      min = 550;
+      max = 900;
+      if(data === 900) currentTree = 2;
+      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
+      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
+      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
+
+      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
+
+    }
+    else if(data > 300 && data <= 550) {
+      min = 300;
+      max = 550;
+      if(data === 550) currentTree = 3;
+      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
+      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
+      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
+
+
+      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
+    }
+    else if(data > 100 && data <= 300) {
+      min= 100;
+      max = 300
+      if(data === 300) currentTree = 4;
+      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
+      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
+      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
+
+      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
+    }
+    else {
+
+      min = 0;
+      max = 100;
+      if(data === 100) currentTree = 5;
+      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
+      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
+      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
+
+      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
+    }
   });
 </script>
 
