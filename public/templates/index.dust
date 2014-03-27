@@ -6,6 +6,7 @@
   hello moon
 </div>
 <div class="forest">
+  <div class="sun"></div>
   <div class="tree tree1">
     <span class="branch-left"></span>
     <span class="branch-right"></span>
