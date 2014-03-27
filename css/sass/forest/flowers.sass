@@ -1,0 +1,48 @@
+$tree-branch: #AF692C
+
+$flower-size: 4vw
+$stem-1-left: 17vw
+$stem-2-left: 31vw
+$stem-3-left: 38vw
+
+.flower
+  bottom: 10vh
+  position: absolute
+  height: $flower-size
+  width: $flower-size
+  border-radius: 50%
+
+.stem
+  bottom: 5vh
+  position: absolute
+  background: $tree-branch
+  width: .5vw
+  height: 5vh
+  display: block
+
+.stem-1
+  left: $stem-1-left
+
+.flower-1
+  left: $stem-1-left - ($flower-size/2)
+  background-color: #f3f875
+  border: 1em solid #f8c475
+  box-shadow: 0 0 0 0.2em #f7bc62, 0 0 0 0.2em #f5f988 inset
+
+.stem-2
+  left: $stem-2-left
+
+.flower-2
+  left: $stem-2-left - ($flower-size/2)
+  background-color: #a6d6fa
+  border: 1em solid #75bff8
+  box-shadow: 0 0 0 0.2em #62b6f7, 0 0 0 0.2em #b9dffb inset
+
+.stem-3
+  left: $stem-3-left
+
+.flower-3
+  left: $stem-3-left - ($flower-size/2)
+  background-color: #f8c475
+  border: 1.2em solid #f87575
+  box-shadow: 0 0 0 0.2em #f76262, 0 0 0 0.2em #f9cc88 inset
