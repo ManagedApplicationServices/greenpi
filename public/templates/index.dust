@@ -71,6 +71,12 @@
     <div class="forest-lost" id="lost"></div>
   </div>
 
+  <div class="leaf leaf-1">-5</div>
+  <div class="leaf leaf-2">-15</div>
+  <div class="leaf leaf-3">-45</div>
+  <div class="leaf leaf-4">-10</div>
+  <div class="leaf leaf-5">-2</div>
+
 </div>
 
 <!-- <div class="tree1" id="t1">1</div>
