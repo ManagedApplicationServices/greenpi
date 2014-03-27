@@ -49,6 +49,12 @@
     <div class="stem stem-3"></div>
     <div class="flower flower-3"></div>
 
+    <div class="stem stem-4"></div>
+    <div class="flower flower-4"></div>
+
+    <div class="stem stem-5"></div>
+    <div class="flower flower-5"></div>
+
   </div>
 
   <div class="clouds">
@@ -58,7 +64,11 @@
     <div class="cloud-1">
       <p class="message">Did you know 17 trees are needed for 1 tonnes of paper?</p>
     </div>
+  </div>
 
+  <div class="ground">
+    <div class="forest-remaining"></div>
+    <div class="forest-lost">20% forest lost</div>
   </div>
 
 </div>
