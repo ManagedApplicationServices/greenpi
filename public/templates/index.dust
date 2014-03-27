@@ -6,34 +6,18 @@
   hello moon
 </div>
 <div class="forest">
-  <div class="tree tree-1">
+  <div class="tree tree1">
     <span class="branch-left"></span>
     <span class="branch-right"></span>
   </div>
-  <div class="leaves leaves-1"></div>
+  <div class="leaves leaves1"></div>
 
-  <div class="tree tree-2">
+  <div class="tree tree2">
     <span class="branch-left"></span>
     <span class="branch-right"></span>
   </div>
-  <div class="leaves leaves-2"></div>
+  <div class="leaves leaves2"></div>
 
-  <!-- <div class="tree tree-2">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
-  </div>
-  <div class="tree tree-3">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
-  </div>
-  <div class="tree tree-4">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
-  </div>
-  <div class="tree tree-5">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
-  </div> -->
 </div>
 
 <!-- <div class="tree1" id="t1">1</div>
@@ -43,16 +27,6 @@
 <div class="tree5" id="t5">5</div>
  -->
 
-
-<!--
-<h1>Hello, {model.name}!</h1>
-<h2>{subtitle}</h2>
-
-<h2>Messages</h2>
-<ol>
-  {#messages.messages}<li>{content}</li>{/messages.messages}
-</ol>
- -->
 {/body}
 
 
