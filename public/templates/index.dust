@@ -6,37 +6,47 @@
   hello moon
 </div>
 <div class="forest">
+
   <div class="sun"></div>
 
-  <div class="tree tree1">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
-  </div>
-  <div class="leaves leaves1"></div>
+  <div class="trees">
+    <div class="tree tree1">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves1"></div>
 
-  <div class="tree tree2">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
-  </div>
-  <div class="leaves leaves2"></div>
+    <div class="tree tree2">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves2"></div>
 
-  <div class="tree tree3">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
-  </div>
-  <div class="leaves leaves3"></div>
+    <div class="tree tree3">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves3"></div>
 
-  <div class="tree tree4">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
-  </div>
-  <div class="leaves leaves4"></div>
+    <div class="tree tree4">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves4"></div>
 
-  <div class="tree tree5">
-    <span class="branch-left"></span>
-    <span class="branch-right"></span>
+    <div class="tree tree5">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves5"></div>
   </div>
-  <div class="leaves leaves5"></div>
+
+  <div class="clouds">
+    <div class="cloud-1">1</div>
+    <div class="cloud-2">2</div>
+    <div class="cloud-3">3</div>
+    <div class="cloud-4">4</div>
+  </div>
 
 </div>
 
