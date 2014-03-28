@@ -70,7 +70,9 @@
     <div class="cloud-3"></div>
     <div class="cloud-4"></div>
     <div class="cloud-1">
-      <p class="message">Did you know 17 trees are needed for 1 tonnes of paper?</p>
+      {#messages.messages}
+      <p class="message" id="c{$idx}">{content}</p>
+      {/messages.messages}
     </div>
   </div>
 
