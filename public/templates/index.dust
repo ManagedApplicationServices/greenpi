@@ -56,7 +56,7 @@
     <div class="flower flower-5" id="f5"></div>
   </div>
 
-  <div class="birds-flying">
+  <div class="birds-flying" id="b">
     <div class="bird">
       <div class="body2"></div>
       <div class="body1"></div>
