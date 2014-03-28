@@ -4,6 +4,15 @@
 
 <div class="sky">
   <canvas id="sky-top"></canvas>
+  <div class="asteroid">
+    <div class="asteroid-head"></div>
+    <div class="asteroid-tail"></div>
+  </div>
+
+  <div class="asteroid a2">
+    <div class="asteroid-head"></div>
+    <div class="asteroid-tail"></div>
+  </div>
 </div>
 <div class="atmosphere">
   <canvas id="sky-bottom"></canvas>
