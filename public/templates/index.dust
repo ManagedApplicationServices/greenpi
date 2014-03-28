@@ -5,6 +5,7 @@
 <div class="sky">
   hello moon
 </div>
+<div class="atmosphere"></div>
 <div class="forest">
 
   <button type="button" class="btn btn-primary btn-lg btn-simulation" id="start">Start</button>
