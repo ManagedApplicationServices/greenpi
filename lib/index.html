@@ -1,0 +1,142 @@
+
+<!DOCTYPE html><html class="">
+<head><meta charset="UTF-8">
+
+
+<style>html {
+  background: #f2ffe8;
+}
+
+
+@-webkit-keyframes flap-r {
+  0%,10%   {  border-top-width: 60px; }
+  40%,60%  {  border-top-width: 10px; }
+  100%     {  border-top-width: 60px; }
+}
+
+@-webkit-keyframes flap-l {
+  0%       {  border-bottom-width: 0px; }
+  40%,60%  {  border-bottom-width: 40px; }
+  100%     {  border-bottom-width: 0px; }
+}
+
+@-webkit-keyframes fly {
+  0%   {  left: -20%; top: -100px; -webkit-transform:scale3d(0.5,0.5,0) }
+  100% {  left: 100%; top:100px; -webkit-transform:scale3d(1,1,0) }
+}
+
+@-webkit-keyframes bob {
+  0%   {  top: 25px; }
+  50%   {   top: 0px; }
+  100% {  top: 25px; }
+}
+
+#pictureframe {
+  position:relative;
+  margin-top:100px;
+  -webkit-animation: fly 3.5s infinite linear;
+}
+
+#shadow {
+  position:absolute;
+  width: 0px; height: 0px;
+  top: 140px; left: 00px;
+  border-width: 10px;
+  border-left-width:50px;
+  border-top-width:0px;
+  border-right-width: 40px;
+  border-color: transparent;
+  border-bottom-color: rgba(210,210,210,0.6);
+  border-style:solid;
+  -webkit-filter: blur(5px);
+}
+
+#shadow:after {
+  content: " ";
+  position:absolute;
+  width: 00px; height: 0px;
+  top: 10px; left: -50px;
+  border-width: 10px;
+  border-left-width:50px;
+  border-bottom-width:0px;
+  border-right-width: 40px;
+  border-color: transparent;
+  border-top-color: rgba(210,210,210,0.6);
+  border-style:solid;
+}
+
+#bird div {
+  position:absolute;
+}
+
+#bird {
+  position:absolute;
+  -webkit-animation: bob 0.7s infinite cubic-bezier(0.7, 0.7, 0.1, 0.4);
+ }
+
+
+#body1,#body2,#wing-l,#wing-r {
+    width: 0px; height: 0px;
+    border-color: transparent;
+    border-style: solid;
+}
+#body1 {
+  border-width: 15px;
+  border-left-width:25px;
+  border-top-width:15px;
+  border-right-width: 55px;
+  border-top-color: #333;
+}
+
+#body2 {
+  left: 50px; bottom: 0px;
+  border-width: 10px;
+  border-left-width:5px;
+  border-top-width:0px;
+  border-right-width: 15px;
+  border-bottom-color: #777;
+}
+
+#wing-l {
+  left: 22px; bottom: 0px;
+  border-width: 60px;
+  border-left-width:20px;
+  border-top-width:0px;
+  border-right-width: 6px;
+  border-bottom-color: #444;
+  -webkit-animation: flap-l 0.7s infinite;
+}
+
+#wing-r {
+  left: 22px; top:0px;
+  border-width: 60px;
+  border-left-width:20px;
+  border-bottom-width:0px;
+  border-right-width: 6px;
+  border-top-color: #777;
+  -webkit-animation: flap-r 0.7s infinite;
+}
+
+
+#caption a {
+  position:absolute;
+  font-family: courier;
+  left:10px; bottom:10px;
+  color: #444;
+}</style></head><body>
+<div id="pictureframe">
+  <div id="bird">
+    <div id="body2"></div>
+    <div id="body1"></div>
+    <div id="wing-l"></div>
+    <div id="wing-r"></div>
+  </div>
+  <div id="shadow"></div>
+</div>
+
+<div id="caption"><a href="http://guestandguest.com/blog/posts/css-bird-flying">visit my blog for more...</a></div>
+<script>var __links = document.querySelectorAll('a');function __linkClick(e) { parent.window.postMessage(this.href, '*');} ;for (var i = 0, l = __links.length; i < l; i++) {if ( __links[i].getAttribute('data-t') == '_blank' ) { __links[i].addEventListener('click', __linkClick, false);}}</script>
+
+<script>//@ sourceURL=pen.js
+</script>
+</body></html>
