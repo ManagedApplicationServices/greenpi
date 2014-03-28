@@ -79,11 +79,11 @@
     <div class="forest-lost" id="lost"></div>
   </div>
 
-  <div class="leaf leaf-1">-5</div>
-  <div class="leaf leaf-2">-15</div>
-  <div class="leaf leaf-3">-45</div>
-  <div class="leaf leaf-4">-10</div>
-  <div class="leaf leaf-5">-2</div>
+  <div class="leaf leaf-1" id="l1">-5</div>
+  <div class="leaf leaf-2" id="l2">-15</div>
+  <div class="leaf leaf-3" id="l3">-45</div>
+  <div class="leaf leaf-4" id="l4">-10</div>
+  <div class="leaf leaf-5" id="l5">-2</div>
 
 </div>
 
