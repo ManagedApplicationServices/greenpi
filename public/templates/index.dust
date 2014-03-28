@@ -7,6 +7,8 @@
 </div>
 <div class="forest">
 
+  <button type="button" class="btn btn-primary btn-lg btn-simulation" id="start">Start</button>
+
   <div class="sun"></div>
 
   <div class="trees">

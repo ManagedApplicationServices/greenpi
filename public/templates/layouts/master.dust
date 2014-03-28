@@ -34,6 +34,12 @@
   var differenceLeafCount = 0;
 
   var socket = io.connect('/');
+
+  document.getElementById('start').onclick = function() {
+    socket.emit('simulation', 'start');
+    document.getElementById('start').style.display = 'none';
+  };
+
   socket.on('ping', function (data) {
 
     count += 1;
@@ -54,77 +60,37 @@
     document.getElementById('lost').style.width = lost;
     document.getElementById('lost').innerHTML = lost + ' forrest lost ';
 
-    if(data > 900 && data <= 1000) {
-      min = 900;
-      max = 1000
+    function reduceForest(min, max, currentTreeNum, data) {
+      var prevTreeNum = currentTreeNum - 1;
+      var prevTree = document.getElementById('t' + prevTreeNum);
+      var prevFlower = document.getElementById('f' + prevTreeNum);
+      var currTree = document.getElementById('t' + currentTreeNum);
 
-      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
-      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
+      if(prevTreeNum > 0) {
+        prevTree.style.width = 0 + treeSizeUnit;
+        prevTree.style.height = 0 + treeSizeUnit;
+        prevFlower.style.display = 'none';
+      }
+
+      treeSize = treeSizeOriginal[currentTreeNum-1]*((data-min)/(max-min));
+      currTree.style.width = treeSize + treeSizeUnit;
+      currTree.style.height = treeSize + treeSizeUnit;
+      currTree.style.left = treeLeftPosition[currentTreeNum - 1] - treeSize / 2 + treeSizeUnit;
     }
-    else if(data > 550 && data <= 900) {
-      document.getElementById('t' + currentTree).style.width = 0 + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = 0 + treeSizeUnit;
-      document.getElementById('f' + currentTree).style.display = 'none';
 
-      min = 550;
-      max = 900;
-      currentTree = 2;
-
-      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
-      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
-    }
-    else if(data > 300 && data <= 550) {
-      document.getElementById('t' + currentTree).style.width = 0 + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = 0 + treeSizeUnit;
-      document.getElementById('f' + currentTree).style.display = 'none';
-
-      min = 300;
-      max = 550;
-      currentTree = 3;
-
-      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
-      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
-    }
-    else if(data > 100 && data <= 300) {
-      document.getElementById('t' + currentTree).style.width = 0 + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = 0 + treeSizeUnit;
-      document.getElementById('f' + currentTree).style.display = 'none';
-
-      min= 100;
-      max = 300;
-      currentTree = 4;
-
-      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
-      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
-    }
-    else if(data > 1 && data <= 100){
-      document.getElementById('t' + currentTree).style.width = 0 + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = 0 + treeSizeUnit;
-      document.getElementById('f' + currentTree).style.display = 'none';
-
-      min = 0;
-      max = 100;
-      currentTree = 5;
-
-      treeSize = treeSizeOriginal[currentTree-1]*((data-min)/(max-min));
-      document.getElementById('t' + currentTree).style.width = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.height = treeSize + treeSizeUnit;
-      document.getElementById('t' + currentTree).style.left = treeLeftPosition[currentTree-1] - treeSize/2 + treeSizeUnit;
-    } else {
+    if(data > 900 && data <= 1000) reduceForest(900, 1000, 1, data);
+    else if(data > 550 && data <= 900) reduceForest(550, 900, 2, data);
+    else if(data > 300 && data <= 550) reduceForest(300, 550, 3, data);
+    else if(data > 100 && data <= 300) reduceForest(100, 300, 4, data);
+    else if(data > 1 && data <= 100) reduceForest(1, 100, 5, data);
+    else {
       document.getElementById('b').style.display = 'none';
       document.getElementById('t' + currentTree).style.width = 0 + treeSizeUnit;
       document.getElementById('t' + currentTree).style.height = 0 + treeSizeUnit;
 
       document.getElementById('lost').style.width = '100%';
-      document.getElementById('lost').innerHTML = 'all forrest is lost :(';
+      document.getElementById('lost').innerHTML = 'all forest is lost :(';
+      document.getElementById('start').style.display = 'block';
     }
 
     prevLeafCount = data;
@@ -135,6 +101,8 @@
   var currCloud = 0;
   var nextCloud = 1;
   var totalCloud = 3;
+  document.getElementById('c' + currCloud).style.display = 'block';
+
   setInterval(function() {
     document.getElementById('c' + currCloud).style.display = 'none';
     document.getElementById('c' + nextCloud).style.display = 'block';
