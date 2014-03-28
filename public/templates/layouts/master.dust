@@ -44,8 +44,11 @@
     differenceLeafCount = prevLeafCount - currLeafCount;
 
     document.getElementById('l' + fallingLeaf).style.display = 'block';
-    document.getElementById('l' + vanishingLeaf).style.display = 'none';
-    document.getElementById('l' + fallingLeaf).innerHTML = '-' + differenceLeafCount;
+    if(differenceLeafCount > 0) {
+      document.getElementById('l' + vanishingLeaf).style.display = 'none';
+      document.getElementById('l' + fallingLeaf).innerHTML = '-' + differenceLeafCount;
+    }
+
 
     document.getElementById('left').style.width = Math.round(data/10) + '%';
     var lost = 100 - Math.round(data/10) + '%';
