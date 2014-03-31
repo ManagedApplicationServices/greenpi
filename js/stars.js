@@ -1,5 +1,7 @@
 (function () {
 
+  'use strict';
+
   function drawing(el) {
     var c = document.getElementById(el);
     var ctx = c.getContext('2d');
@@ -19,9 +21,9 @@
 
       if(randomSize>1) {
         ctx.shadowBlur = Math.floor((Math.random()*15)+5);
-        ctx.shadowColor = "white";
+        ctx.shadowColor = 'white';
       }
-      ctx.fillStyle = "hsla("+randomHue+", 30%, 80%, ."+randomOpacityOne+randomOpacityTwo+")";
+      ctx.fillStyle = 'hsla(' + randomHue + ', 30%, 80%, .' + randomOpacityOne+randomOpacityTwo+ ')';
       ctx.fillRect(randomX, randomY, randomSize, randomSize);
     }
   }

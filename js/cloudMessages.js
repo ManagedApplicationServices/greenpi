@@ -1,7 +1,8 @@
 (function () {
 
-  var totalCloud = 3;
+  'use strict';
 
+  var totalCloud = 3;
   var currCloud = 0;
   var nextCloud = 1;
 

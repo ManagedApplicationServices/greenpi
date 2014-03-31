@@ -15,6 +15,12 @@
     "devel": false,
     "strict": true,
     "globalstrict": true,
+    "globals": {
+      "console": true,
+      "window": true,
+      "document": true,
+      "io": true
+    },
     "asi": false,
     "laxbreak": false,
     "bitwise": false,
@@ -54,11 +60,11 @@
     "plusplus": false,
     "sub": false,
     "trailing": false,
-    "indent": 4,
+    "indent": 2,
     "white": false,
     "quotmark": true,
     "maxparams": 5,
     "maxdepth": 3,
-    "maxstatements": 25,
+    "maxstatements": 40,
     "maxcomplexity": 6
 }

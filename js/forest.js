@@ -1,4 +1,6 @@
-;(function(){
+(function() {
+
+  'use strict';
 
   var prevLeafCount = 1000,
     currentTree = 0,
@@ -6,6 +8,7 @@
     treeSizeOriginal = [],
     treeLeftPosition = [],
     treeSizeUnit = '',
+    treeSize = 0,
     min = 0,
     max = 0,
     position = '',
@@ -32,11 +35,12 @@
     treeSizeOriginal = [20, 40, 35, 30, 25];
     treeLeftPosition = [11, 26, 46, 72, 86];
     treeSizeUnit = 'vw';
+    treeSize = 0;
     min = 0;
     max = 0;
     position = '';
     lostWords = '';
-    lost = ''
+    lost = '';
     count = 0;
     fallingLeaf = 0;
     vanishingLeaf = 0;
@@ -130,12 +134,19 @@
 
     changesOnEveryPrint(data);
 
-    if(data > 900 && data <= 1000) reduceForest(900, 1000, 1, data);
-    else if(data > 550 && data <= 900) reduceForest(550, 900, 2, data);
-    else if(data > 300 && data <= 550) reduceForest(300, 550, 3, data);
-    else if(data > 100 && data <= 300) reduceForest(100, 300, 4, data);
-    else if(data > 1 && data <= 100) reduceForest(1, 100, 5, data);
-    else changesOnLastPrint(data);
+    if(data > 900 && data <= 1000) {
+      reduceForest(900, 1000, 1, data);
+    } else if(data > 550 && data <= 900) {
+      reduceForest(550, 900, 2, data);
+    } else if(data > 300 && data <= 550) {
+      reduceForest(300, 550, 3, data);
+    } else if(data > 100 && data <= 300) {
+      reduceForest(100, 300, 4, data);
+    } else if(data > 1 && data <= 100) {
+      reduceForest(1, 100, 5, data);
+    } else {
+      changesOnLastPrint(data);
+    }
 
   });
 })();
