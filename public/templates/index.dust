@@ -113,6 +113,11 @@
   <div class="leaf leaf-4" id="l4">-10</div>
   <div class="leaf leaf-5" id="l5">-2</div>
 
+  <div class="jumbotron" id="status">
+    <h1>All forest is lost</h1>
+    <p>1 million papers were printed within 3 months.<br>Can we do better next time?</p>
+  </div>
+
 </div>
 
 {/body}

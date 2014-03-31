@@ -73,6 +73,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
     document.getElementById('left').style.display = 'block';
 
     document.getElementById('start').style.display = 'none';
+    document.getElementById('status').style.display = 'none';
   }
 
   function changesOnEveryPrint(data) {
@@ -123,9 +124,12 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 
     document.getElementById('left').style.display = 'none';
     document.getElementById('lost').style.width = '100%';
-    document.getElementById('lost').innerHTML = 'all forest is lost :(';
+    document.getElementById('lost').innerHTML = '100% forest is lost :(';
 
     document.getElementById('start').style.display = 'block';
+
+    document.getElementById('status').style.display = 'block';
+    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>1 million papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
   }
 
   var socket = io.connect('/');
