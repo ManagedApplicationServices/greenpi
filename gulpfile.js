@@ -1,11 +1,12 @@
-var gulp = require('gulp');
-var sass = require('gulp-ruby-sass');
-var minifyCSS = require('gulp-minify-css');
-var concat = require('gulp-concat');
-
+var gulp = require('gulp'),
+  sass = require('gulp-ruby-sass'),
+  minifyCSS = require('gulp-minify-css'),
+  concat = require('gulp-concat'),
+  uglify = require('gulp-uglify');
 
 var paths = {
-  style: 'css/**/*'
+  style: 'css/**/*',
+  script: ['js/lib/socketio.js', 'js/forest.js', 'js/cloudMessages.js', 'js/stars.js', 'js/scrollSkyToForest.js']
 };
 
 gulp.task('style', function() {
@@ -17,8 +18,16 @@ gulp.task('style', function() {
     .pipe(gulp.dest('public'));
 });
 
+gulp.task('script', function() {
+  return gulp.src(paths.script)
+    .pipe(concat('script.js'))
+    .pipe(gulp.dest('public'))
+    .pipe(uglify())
+    .pipe(gulp.dest('public'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.style, ['style']);
 });
 
-gulp.task('default', ['style', 'watch']);
+gulp.task('default', ['style', 'script', 'watch']);

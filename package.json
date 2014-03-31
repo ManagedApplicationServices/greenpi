@@ -28,7 +28,8 @@
     "redis": "0.10.1",
     "hiredis": "0.1.16",
     "connect-redis": "1.4.7",
-    "socket.io": "0.9.16"
+    "socket.io": "0.9.16",
+    "gulp-uglify": "0.2.1"
   },
   "devDependencies": {
     "gulp-ruby-sass": "0.4.0",
