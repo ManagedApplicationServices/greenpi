@@ -19,7 +19,8 @@
       "console": true,
       "window": true,
       "document": true,
-      "io": true
+      "io": true,
+      "moment": true
     },
     "asi": false,
     "laxbreak": false,

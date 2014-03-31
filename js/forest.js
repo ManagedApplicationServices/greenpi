@@ -1,4 +1,4 @@
-(function() {
+;(function() {
 
   'use strict';
 
@@ -19,7 +19,8 @@
     fallingLeaf = 0,
     vanishingLeaf = 0,
     currLeafCount = 0,
-    differenceLeafCount = 0;
+    differenceLeafCount = 0,
+    simulationStartedAt;
 
   function detectStartSimulation() {
     document.getElementById('start').onclick = function() {
@@ -47,6 +48,7 @@
     currLeafCount = 0;
     prevLeafCount = 1000;
     differenceLeafCount = 0;
+    simulationStartedAt = Date();
 
     [1, 2, 3, 4, 5].forEach(function(element, index, array) {
       document.getElementById('t' + element).style.width = treeSizeOriginal[index] + treeSizeUnit;
@@ -82,7 +84,7 @@
     document.getElementById('left').style.width = Math.round(data/10) + '%';
     var lost = 100 - Math.round(data/10) + '%';
     document.getElementById('lost').style.width = lost;
-    document.getElementById('lost').innerHTML = lost + ' forest lost ';
+    document.getElementById('lost').innerHTML = lost + ' forest lost since ' + moment(simulationStartedAt).startOf('minute').fromNow();
 
     prevLeafCount = data;
   }
