@@ -65,6 +65,6 @@
     "quotmark": true,
     "maxparams": 5,
     "maxdepth": 3,
-    "maxstatements": 40,
+    "maxstatements": 50,
     "maxcomplexity": 6
 }
