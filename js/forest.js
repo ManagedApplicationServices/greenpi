@@ -23,9 +23,7 @@
   function detectStartSimulation() {
     document.getElementById('start').onclick = function() {
       socket.emit('simulation', 'start');
-      document.getElementById('start').style.display = 'none';
       initialiseSimulation();
-      document.getElementById('lost').style.display = 'block';
     };
   }
 
@@ -72,6 +70,8 @@
     document.getElementById('left').style.width = '100%';
     document.getElementById('left').style.display = 'block';
 
+    document.getElementById('start').style.display = 'none';
+    document.getElementById('lost').style.display = 'block';
   }
 
   function changesOnEveryPrint(data) {
