@@ -22,8 +22,8 @@ gulp.task('script', function() {
   return gulp.src(paths.script)
     .pipe(concat('script.js'))
     .pipe(gulp.dest('public'))
-    .pipe(uglify())
-    .pipe(gulp.dest('public'));
+    // .pipe(uglify())
+    // .pipe(gulp.dest('public'));
 });
 
 gulp.task('watch', function() {
