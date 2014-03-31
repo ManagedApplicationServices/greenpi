@@ -58,7 +58,7 @@
     document.getElementById('left').style.width = Math.round(data/10) + '%';
     var lost = 100 - Math.round(data/10) + '%';
     document.getElementById('lost').style.width = lost;
-    document.getElementById('lost').innerHTML = lost + ' forrest lost ';
+    document.getElementById('lost').innerHTML = lost + ' forest lost ';
 
     function reduceForest(min, max, currentTreeNum, data) {
       var prevTreeNum = currentTreeNum - 1;
