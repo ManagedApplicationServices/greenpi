@@ -21,27 +21,16 @@
   "theme": "chalk",
   "handDrawn": true,
   "handDrawScatter": 5,
-  "legend": {
-    "useGraphSettings": true,
-    "markerSize":12,
-    "valueWidth":0,
-    "verticalGap":0
-  },
+  "fontFamily": "Georgia",
   "dataProvider": [{#usage.usages} {"month": "{month}", "value": "{value}"}, {/usage.usages}],
-  "valueAxes": [{
-    "minorGridAlpha": 0.08,
-    "minorGridEnabled": true,
-    "position": "top",
-    "axisAlpha":0
-  }],
   "startDuration": 1,
   "graphs": [{
-    "title": "Paper saved",
     "type": "column",
     "fillAlphas": 0.8,
     "valueField": "value",
     "negativeFillColors": "#289eaf",
-    "graph.negativeLineColor": "#289eaf"
+    "negativeLineColor": "#289eaf",
+    "labelText": "[[value]]"
   }, {
     "bullet": "round",
     "bulletBorderAlpha": 1,
