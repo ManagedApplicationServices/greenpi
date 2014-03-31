@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "dependencies": {
       "momentjs": "2.5.1",
-      "socket.io-client": "0.9.16"
+      "socket.io-client": "0.9.16",
+      "amcharts": "*"
     }
 }

@@ -15,6 +15,27 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+  AmCharts.ready(function () {
 
+      var chart = new AmCharts.AmSerialChart();
+      chart.dataProvider =
+      [{#usage.usages} {"month": "{month}", "value": "{value}"}, {/usage.usages}]
+
+      chart.categoryField = "month";
+
+      var graph = new AmCharts.AmGraph();
+      graph.valueField = "value";
+      graph.type = "column";
+      graph.fillAlphas = 1;
+      graph.showBalloon = true;
+      graph.lineColor = "#ffbf63";
+      graph.negativeFillColors = "#289eaf";
+      graph.negativeLineColor = "#289eaf";
+      chart.addGraph(graph);
+
+      chart.write("chartdiv");
+  });
+</script>
 </body>
 </html>

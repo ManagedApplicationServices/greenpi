@@ -4,6 +4,7 @@
 
 <div class="sky">
   <canvas id="sky-top"></canvas>
+
   <div class="asteroid">
     <div class="asteroid-head"></div>
     <div class="asteroid-tail"></div>
@@ -23,6 +24,9 @@
     <div class="asteroid-head"></div>
     <div class="asteroid-tail"></div>
   </div>
+
+  <div class="paper-usage" id="chartdiv"></div>
+
 </div>
 
 <div class="atmosphere">

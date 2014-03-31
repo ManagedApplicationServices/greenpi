@@ -7,8 +7,22 @@ var gulp = require('gulp'),
 
 var paths = {
   style: 'css/**/*',
-  script: ['js/vendor/momentjs/min/moment.min.js', 'js/vendor/socket.io-client/dist/socket.io.min.js', 'js/forest.js', 'js/cloudMessages.js', 'js/stars.js', 'js/scrollSkyToForest.js'],
-  scriptToLint: ['js/forest.js', 'js/cloudMessages.js', 'js/stars.js', 'js/scrollSkyToForest.js']
+  script: [
+    'js/vendor/momentjs/min/moment.min.js',
+    'js/vendor/socket.io-client/dist/socket.io.min.js',
+    'js/vendor/amcharts/dist/amcharts/amcharts.js',
+    'js/vendor/amcharts/dist/amcharts/serial.js',
+    'js/forest.js',
+    'js/cloudMessages.js',
+    'js/stars.js',
+    'js/scrollSkyToForest.js'
+  ],
+  scriptToLint: [
+    'js/forest.js',
+    'js/cloudMessages.js',
+    'js/stars.js',
+    'js/scrollSkyToForest.js'
+  ]
 };
 
 gulp.task('style', function() {
