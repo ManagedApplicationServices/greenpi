@@ -10,6 +10,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
     percentSize = 0,
     treeSizeOriginal = [],
     treeLeftPosition = [],
+    treeLeftPositionOriginal = [],
     treeSizeUnit = '',
     treeSize = 0,
     min = 0,
@@ -35,6 +36,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
     percentSize = 0;
     treeSizeOriginal = [20, 40, 35, 30, 25];
     treeLeftPosition = [11, 26, 46, 72, 86];
+    treeLeftPositionOriginal = [2, 7, 29.5, 58, 74.5]
     treeSizeUnit = 'vw';
     treeSize = 0;
     min = 0;
@@ -53,14 +55,23 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 
     document.getElementById('t1').style.width = treeSizeOriginal[0] + treeSizeUnit;
     document.getElementById('t1').style.height = treeSizeOriginal[0] + treeSizeUnit;
+    document.getElementById('t1').style.left = treeLeftPositionOriginal[0] + treeSizeUnit;
+
     document.getElementById('t2').style.width = treeSizeOriginal[1] + treeSizeUnit;
     document.getElementById('t2').style.height = treeSizeOriginal[1] + treeSizeUnit;
+    document.getElementById('t2').style.left = treeLeftPositionOriginal[1] + treeSizeUnit;
+
     document.getElementById('t3').style.width = treeSizeOriginal[2] + treeSizeUnit;
     document.getElementById('t3').style.height = treeSizeOriginal[2] + treeSizeUnit;
+    document.getElementById('t3').style.left = treeLeftPositionOriginal[2] + treeSizeUnit;
+
     document.getElementById('t4').style.width = treeSizeOriginal[3] + treeSizeUnit;
     document.getElementById('t4').style.height = treeSizeOriginal[3] + treeSizeUnit;
+    document.getElementById('t4').style.left = treeLeftPositionOriginal[3] + treeSizeUnit;
+
     document.getElementById('t5').style.width = treeSizeOriginal[4] + treeSizeUnit;
     document.getElementById('t5').style.height = treeSizeOriginal[4] + treeSizeUnit;
+    document.getElementById('t5').style.left = treeLeftPositionOriginal[4] + treeSizeUnit;
 
     document.getElementById('f1').style.display = 'block';
     document.getElementById('f2').style.display = 'block';
