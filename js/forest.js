@@ -33,7 +33,7 @@
     percentSize = 0;
     treeSizeOriginal = [20, 40, 35, 30, 25];
     treeLeftPosition = [11, 26, 46, 72, 86];
-    treeLeftPositionOriginal = [2, 7, 29.5, 58, 74.5]
+    treeLeftPositionOriginal = [2, 7, 29.5, 58, 74.5];
     treeSizeUnit = 'vw';
     treeSize = 0;
     min = 0;
@@ -48,33 +48,14 @@
     prevLeafCount = 1000;
     differenceLeafCount = 0;
 
+    [1, 2, 3, 4, 5].forEach(function(element, index, array) {
+      document.getElementById('t' + element).style.width = treeSizeOriginal[index] + treeSizeUnit;
+      document.getElementById('t' + element).style.height = treeSizeOriginal[index] + treeSizeUnit;
+      document.getElementById('t' + element).style.left = treeLeftPositionOriginal[index] + treeSizeUnit;
+      document.getElementById('f' + element).style.display = 'block';
+    });
+
     document.getElementById('b').style.display = 'block';
-
-    document.getElementById('t1').style.width = treeSizeOriginal[0] + treeSizeUnit;
-    document.getElementById('t1').style.height = treeSizeOriginal[0] + treeSizeUnit;
-    document.getElementById('t1').style.left = treeLeftPositionOriginal[0] + treeSizeUnit;
-
-    document.getElementById('t2').style.width = treeSizeOriginal[1] + treeSizeUnit;
-    document.getElementById('t2').style.height = treeSizeOriginal[1] + treeSizeUnit;
-    document.getElementById('t2').style.left = treeLeftPositionOriginal[1] + treeSizeUnit;
-
-    document.getElementById('t3').style.width = treeSizeOriginal[2] + treeSizeUnit;
-    document.getElementById('t3').style.height = treeSizeOriginal[2] + treeSizeUnit;
-    document.getElementById('t3').style.left = treeLeftPositionOriginal[2] + treeSizeUnit;
-
-    document.getElementById('t4').style.width = treeSizeOriginal[3] + treeSizeUnit;
-    document.getElementById('t4').style.height = treeSizeOriginal[3] + treeSizeUnit;
-    document.getElementById('t4').style.left = treeLeftPositionOriginal[3] + treeSizeUnit;
-
-    document.getElementById('t5').style.width = treeSizeOriginal[4] + treeSizeUnit;
-    document.getElementById('t5').style.height = treeSizeOriginal[4] + treeSizeUnit;
-    document.getElementById('t5').style.left = treeLeftPositionOriginal[4] + treeSizeUnit;
-
-    document.getElementById('f1').style.display = 'block';
-    document.getElementById('f2').style.display = 'block';
-    document.getElementById('f3').style.display = 'block';
-    document.getElementById('f4').style.display = 'block';
-    document.getElementById('f5').style.display = 'block';
 
     document.getElementById('lost').style.width = '0%';
     document.getElementById('lost').style.display = 'block';
@@ -82,7 +63,6 @@
     document.getElementById('left').style.display = 'block';
 
     document.getElementById('start').style.display = 'none';
-    document.getElementById('lost').style.display = 'block';
   }
 
   function changesOnEveryPrint(data) {
