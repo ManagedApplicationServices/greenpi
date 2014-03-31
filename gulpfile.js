@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 
 var paths = {
   style: 'css/**/*',
-  script: ['js/lib/socketio.js', 'js/forest.js', 'js/cloudMessages.js', 'js/stars.js', 'js/scrollSkyToForest.js'],
+  script: ['js/vendor/momentjs/min/moment.min.js', 'js/vendor/socket.io-client/dist/socket.io.min.js', 'js/forest.js', 'js/cloudMessages.js', 'js/stars.js', 'js/scrollSkyToForest.js'],
   scriptToLint: ['js/forest.js', 'js/cloudMessages.js', 'js/stars.js', 'js/scrollSkyToForest.js']
 };
 
