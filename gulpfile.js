@@ -12,6 +12,7 @@ var paths = {
     'js/vendor/socket.io-client/dist/socket.io.min.js',
     'js/vendor/amcharts/dist/amcharts/amcharts.js',
     'js/vendor/amcharts/dist/amcharts/serial.js',
+    'js/vendor/amcharts/dist/amcharts/themes/chalk.js',
     'js/forest.js',
     'js/cloudMessages.js',
     'js/stars.js',
