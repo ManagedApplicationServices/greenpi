@@ -2,7 +2,10 @@
 
   'use strict';
 
-  var prevLeafCount = 1000,
+  var maxPaperCount = 1000,
+    maxPaperCountWording = '1 thousand',
+    paperCountSections = [1000, 900, 550, 300, 100],
+
     currentTree = 0,
     percentSize = 0,
     treeSizeOriginal = [],
@@ -19,6 +22,7 @@
     fallingLeaf = 0,
     vanishingLeaf = 0,
     currLeafCount = 0,
+    prevLeafCount = maxPaperCount,
     differenceLeafCount = 0,
     simulationStartedAt;
 
@@ -46,7 +50,7 @@
     fallingLeaf = 0;
     vanishingLeaf = 0;
     currLeafCount = 0;
-    prevLeafCount = 1000;
+    prevLeafCount = maxPaperCount;
     differenceLeafCount = 0;
     simulationStartedAt = Date();
 
@@ -121,7 +125,7 @@
     document.getElementById('start').style.display = 'block';
 
     document.getElementById('status').style.display = 'block';
-    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>1 million papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
+    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + maxPaperCountWording + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
   }
 
   var socket = io.connect('/');
@@ -131,16 +135,16 @@
 
     changesOnEveryPrint(data);
 
-    if(data > 900 && data <= 1000) {
-      reduceForest(900, 1000, 1, data);
-    } else if(data > 550 && data <= 900) {
-      reduceForest(550, 900, 2, data);
-    } else if(data > 300 && data <= 550) {
-      reduceForest(300, 550, 3, data);
-    } else if(data > 100 && data <= 300) {
-      reduceForest(100, 300, 4, data);
+    if(data > paperCountSections[1] && data <= paperCountSections[0]) {
+      reduceForest(paperCountSections[1], paperCountSections[0], 1, data);
+    } else if(data > paperCountSections[2] && data <= paperCountSections[1]) {
+      reduceForest(paperCountSections[2], paperCountSections[1], 2, data);
+    } else if(data > paperCountSections[3] && data <= paperCountSections[2]) {
+      reduceForest(paperCountSections[3], paperCountSections[2], 3, data);
+    } else if(data > paperCountSections[4] && data <= paperCountSections[3]) {
+      reduceForest(paperCountSections[4], paperCountSections[3], 4, data);
     } else if(data > 1 && data <= 100) {
-      reduceForest(1, 100, 5, data);
+      reduceForest(1, paperCountSections[4], 5, data);
     } else {
       changesOnLastPrint(data);
     }
