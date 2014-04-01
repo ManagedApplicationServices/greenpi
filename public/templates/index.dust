@@ -2,19 +2,129 @@
 
 {<body}
 
-<h1>Hello, {model.name}!</h1>
-<h2>{subtitle}</h2>
+<div class="sky">
+  <canvas id="sky-top"></canvas>
 
-<div class="tree1" id="t1">1</div>
-<div class="tree2" id="t2">2</div>
-<div class="tree3" id="t3">3</div>
-<div class="tree4" id="t4">4</div>
-<div class="tree5" id="t5">5</div>
+  <div class="asteroid">
+    <div class="asteroid-head"></div>
+    <div class="asteroid-tail"></div>
+  </div>
 
-<h2>Messages</h2>
-<ol>
-  {#messages.messages}<li>{content}</li>{/messages.messages}
-</ol>
+  <div class="moon">
+    <div class="crater"></div>
+    <div class="crater2"></div>
+    <div class="crater3"></div>
+    <div class="crater4"></div>
+    <div class="crater5"></div>
+    <div class="crater6"></div>
+    <div class="crater7"></div>
+  </div>
+
+  <div class="asteroid a2">
+    <div class="asteroid-head"></div>
+    <div class="asteroid-tail"></div>
+  </div>
+
+  <div class="paper-usage" id="chartdiv"></div>
+
+</div>
+
+<div class="atmosphere">
+  <canvas id="sky-bottom"></canvas>
+</div>
+
+<div class="forest">
+
+  <button type="button" class="btn btn-primary btn-lg btn-simulation" id="start">Start</button>
+
+  <div class="sun"></div>
+
+  <div class="trees">
+    <div class="tree tree1">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves1" id="t1"></div>
+
+    <div class="tree tree2">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves2" id="t2"></div>
+
+    <div class="tree tree3">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves3" id="t3"></div>
+
+    <div class="tree tree4">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves4" id="t4"></div>
+
+    <div class="tree tree5">
+      <span class="branch-left"></span>
+      <span class="branch-right"></span>
+    </div>
+    <div class="leaves leaves5" id="t5"></div>
+
+    <div class="stem stem-1"></div>
+    <div class="flower flower-1" id="f1"></div>
+
+    <div class="stem stem-2"></div>
+    <div class="flower flower-2" id="f2"></div>
+
+    <div class="stem stem-3"></div>
+    <div class="flower flower-3" id="f3"></div>
+
+    <div class="stem stem-4"></div>
+    <div class="flower flower-4" id="f4"></div>
+
+    <div class="stem stem-5"></div>
+    <div class="flower flower-5" id="f5"></div>
+  </div>
+
+  <div class="birds-flying" id="b">
+    <div class="bird">
+      <div class="body2"></div>
+      <div class="body1"></div>
+      <div class="wing-l"></div>
+      <div class="wing-r"></div>
+    </div>
+  </div>
+
+  <div class="clouds">
+    <div class="cloud-2"></div>
+    <div class="cloud-3"></div>
+    <div class="cloud-4"></div>
+    <div class="cloud-1">
+      <div class="logo"><img src="img/logo.jpg"></div>
+      {#messages.messages}
+      <p class="message" id="c{$idx}">{content}</p>
+      {/messages.messages}
+    </div>
+  </div>
+
+  <div class="ground">
+    <div class="forest-left" id="left"></div>
+    <div class="forest-lost" id="lost"></div>
+  </div>
+
+  <div class="leaf leaf-1" id="l1">-5</div>
+  <div class="leaf leaf-2" id="l2">-15</div>
+  <div class="leaf leaf-3" id="l3">-45</div>
+  <div class="leaf leaf-4" id="l4">-10</div>
+  <div class="leaf leaf-5" id="l5">-2</div>
+
+  <div class="jumbotron" id="status">
+    <h1>All forest is lost</h1>
+    <p>1 million papers were printed within 3 months.<br>Can we do better next time?</p>
+  </div>
+
+</div>
+
 {/body}
 
 

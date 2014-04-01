@@ -1,0 +1,68 @@
+.asteroid
+   position: absolute
+   top: -200px
+   left: -200px
+   width: 200px
+   height: 200px
+   opacity: 0.8
+   -webkit-animation:  asteroidAnimation 5s 2s infinite ease-in
+
+.asteroid-head
+   width: 10px
+   height: 10px
+   border-radius: 50%
+   background: #FFF
+   -webkit-box-shadow: 0px 0px 7px 2px #FFF
+   -moz-box-shadow: 0px 0px 7px 2px #FFF
+   box-shadow: 0px 0px 7px 2px #FFF
+   position:  absolute
+   bottom: 0
+   right: 0
+
+.asteroid-tail
+   width: 0
+   height: 0
+   border-left:  3px solid transparent
+   border-bottom:  200px solid #FFF
+   border-right:  3px solid transparent
+   position:  absolute
+   bottom: -22px
+   right: 75px
+   -webkit-transform: rotate(-45deg)
+   transform: rotate(-45deg)
+
+.a2
+   top: -205px
+   left: 400px
+   -webkit-animation:  asteroidAnimationTwo 6s 4s infinite ease-in
+
+@-webkit-keyframes "asteroidAnimation"
+   0%
+      top: -200px
+      left: -200px
+      filter: alpha(opacity=80)
+      opacity: 0.8
+   10%
+      top: 200px
+      left: 200px
+      filter: alpha(opacity=0)
+      opacity: 0
+   100%
+      filter: alpha(opacity=0)
+      opacity: 0
+
+@-webkit-keyframes "asteroidAnimationTwo"
+   0%
+      top: -200px
+      left: 400px
+      filter: alpha(opacity=80)
+      opacity: 0.8
+   10%
+      top: 400px
+      left: 980px
+      filter: alpha(opacity=0)
+      opacity: 0
+   100%
+      filter: alpha(opacity=0)
+      opacity: 0
+

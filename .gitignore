@@ -7,3 +7,7 @@ dump.rdb
 
 # build files
 css/style.css
+css/sass/*.css
+css/sass/forest/*.css
+css/sass/sky/*.css
+js/vendor
