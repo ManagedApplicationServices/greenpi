@@ -32,11 +32,11 @@
     };
   }());
 
-  var timeToScroll = 500;
-  var positionTop = 0;
-  var positionBottom = document.body.scrollHeight;
-  var timeAtScrollTop = 120000;
-  var timeAtScrollBottom = 15000;
+  var timeToScroll = 3000; // 3 seconds to scroll
+  var positionTop = 0; // right at the top
+  var positionBottom = document.body.scrollHeight; // right at the bottom
+  var timeAtScrollTop = 180000; // scroll to top to the sky every 3 min
+  var timeAtScrollBottom = 30000; // scroll to bottom to the forest after 30 sec
 
   setInterval(function() {
     window.smoothScrollTo(positionTop, timeToScroll);
