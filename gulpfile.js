@@ -3,6 +3,7 @@ var gulp = require('gulp'),
   minifyCSS = require('gulp-minify-css'),
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
+  plumber = require('gulp-plumber'),
   jshint = require('gulp-jshint');
 
 var paths = {
@@ -28,6 +29,7 @@ var paths = {
 
 gulp.task('style', function() {
   return gulp.src(paths.style)
+    .pipe(plumber())
     .pipe(sass())
     .pipe(gulp.dest('css'))
     .pipe(concat('style.css'))
@@ -37,20 +39,24 @@ gulp.task('style', function() {
 
 gulp.task('script', function() {
   return gulp.src(paths.script)
+    .pipe(plumber())
     .pipe(concat('script.js'))
     .pipe(gulp.dest('public'))
-    // .pipe(uglify())
-    // .pipe(gulp.dest('public'));
+    .pipe(uglify())
+    .pipe(gulp.dest('public'));
 });
 
 gulp.task('jshint', function() {
   return gulp.src(paths.scriptToLint)
+    .pipe(plumber())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
 });
 
 gulp.task('watch', function() {
   gulp.watch(paths.style, ['style']);
+  gulp.watch(paths.script, ['script']);
+  gulp.watch(paths.scriptToLint, ['jshint']);
 });
 
 gulp.task('default', ['jshint', 'style', 'script', 'watch']);
