@@ -1,0 +1,93 @@
+$bird-color: #55acee
+
+.birds-flying
+  position: absolute
+  margin-top: 25%
+  -webkit-animation: fly 20s infinite linear
+
+.bird div
+  position: absolute
+
+.bird
+  position: absolute
+  -webkit-animation: bob 0.7s infinite cubic-bezier(0.7, 0.7, 0.1, 0.4)
+
+.body1, .body2, .wing-l, .wing-r
+  width: 0
+  height: 0
+  border-color: transparent
+  border-style: solid
+
+.body1
+  border-width: 15px
+  border-left-width: 25px
+  border-top-width: 15px
+  border-right-width: 55px
+  border-top-color: $bird-color
+
+.body2
+  left: 50px
+  bottom: 0px
+  border-width: 10px
+  border-left-width: 5px
+  border-top-width: 0px
+  border-right-width: 15px
+  border-bottom-color: darken($bird-color, 10%)
+
+.wing-l
+  left: 22px
+  bottom: 0px
+  border-width: 60px
+  border-left-width: 20px
+  border-top-width: 0
+  border-right-width: 6px
+  border-bottom-color: darken($bird-color, 5%)
+  -webkit-animation: flap-l 0.7s infinite
+
+.wing-r
+  left: 22px
+  top: 0
+  border-width: 60px
+  border-left-width: 20px
+  border-bottom-width: 0px
+  border-right-width: 6px
+  border-top-color: darken($bird-color, 5%)
+  -webkit-animation: flap-r 0.7s infinite
+
+@-webkit-keyframes flap-r
+  0%, 10%
+    border-top-width: 60px
+  40%, 60%
+    border-top-width: 10px
+  100%
+    border-top-width: 60px
+
+@-webkit-keyframes flap-l
+  0%
+    border-bottom-width: 0px
+  40%, 60%
+    border-bottom-width: 40px
+  100%
+    border-bottom-width: 0px
+
+@-webkit-keyframes fly
+  0%
+    left: -20%
+    top: -100px
+    -webkit-transform: scale3d(0.5,0.5,0)
+  85%
+    left: -20%
+    top: -100px
+    -webkit-transform: scale3d(0.5,0.5,0)
+  100%
+    left: 100%
+    top: 100px
+    -webkit-transform: scale3d(1,1,0)
+
+@-webkit-keyframes bob
+  0%
+    top: 25px
+  50%
+    top: 0px
+  100%
+    top: 25px

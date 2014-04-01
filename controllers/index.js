@@ -5,11 +5,13 @@ var client = redis.createClient();
 
 var IndexModel = require('../models/index');
 var MessageModel = require('../models/message');
+var PaperUsageModel = require('../models/paperUsage');
 
 module.exports = function (app) {
 
   var model = new IndexModel();
   var message = new MessageModel();
+  var usage = new PaperUsageModel();
 
   var subtitle = '';
 
@@ -24,7 +26,8 @@ module.exports = function (app) {
       {
         model: model,
         messages: message,
-        subtitle: subtitle
+        subtitle: subtitle,
+        usage: usage
       }
     );
   });
