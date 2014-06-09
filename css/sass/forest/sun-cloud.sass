@@ -71,34 +71,38 @@ $cloud-bgr: #fff
 
 .cloud-1
   top: 17vh
+  right: 10vw
   opacity: 0.95
   @include scale(1.4)
-  @include animation(moveclouds, 300s, 0s, linear, infinite)
+  // @include animation(moveclouds, 300s, 0s, linear, infinite)
 
 .cloud-2
   top: 18vh
+  right: 50vw
   opacity: 0.8
   @include scale(0.3)
-  @include animation(moveclouds, 60s, 0s, linear, infinite)
+  // @include animation(moveclouds, 60s, 0s, linear, infinite)
 
 .cloud-3
   top: 5vh
+  right: 70vw
   opacity: 0.6
   @include scale(0.5)
-  @include animation(moveclouds, 90s, 120s, linear, infinite)
+  // @include animation(moveclouds, 90s, 120s, linear, infinite)
 
 .cloud-4
   top: 10vw
+  right: 60vw
   opacity: 0.75
   @include scale(0.2)
-  @include animation(moveclouds, 120s, 180s, linear, infinite)
+  // @include animation(moveclouds, 120s, 180s, linear, infinite)
 
 .logo
   position: absolute
   top: -7vh
   left: 15vh
   img
-    width: 150px
+    max-height: 5vh
 
 @-webkit-keyframes moveclouds
   0%
