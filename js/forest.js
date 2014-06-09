@@ -61,8 +61,6 @@
       document.getElementById('f' + element).style.display = 'block';
     });
 
-    document.getElementById('b').style.display = 'block';
-
     document.getElementById('lost').style.width = '0%';
     document.getElementById('lost').style.display = 'block';
     document.getElementById('left').style.width = '100%';
@@ -113,7 +111,6 @@
   }
 
   function changesOnLastPrint(data) {
-    document.getElementById('b').style.display = 'none';
     document.getElementById('t5').style.width = 0 + treeSizeUnit;
     document.getElementById('t5').style.height = 0 + treeSizeUnit;
     document.getElementById('f5').style.display = 'none';

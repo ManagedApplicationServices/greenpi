@@ -3,7 +3,6 @@
 {<body}
 
 <div class="sky">
-  <canvas id="sky-top"></canvas>
 
   <div class="asteroid">
     <div class="asteroid-head"></div>
@@ -84,15 +83,6 @@
 
     <div class="stem stem-5"></div>
     <div class="flower flower-5" id="f5"></div>
-  </div>
-
-  <div class="birds-flying" id="b">
-    <div class="bird">
-      <div class="body2"></div>
-      <div class="body1"></div>
-      <div class="wing-l"></div>
-      <div class="wing-r"></div>
-    </div>
   </div>
 
   <div class="clouds">
