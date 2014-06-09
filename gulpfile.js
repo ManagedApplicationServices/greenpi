@@ -16,13 +16,11 @@ var paths = {
     'js/vendor/amcharts/dist/amcharts/themes/chalk.js',
     'js/forest.js',
     'js/cloudMessages.js',
-    'js/stars.js',
     'js/scrollSkyToForest.js'
   ],
   scriptToLint: [
     'js/forest.js',
     'js/cloudMessages.js',
-    'js/stars.js',
     'js/scrollSkyToForest.js'
   ]
 };
