@@ -1,6 +1,6 @@
 .ground
   display: block
-  height: 5vh
+  height: 8vh
   width: 100%
   position: absolute
   bottom: 0
@@ -14,8 +14,7 @@ $leaves-darkest: #527033
 .forest-left
   width: 100%
   height: 100%
-  background: -webkit-linear-gradient(top, $leaves-darkest 0%,$leaves-dark 100%)
-  background: linear-gradient(to bottom, $leaves-darkest 0%,$leaves-dark 100%)
+  background: $leaves-darkest
   float: left
 
 .forest-lost
@@ -23,9 +22,8 @@ $leaves-darkest: #527033
   height: 100%
   background: $tree-branch
   float: left
-  padding: 1vh
   color: darken($tree-branch, 20%)
-  font-size: 2vh
+  font-size: 5vh
   overflow: hidden
   display: block
   font-weight: bold
