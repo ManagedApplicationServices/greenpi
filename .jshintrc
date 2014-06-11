@@ -17,6 +17,7 @@
     "globalstrict": true,
     "globals": {
       "console": true,
+      "d3": true,
       "window": true,
       "document": true,
       "io": true,

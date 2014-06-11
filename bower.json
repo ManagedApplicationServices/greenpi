@@ -4,6 +4,6 @@
     "dependencies": {
       "momentjs": "2.5.1",
       "socket.io-client": "0.9.16",
-      "amcharts": "*"
+      "d3": "3.4.8"
     }
 }

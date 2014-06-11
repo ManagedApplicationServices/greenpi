@@ -1,7 +1,56 @@
-.paper-usage
+.graph-heading
+  margin: 0
+  color: white
+  padding: 0 0 0 4vw
+  line-height: 2
+  float: left
+
+.graph
+  margin: 4vw
   width: 80vw
-  height: 80vh
-  overflow: hidden
   position: absolute
-  bottom: 5vh
-  left: 5vh
+  bottom: 0
+  left: 0
+
+.bar
+  display: inline-block
+  width: 15vw
+  height: 75vh
+  margin-right: 2vw
+  background-color: lightgray
+  vertical-align: bottom
+  position: relative
+
+.cap
+  background: transparent
+  border-top: 3px solid pink
+  z-index: 1000
+  position: relative
+
+.cap:after
+  content: "limit:"
+  color: black
+  font-size: 1vw
+  text-align: right
+  display: inline-block
+  background: white
+  border-radius: 1vh
+  padding: .5vw
+  margin-top: 2vh
+
+text
+  font-size: 2vw
+  color: lightgray
+  display: block
+  text-align: center
+  margin-top: -35px
+
+.months
+  position: absolute
+  bottom: -35px
+  margin: 0
+  text-align: center
+  width: 100%
+  font-size: 2vw
+  color: lightgray
+
