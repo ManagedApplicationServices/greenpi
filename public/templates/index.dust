@@ -4,7 +4,16 @@
 
 <div class="sky">
 
+  <h1 class="graph-heading">paper usage</h1>
+
+  <div class="graph"></div>
+
   <div class="asteroid">
+    <div class="asteroid-head"></div>
+    <div class="asteroid-tail"></div>
+  </div>
+
+  <div class="asteroid a2">
     <div class="asteroid-head"></div>
     <div class="asteroid-tail"></div>
   </div>
@@ -16,15 +25,7 @@
     <div class="crater4"></div>
     <div class="crater5"></div>
     <div class="crater6"></div>
-    <div class="crater7"></div>
   </div>
-
-  <div class="asteroid a2">
-    <div class="asteroid-head"></div>
-    <div class="asteroid-tail"></div>
-  </div>
-
-  <div class="paper-usage" id="chartdiv"></div>
 
 </div>
 

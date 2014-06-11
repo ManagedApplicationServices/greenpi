@@ -16,38 +16,6 @@
 
 <script src="script.js"></script>
 <script>
- var chart = AmCharts.makeChart("chartdiv", {
-  "type": "serial",
-  "theme": "chalk",
-  "handDrawn": true,
-  "handDrawScatter": 5,
-  "fontFamily": "Georgia",
-  "dataProvider": [{#usage.usages} {"month": "{month}", "value": "{value}"}, {/usage.usages}],
-  "startDuration": 1,
-  "graphs": [{
-    "type": "column",
-    "fillAlphas": 0.8,
-    "valueField": "value",
-    "negativeFillColors": "#289eaf",
-    "negativeLineColor": "#289eaf",
-    "labelText": "[[value]]"
-  }, {
-    "bullet": "round",
-    "bulletBorderAlpha": 1,
-    "bulletColor": "#FFFFFF",
-    "useLineColorForBulletBorder": true,
-    "fillAlphas": 0,
-    "lineThickness": 4,
-    "lineAlpha": 1,
-    "bulletSize": 7,
-    "valueField": "value"
-  }],
-  "rotate": false,
-  "categoryField": "month",
-  "categoryAxis": {
-    "gridPosition": "start"
-  }
-});
 
 
 </script>
