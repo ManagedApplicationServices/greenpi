@@ -36,8 +36,8 @@
     currentTree = 1;
     percentSize = 0;
     treeSizeOriginal = [20, 40, 35, 30, 25];
-    treeLeftPosition = [11, 26, 46, 72, 86];
-    treeLeftPositionOriginal = [2, 7, 29.5, 58, 74.5];
+    treeLeftPosition = [11, 26, 46, 72, 84];
+    treeLeftPositionOriginal = [2, 7, 29.5, 58, 72.5];
     treeSizeUnit = 'vw';
     treeSize = 0;
     min = 0;

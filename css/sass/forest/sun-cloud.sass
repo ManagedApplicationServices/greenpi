@@ -35,12 +35,6 @@ $cloud-bgr: #fff
   bottom: 0
   right: 0
 
-.message
-  padding: 1.4vw
-  font-size: 1.5vw
-  margin: -4vh 0 0 1vh
-  display: block
-
 [class^="cloud-"]
   position: absolute
   right: 120%
@@ -48,7 +42,6 @@ $cloud-bgr: #fff
   height: 6vw
   background: $cloud-bgr
   border-radius: 20vw
-  // box-shadow: 0 0 30px #eee
 
 [class^="cloud-"]:before, [class^="cloud-"]:after
   content: ''
@@ -74,36 +67,32 @@ $cloud-bgr: #fff
   right: 10vw
   opacity: 0.95
   @include scale(1.4)
-  // @include animation(moveclouds, 300s, 0s, linear, infinite)
 
 .cloud-2
   top: 18vh
   right: 50vw
   opacity: 0.8
   @include scale(0.3)
-  // @include animation(moveclouds, 60s, 0s, linear, infinite)
 
 .cloud-3
   top: 5vh
   right: 70vw
   opacity: 0.6
   @include scale(0.5)
-  // @include animation(moveclouds, 90s, 120s, linear, infinite)
 
 .cloud-4
   top: 10vw
   right: 60vw
   opacity: 0.75
   @include scale(0.2)
-  // @include animation(moveclouds, 120s, 180s, linear, infinite)
 
 .logo
   position: absolute
-  top: -7vh
-  left: 15vh
+  top: -2vh
+  left: 7vh
   img
-    max-height: 5vh
-    max-width: 13vh
+    max-height: 10vh
+    max-width: 30vh
 
 @-webkit-keyframes moveclouds
   0%
