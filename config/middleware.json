@@ -6,17 +6,6 @@
       "500": "errors/500",
       "503": "errors/503"
     },
-    // "appsec": {
-    //   "csrf": true,
-    //   "csp": false,
-    //   "p3p": false,
-    //   "xframe": "SAMEORIGIN"
-    // },
-
-    // "compiler": {
-    //   "dust": "templates",
-    //   "less": "css"
-    // },
 
     "session": {
       "module": "connect-redis",
@@ -28,9 +17,5 @@
       "secret": "127ab98c3e47a0cb7ce1acfe9390c8e45e8c54a5"
     }
 
-    // "static": {
-    //   "srcRoot": "path:./public",
-    //   "rootPath": "path:./.build"
-    // }
   }
 }
