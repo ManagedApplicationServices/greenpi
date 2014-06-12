@@ -14,13 +14,11 @@ var paths = {
     'js/vendor/d3/d3.min.js',
     'js/forest.js',
     'js/graph.js',
-    'js/cloudMessages.js',
     'js/scrollSkyToForest.js'
   ],
   scriptToLint: [
     'js/graph.js',
     'js/forest.js',
-    'js/cloudMessages.js',
     'js/scrollSkyToForest.js'
   ]
 };

@@ -67,9 +67,7 @@
     <div class="cloud-4"></div>
     <div class="cloud-1">
       <div class="logo"><img src="img/logo.jpg"></div>
-      {#messages.messages}
-      <p class="message" id="c{$idx}">{content}</p>
-      {/messages.messages}
+        <p class="message">Welcome to our forest! Less printing will keep this lively and blooming.</p>
     </div>
   </div>
 
