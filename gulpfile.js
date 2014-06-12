@@ -12,8 +12,8 @@ var paths = {
     'js/vendor/momentjs/min/moment.min.js',
     'js/vendor/socket.io-client/dist/socket.io.min.js',
     'js/vendor/d3/d3.min.js',
-    'js/graph.js',
     'js/forest.js',
+    'js/graph.js',
     'js/cloudMessages.js',
     'js/scrollSkyToForest.js'
   ],
