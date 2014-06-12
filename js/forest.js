@@ -54,6 +54,9 @@
     differenceLeafCount = 0;
     simulationStartedAt = Date();
 
+    // scroll to bottom on load
+    window.scrollTo(0,document.body.scrollHeight);
+
     [1, 2, 3, 4, 5].forEach(function(element, index, array) {
       document.getElementById('t' + element).style.width = treeSizeOriginal[index] + treeSizeUnit;
       document.getElementById('t' + element).style.height = treeSizeOriginal[index] + treeSizeUnit;

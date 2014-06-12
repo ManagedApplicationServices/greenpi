@@ -15,66 +15,18 @@ $tree5-left: 86vw
 $leaves5-radius: 25vw
 
 .tree
-  border-left: 1vh solid transparent
-  border-bottom: 45vh solid $tree-branch
-  border-right: 2vh solid transparent
   width: 3vw
-  height: 40vh
+  background: $tree-branch
 
 .leaves
   border-radius: 50%
   display: block
 
-.branch-left
-  width: 5vh
-  height: 2vh
-  background-color: $tree-branch
-  position: absolute
-  bottom: -40vh
-  left: -5vh
-  -webkit-transform: rotate(18deg)
-  &:before,
-  &:after
-    content: ''
-    width: 5vh
-    height: 1vh
-    background-color: $tree-branch
-    position: absolute
-    -webkit-transform: rotate(18deg)
-  &:before
-    bottom: 8vh
-    left: -2vh
-  &:after
-    bottom: 17vh
-    left: -4vh
-
-.branch-right
-  width: 5vh
-  height: 1vh
-  background-color: $tree-branch
-  position: absolute
-  bottom: -40vh
-  left: 1vh
-  -webkit-transform: rotate(162deg)
-  &:before,
-  &:after
-    content: ''
-    width: 5vh
-    height: 1vh
-    background-color: $tree-branch
-    position: absolute
-    -webkit-transform: rotate(162deg)
-  &:before
-    bottom: -8vh
-    left: -2vh
-  &:after
-    bottom: -17vh
-    left: -4vh
-
 .tree1
   position: absolute
   bottom: 5vh
   left: $tree1-left
+  height: 30vh
 
 .leaves1
   position: absolute
@@ -89,6 +41,7 @@ $leaves5-radius: 25vw
   position: absolute
   bottom: 5vh
   left: $tree2-left
+  height: 40vh
 
 .leaves2
   position: absolute
@@ -103,6 +56,7 @@ $leaves5-radius: 25vw
   position: absolute
   bottom: 5vh
   left: $tree3-left
+  height: 30vh
 
 .leaves3
   position: absolute
@@ -117,6 +71,7 @@ $leaves5-radius: 25vw
   position: absolute
   bottom: 5vh
   left: $tree4-left
+  height: 50vh
 
 .leaves4
   position: absolute
@@ -131,6 +86,7 @@ $leaves5-radius: 25vw
   position: absolute
   bottom: 5vh
   left: $tree5-left
+  height: 30vh
 
 .leaves5
   position: absolute
