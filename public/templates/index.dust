@@ -8,16 +8,6 @@
 
   <div class="graph"></div>
 
-  <div class="asteroid">
-    <div class="asteroid-head"></div>
-    <div class="asteroid-tail"></div>
-  </div>
-
-  <div class="asteroid a2">
-    <div class="asteroid-head"></div>
-    <div class="asteroid-tail"></div>
-  </div>
-
   <div class="moon">
     <div class="crater1"></div>
     <div class="crater2"></div>
