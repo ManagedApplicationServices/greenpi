@@ -37,6 +37,7 @@
 
 ##changelog
 
+1. `v0.8.1` moved the last tree away from the right scrollbar and positioned the graph
 1. `v0.8.0` moved everything away from right scrollbar of the browser
 1. `v0.7.0` simplified to static cloud messages
 1. `v0.6.0` simplified tree branches, removed animations
