@@ -37,6 +37,7 @@
 
 ##changelog
 
+1. `v0.7.0` simplified to static cloud messages
 1. `v0.6.0` simplified tree branches, removed animations
 1. `v0.2.0` simulation at every interval 1 Apr 2014
 

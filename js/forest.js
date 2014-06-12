@@ -1,7 +1,6 @@
 (function() {
 
   'use strict';
-
   var maxPaperCount = 1000,
     maxPaperCountWording = '1 thousand',
     paperCountSections = [1000, 900, 550, 300, 100],
@@ -53,9 +52,6 @@
     prevLeafCount = maxPaperCount;
     differenceLeafCount = 0;
     simulationStartedAt = Date();
-
-    // scroll to bottom on load
-    window.scrollTo(0,document.body.scrollHeight);
 
     [1, 2, 3, 4, 5].forEach(function(element, index, array) {
       document.getElementById('t' + element).style.width = treeSizeOriginal[index] + treeSizeUnit;
@@ -148,6 +144,6 @@
     } else {
       changesOnLastPrint(data);
     }
-
   });
+
 })();
