@@ -15,12 +15,9 @@
     <div class="crater4"></div>
     <div class="crater5"></div>
   </div>
-
 </div>
 
-<div class="atmosphere">
-  <canvas id="sky-bottom"></canvas>
-</div>
+<div class="atmosphere"></div>
 
 <div class="forest">
 
@@ -82,8 +79,9 @@
     <h1>All forest is lost</h1>
     <p>1 million papers were printed within 3 months.<br>Can we do better next time?</p>
   </div>
-
 </div>
+
+<div class="overlay"><img src="" id="poster"></div>
 
 {/body}
 
