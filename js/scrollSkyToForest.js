@@ -35,7 +35,7 @@
   var timeToScroll = 3000; // 3 seconds to scroll
   var positionTop = 0; // right at the top
   var positionBottom = document.body.scrollHeight; // right at the bottom
-  var timeAtScrollTop = 180000; // scroll to top to the sky every 3 min
+  var timeAtScrollTop = 600000; // scroll to top to the sky every 5 min
   var timeAtScrollBottom = 30000; // scroll to bottom to the forest after 30 sec
 
   setInterval(function() {
