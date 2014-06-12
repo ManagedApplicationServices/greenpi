@@ -13,12 +13,14 @@ var paths = {
     'js/vendor/socket.io-client/dist/socket.io.min.js',
     'js/vendor/d3/d3.min.js',
     'js/forest.js',
+    'js/poster.js',
     'js/graph.js',
     'js/scrollSkyToForest.js'
   ],
   scriptToLint: [
     'js/graph.js',
     'js/forest.js',
+    'js/poster.js',
     'js/scrollSkyToForest.js'
   ]
 };
