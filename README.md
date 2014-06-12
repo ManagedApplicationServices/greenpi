@@ -37,11 +37,13 @@
 
 ##changelog
 
+1. `v0.6.0` simplified tree branches, removed animations
+1. `v0.2.0` simulation at every interval 1 Apr 2014
+
+  <img src="changelog/v0.2.0.gif" height=200 width=310>
+
 1. `v0.1.0` reducing trees [e357d9a](https://github.com/ManagedApplicationServices/greenpi/commit/e357d9a0338ca0231798968c26b68fec6caadef3) 26 Mar 2014
 
 	<img src="changelog/v0.1.0.gif" height=100 width=400>
 	
 
-1. `v0.2.0` simulation at every interval 1 Apr 2014
-
-	<img src="changelog/v0.2.0.gif" height=200 width=310>
