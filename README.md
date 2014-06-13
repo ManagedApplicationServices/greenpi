@@ -45,7 +45,8 @@
 
 ##changelog
 
-1. `v0.9.0` moving posters
+1. `v0.10.0` connected to live printer data
+1. `v0.9.0` rotating posters at intervals of 2.5 minutes
 1. `v0.8.1` moved the last tree away from the right scrollbar and positioned the graph
 1. `v0.8.0` moved everything away from right scrollbar of the browser
 1. `v0.7.0` simplified to static cloud messages
