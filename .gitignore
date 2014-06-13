@@ -11,3 +11,6 @@ css/sass/*.css
 css/sass/forest/*.css
 css/sass/sky/*.css
 js/vendor
+
+# confidential data
+lib/config.js

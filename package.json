@@ -1,6 +1,6 @@
 {
   "name": "greenpi",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "raising environmental consciousness within an organization",
   "author": "rspapps developers",
   "main": "index.js",
@@ -30,7 +30,8 @@
     "redis": "0.10.3",
     "hiredis": "0.1.17",
     "connect-redis": "1.4.7",
-    "socket.io": "0.9.16"
+    "socket.io": "0.9.16",
+    "jsdom": "0.10.6"
   },
   "devDependencies": {
     "gulp": "3.8.0",

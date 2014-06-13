@@ -1,9 +1,9 @@
 (function() {
 
   'use strict';
-  var maxPaperCount = 1000,
-    maxPaperCountWording = '1 thousand',
-    paperCountSections = [1000, 900, 550, 300, 100],
+  var maxPaperCount = 0,
+    treeSizeRatios = [1, 0.9, 0.55, 0.3, 0.1],
+    paperCountSections = [],
 
     currentTree = 0,
     percentSize = 0,
@@ -28,6 +28,14 @@
   function detectStartSimulation() {
     document.getElementById('start').onclick = function() {
       socket.emit('simulation', 'start');
+
+      socket.on('paperRemaining', function (data) {
+        maxPaperCount = data;
+        treeSizeRatios.forEach(function (element, index, array) {
+          paperCountSections.push(maxPaperCount * element);
+        })
+      });
+
       initialiseSimulation();
     };
   }
@@ -70,6 +78,8 @@
   }
 
   function changesOnEveryPrint(data) {
+    data = parseInt(data);
+
     count += 1;
     currLeafCount = data;
     fallingLeaf = (count % 5) + 1;
@@ -83,8 +93,8 @@
       document.getElementById('l' + fallingLeaf).innerHTML = '-' + differenceLeafCount;
     }
 
-    document.getElementById('left').style.width = Math.round(data/10) + '%';
-    var lost = 100 - Math.round(data/10) + '%';
+    document.getElementById('left').style.width = Math.round(data/maxPaperCount*100) + '%';
+    var lost = 100 - Math.round(data/maxPaperCount*100) + '%';
     document.getElementById('lost').style.width = lost;
     document.getElementById('lost').innerHTML = lost + ' forest lost since ' + moment(simulationStartedAt).startOf('minute').fromNow();
 
@@ -121,14 +131,13 @@
     document.getElementById('start').style.display = 'block';
 
     document.getElementById('status').style.display = 'block';
-    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + maxPaperCountWording + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
+    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + maxPaperCount + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
   }
 
   var socket = io.connect('/');
   detectStartSimulation();
 
   socket.on('ping', function (data) {
-
     changesOnEveryPrint(data);
 
     if(data > paperCountSections[1] && data <= paperCountSections[0]) {
