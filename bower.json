@@ -1,9 +1,10 @@
 {
-    "name": "greenpi",
-    "version": "0.0.1",
-    "dependencies": {
-      "momentjs": "2.5.1",
-      "socket.io-client": "0.9.16",
-      "d3": "3.4.8"
-    }
+  "name": "greenpi",
+  "version": "0.0.1",
+  "dependencies": {
+    "momentjs": "2.5.1",
+    "socket.io-client": "0.9.16",
+    "d3": "3.4.8",
+    "jquery": "~2.1.1"
+  }
 }

@@ -2,6 +2,14 @@
 
 > raising environmental consciousness within an organization
 
+##install
+
+1. make a config file to input the internal IP address:
+
+  ```
+  $ cp lib/config.sample.js lib/config.js
+  ```
+
 ##development
 
 1. start redis
