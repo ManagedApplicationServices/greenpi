@@ -33,7 +33,7 @@
         maxPaperCount = data;
         treeSizeRatios.forEach(function (element, index, array) {
           paperCountSections.push(maxPaperCount * element);
-        })
+        });
       });
 
       initialiseSimulation();
