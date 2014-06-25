@@ -135,7 +135,9 @@
   }
 
   var socket = io.connect('/');
-  detectStartSimulation();
+  if(document.getElementById('start')) {
+    detectStartSimulation();
+  }
 
   socket.on('ping', function (data) {
     changesOnEveryPrint(data);

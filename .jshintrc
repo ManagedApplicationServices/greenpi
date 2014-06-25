@@ -16,6 +16,8 @@
     "strict": true,
     "globalstrict": true,
     "globals": {
+      "$": true,
+      "alert": true,
       "console": true,
       "d3": true,
       "window": true,

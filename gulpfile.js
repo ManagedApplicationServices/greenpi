@@ -9,9 +9,11 @@ var gulp = require('gulp'),
 var paths = {
   style: 'css/**/*',
   script: [
+    'js/vendor/jquery/dist/jquery.min.js',
     'js/vendor/momentjs/min/moment.min.js',
     'js/vendor/socket.io-client/dist/socket.io.min.js',
     'js/vendor/d3/d3.min.js',
+    'js/setting.js',
     'js/forest.js',
     'js/poster.js',
     'js/graph.js',
@@ -21,7 +23,8 @@ var paths = {
     'js/graph.js',
     'js/forest.js',
     'js/poster.js',
-    'js/scrollSkyToForest.js'
+    'js/scrollSkyToForest.js',
+    'js/setting.js'
   ]
 };
 
