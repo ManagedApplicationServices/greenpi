@@ -13,4 +13,4 @@ css/sass/sky/*.css
 js/vendor
 
 # confidential data
-lib/config.js
+config.json
