@@ -18,29 +18,29 @@
             <fieldset>
 
               <div class="form-group">
-                <label class="col-lg-2 control-label">Current printer IP</label>
-                <div class="col-lg-10">
+                <h3 class="col-lg-3 control-label">Current printer IP</h3>
+                <div class="col-lg-9">
                   <input type="text" class="form-control input-lg" placeholder="172.19.107.61" name="printerIP">
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-lg-2 control-label">Organisation CAP</label>
-                <div class="col-lg-10">
+                <h3 class="col-lg-3 control-label">Organisation CAP</h3>
+                <div class="col-lg-9">
                   <input type="number" min=100 class="form-control input-lg" placeholder="1000000" name="organisationCap">
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-lg-2 control-label">Total printers</label>
-                <div class="col-lg-10">
+                <h3 class="col-lg-3 control-label">Total printers</h3>
+                <div class="col-lg-9">
                   <input type="number" min=1 class="form-control input-lg" placeholder="4" name="totalPrinters">
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-lg-2 control-label">Company Logo</label>
-                <div class="col-lg-10">
+                <h3 class="col-lg-3 control-label">Company Logo</h3>
+                <div class="col-lg-9">
                   <div class="input-group">
                     <span class="input-group-btn">
                       <span class="btn btn-primary btn-file">
@@ -53,8 +53,8 @@
               </div>
 
               <div class="form-group">
-                <label class="col-lg-2 control-label">Posters</label>
-                <div class="col-lg-10">
+                <h3 class="col-lg-3 control-label">Posters</h3>
+                <div class="col-lg-9">
                   <div class="input-group">
                     <span class="input-group-btn">
                       <span class="btn btn-primary btn-file">
@@ -67,7 +67,7 @@
               </div>
 
               <div class="form-group">
-                <div class="col-lg-10 pull-right">
+                <div class="col-lg-9 pull-right">
                   <div class="input-group">
                     <span class="input-group-btn">
                       <span class="btn btn-primary btn-file">
@@ -80,7 +80,7 @@
               </div>
 
               <div class="form-group">
-                <div class="col-lg-10 pull-right">
+                <div class="col-lg-9 pull-right">
                   <div class="input-group">
                     <span class="input-group-btn">
                       <span class="btn btn-primary btn-file">
@@ -93,7 +93,7 @@
               </div>
 
               <div class="form-group">
-                <div class="col-lg-10 pull-right">
+                <div class="col-lg-9 pull-right">
                   <div class="input-group">
                     <span class="input-group-btn">
                       <span class="btn btn-primary btn-file">
@@ -106,7 +106,7 @@
               </div>
 
               <div class="form-group">
-                <div class="col-lg-10 pull-right">
+                <div class="col-lg-9 pull-right">
                   <div class="input-group">
                     <span class="input-group-btn">
                       <span class="btn btn-primary btn-file">
@@ -118,9 +118,25 @@
                 </div>
               </div>
 
+              <hr>
+
               <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                <h3 class="col-lg-3 control-label">New password</h3>
+                <div class="col-lg-9">
+                  <input type="password" class="form-control input-lg" placeholder="secret" name="password">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <h3 class="col-lg-3 control-label">Confirm password</h3>
+                <div class="col-lg-9">
+                  <input type="password" class="form-control input-lg" placeholder="secret" name="password_confirmation">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-lg-12">
+                  <button type="submit" class="btn btn-primary btn-lg btn-extend"><h3>Submit</h3></button>
                 </div>
               </div>
 
