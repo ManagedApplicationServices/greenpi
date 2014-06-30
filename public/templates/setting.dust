@@ -20,7 +20,7 @@
               <div class="form-group">
                 <label class="col-lg-2 control-label">Current printer IP</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control input-lg" placeholder="172.19.107.61" name="printerIp">
+                  <input type="text" class="form-control input-lg" placeholder="172.19.107.61" name="printerIP">
                 </div>
               </div>
 
@@ -44,7 +44,7 @@
                   <div class="input-group">
                     <span class="input-group-btn">
                       <span class="btn btn-primary btn-file">
-                      Upload <input type="file" name="companyLogo">
+                      Upload <input type="file" name="logo">
                       </span>
                     </span>
                     <input type="text" class="form-control" readonly placeholder="215px x 90px">
