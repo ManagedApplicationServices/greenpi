@@ -1,7 +1,7 @@
 {
-  "baseUrl": "http://172.19.107.61/",
+  "printerIP": "http://172.19.107.61/",
   "paperUsageCap": 400,
   "totalPrinters": 4,
   "appPath": "/Users/sayanee/Workspace/greenpi/app",
-  "paperUsagePath": "web/guest/en/websys/status/getUnificationCounter.cgi"
+  "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi"
 }
