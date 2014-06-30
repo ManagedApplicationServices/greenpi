@@ -8,7 +8,7 @@ var fs = require('fs');
 var bcrypt = require('bcrypt');
 
 module.exports = function (app) {
-  var model = new SettingModel();
+  var model = {};
 
   var auth = express.basicAuth(function(usernameInput, passwordInput, callback) {
     var result, username, passwordHash, hashCompare;
@@ -35,16 +35,9 @@ module.exports = function (app) {
     var uploadedImages = new Array();
     var i = 0;
 
-    console.log(req.files);
-    console.log(req.body.printerIP);
-    console.log(req.body.organisationCap);
-    console.log(req.body.totalPrinters);
-
     fs.readFile(configFile, 'utf8', function (err, data) {
       if (err) {console.log('Error: ' + err); return; }
       config = JSON.parse(data);
-      console.log('CONFIG:');
-      console.log(config);
 
       // create new config file based on admin input
       var newConfig = createNewConfig(config, req.body);
@@ -59,24 +52,73 @@ module.exports = function (app) {
 
       // transfer posters and logos based on admin upload
       transferUploadedImages(req.files, config);
+      insertToModel(model, req);
 
+      res.render('setting-done', model);
     });
 
-    res.render('setting-done', model);
+
   });
 
 };
+
+function insertToModel(model, req) {
+
+  if(req.body.printerIP) {
+    model.printerIP = req.body.printerIP;
+  }
+
+  if(req.body.paperUsageCap) {
+    model.paperUsageCap = req.body.paperUsageCap;
+  }
+
+  if(req.body.totalPrinters) {
+    model.totalPrinters = req.body.totalPrinters;
+  }
+
+  if(req.files.logo.size > 0) {
+    model.logo = true;
+  }
+
+  if(req.files.poster1.size > 0) {
+    model.poster1 = true;
+  }
+
+  if(req.files.poster2.size > 0) {
+    model.poster2 = true;
+  }
+
+  if(req.files.poster3.size > 0) {
+    model.poster3 = true;
+  }
+
+  if(req.files.poster4.size > 0) {
+    model.poster4 = true;
+  }
+
+  if(req.files.poster5.size > 0) {
+    model.poster5 = true;
+  }
+
+  if(req.body.password) {
+    if(req.body.password === req.body.passwordConfirm) {
+      model.password = 'Password reset successful';
+    } else {
+      model.password = 'Password reset not successful';
+    }
+  }
+
+  return model;
+}
 
 function transferUploadedImages(uploadedImages, config) {
   var newPath = '';
 
   for(var i in uploadedImages){
-    // console.log(i); // key
-    // console.log(uploadedImages[i]); // value
 
     if(uploadedImages[i].size > 0) {
       newPath = config.appPath + '/public/img/' + i + '.jpg';
-      // console.log(newPath);
+
       require('fs').rename(uploadedImages[i].path, newPath,
         function(error) {
           var errorMessage = 'Ah crap! Could not load ' + i + ' :(';
@@ -89,7 +131,6 @@ function transferUploadedImages(uploadedImages, config) {
     }
 
   }
-
 }
 
 function createNewConfig(config, req) {
@@ -99,13 +140,25 @@ function createNewConfig(config, req) {
     newConfig.printerIP = req.printerIP;
   }
 
-  if(req.organisationCap) {
-    newConfig.paperUsageCap = req.organisationCap;
+  if(req.paperUsageCap) {
+    newConfig.paperUsageCap = parseInt(req.paperUsageCap);
   }
 
   if(req.totalPrinters) {
-    newConfig.totalPrinters = req.totalPrinters;
+    newConfig.totalPrinters = parseInt(req.totalPrinters);
   }
 
+  if(req.password) {
+    if(req.password === req.passwordConfirm) {
+      bcrypt.hash(req.password, 8, function(err, hash) {
+        console.log('PASSWORD RESET DONE!!');
+        console.log(hash);
+        console.log('PASSWORD RESET !!!!!!!');
+        newConfig.passwordHash = hash;
+      });
+    }
+  }
+
+  console.log(newConfig);
   return newConfig;
 }
