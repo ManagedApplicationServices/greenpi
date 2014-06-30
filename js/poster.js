@@ -16,7 +16,7 @@
       setTimeout(function() {
         posterDiv.style.display = 'block';
         currPoster = currPoster % numPosters + 1;
-        currImage = 'img/poster-' + currPoster + '.jpg';
+        currImage = 'img/poster' + currPoster + '.jpg';
         document.getElementById('poster').setAttribute('src', currImage);
       }, posterDisplay);
     }, posterIntervalTime);
