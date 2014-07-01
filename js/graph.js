@@ -4,7 +4,12 @@
 
   // usage input
   var paperUsage = [ 25000, 7, 5, 260, 11, 100, 234, 1, 45, 12, 23, 5000, 600, 2342, 34234];
-  var cap = 20000;
+  var cap = 0;
+
+  var socket = io.connect('/');
+  socket.on('singlePrinterCap', function (data) {
+    cap = data;
+  });
 
   var dataset = [];
   if(paperUsage.length > 12) {

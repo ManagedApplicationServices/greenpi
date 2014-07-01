@@ -28,16 +28,24 @@ module.exports = function (app) {
         done: function (errors, window) {
           var printerModel = window.$('.staticProp').find("td:contains('Model Name')").first().next().next().text();
           var printerID = window.$('.staticProp').find("td:contains('Machine ID')").first().next().next().text();
+          var singlePrinterCap = 0;
+
+          client.get('singlePrinterCap', function(err, reply) {
+            singlePrinterCap = reply;
+          });
 
           console.log('Printer model name: ');
           console.log(printerModel);
+          client.set('printerModel', printerModel);
 
           console.log('Printer ID: ');
           console.log(printerID);
+          client.set('printerID', printerID);
 
           res.render('index', {
             printerModel: printerModel,
-            printerID: printerID
+            printerID: printerID,
+            singlePrinterCap: singlePrinterCap
           });
         }
       });
