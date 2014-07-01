@@ -36,19 +36,13 @@ module.exports = function (app) {
     var i = 0;
 
     fs.readFile(configFile, 'utf8', function (err, data) {
+      var newConfig = {};
+
       if (err) {console.log('Error: ' + err); return; }
       config = JSON.parse(data);
 
       // create new config file based on admin input
-      var newConfig = createNewConfig(config, req.body);
-
-      fs.writeFile(configFile, JSON.stringify(newConfig, null, 4), function(err) {
-        if(err) {
-          console.log(err);
-        } else {
-          console.log('JSON saved to ' + configFile);
-        }
-      });
+      createNewConfig(config, req.body);
 
       // transfer posters and logos based on admin upload
       transferUploadedImages(req.files, config);
@@ -56,7 +50,6 @@ module.exports = function (app) {
 
       res.render('setting-done', model);
     });
-
 
   });
 
@@ -151,14 +144,19 @@ function createNewConfig(config, req) {
   if(req.password) {
     if(req.password === req.passwordConfirm) {
       bcrypt.hash(req.password, 8, function(err, hash) {
-        console.log('PASSWORD RESET DONE!!');
-        console.log(hash);
-        console.log('PASSWORD RESET !!!!!!!');
         newConfig.passwordHash = hash;
+        createNewConfigFile(newConfig);
       });
+    } else {
+      createNewConfigFile(newConfig);
     }
+  } else {
+    createNewConfigFile(newConfig);
   }
+}
 
-  console.log(newConfig);
-  return newConfig;
+function createNewConfigFile(newConfig) {
+  fs.writeFile(configFile, JSON.stringify(newConfig, null, 4), function(err) {
+    if(err) {console.log(err); }
+  });
 }
