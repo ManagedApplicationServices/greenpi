@@ -4,11 +4,16 @@
 
 ##install
 
-1. make a config file to input the internal IP address:
+1. start the server
 
-  ```
-  $ cp lib/config.sample.js lib/config.js
-  ```
+	```
+	$ node index.js
+	```
+1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
+
+	- username: `sprout`
+	- password: `greenpi`
+
 
 ##development
 

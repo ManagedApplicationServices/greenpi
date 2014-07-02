@@ -1,0 +1,58 @@
+{>"layouts/master" /}
+
+{<body}
+<div class="container">
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <h1>Thanks!</h1>
+
+        <ul class="list-group">
+          {?printerIP}
+            <li class="list-group-item"><h2><strong>Printer IP:</strong> {printerIP}</h2></li>
+          {/printerIP}
+
+          {?paperUsageCap}
+            <li class="list-group-item"><h2><strong>Organisation CAP:</strong> {paperUsageCap}</h2></li>
+          {/paperUsageCap}
+
+          {?totalPrinters}
+            <li class="list-group-item"><h2><strong>Total printers:</strong> {totalPrinters}</h2></li>
+          {/totalPrinters}
+
+          {?logo}
+            <li class="list-group-item"><h2>New company logo uploaded</h2></li>
+          {/logo}
+
+          {?poster1}
+            <li class="list-group-item"><h2>Poster 1 uploaded</h2></li>
+          {/poster1}
+
+          {?poster2}
+            <li class="list-group-item"><h2>Poster 2 uploaded</h2></li>
+          {/poster2}
+
+          {?poster3}
+            <li class="list-group-item"><h2>Poster 3 uploaded</h2></li>
+          {/poster3}
+
+          {?poster4}
+            <li class="list-group-item"><h2>Poster 4 uploaded</h2></li>
+          {/poster4}
+
+          {?poster5}
+            <li class="list-group-item"><h2>Poster 5 uploaded</h2></li>
+          {/poster5}
+
+          {?password}
+            <li class="list-group-item"><h2>{password}</h2></li>
+          {/password}
+        </ul>
+
+      </div>
+    </div>
+  </div>
+{/body}
+
+
