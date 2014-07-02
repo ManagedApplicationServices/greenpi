@@ -67,7 +67,7 @@
     "indent": 2,
     "white": false,
     "quotmark": true,
-    "maxparams": 5,
+    "maxparams": 6,
     "maxdepth": 3,
     "maxstatements": 50,
     "maxcomplexity": 6
