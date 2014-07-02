@@ -10,8 +10,8 @@
   var monthset = [];
   var maxDataset = 0; // max of all monthly paper usage
   var maxHeightNormalised = 0;
-  var maxHeight = 80;
-  var maxWidth = 80;
+  var maxHeight = 75;
+  var maxWidth = 75;
   var i = 0; // iterator
   var MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
 
