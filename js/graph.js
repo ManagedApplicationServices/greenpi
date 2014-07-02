@@ -19,7 +19,7 @@
 
   // single printer paper usage limit
   socket.on('singlePrinterCap', function (data) {
-    cap = data;
+    cap = data / 12; // per month per printer paper usage cap
     var capstyle = document.createElement('style');
     capstyle.innerHTML = '.cap:after{content: "limit: ' + cap + '";}';
     document.head.appendChild(capstyle);
