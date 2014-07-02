@@ -21,7 +21,7 @@
   socket.on('singlePrinterCap', function (data) {
     cap = data / 12; // per month per printer paper usage cap
     var capstyle = document.createElement('style');
-    capstyle.innerHTML = '.cap:after{content: "limit: ' + cap + '";}';
+    capstyle.innerHTML = '.cap:after{content: "monthly limit: ' + cap + '";}';
     document.head.appendChild(capstyle);
     dataset = [0];
   });
