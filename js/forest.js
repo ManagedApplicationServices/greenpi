@@ -25,19 +25,33 @@
     differenceLeafCount = 0,
     simulationStartedAt;
 
-  function detectStartSimulation() {
-    document.getElementById('start').onclick = function() {
-      socket.emit('simulation', 'start');
+  function startSimulation() {
+    console.log('simulation started');
 
-      socket.on('paperRemaining', function (data) {
-        maxPaperCount = data;
-        treeSizeRatios.forEach(function (element, index, array) {
-          paperCountSections.push(maxPaperCount * element);
-        });
+    document.getElementById('stop').style.display = 'block';
+    socket.emit('start', true);
+    socket.emit('stop', false);
+
+    socket.on('paperRemaining', function (data) {
+      maxPaperCount = data;
+      treeSizeRatios.forEach(function (element, index, array) {
+        paperCountSections.push(maxPaperCount * element);
       });
+    });
 
-      initialiseSimulation();
-    };
+    initialiseSimulation();
+
+  }
+
+  function stopSimulation() {
+    console.log('simulation stopped');
+
+    document.getElementById('stop').style.display = 'none';
+    socket.emit('stop', true);
+    socket.emit('start', false);
+
+    initialiseSimulation();
+    document.getElementById('start').style.display = 'block';
   }
 
   function initialiseSimulation() {
@@ -135,9 +149,9 @@
   }
 
   var socket = io.connect('/');
-  if(document.getElementById('start')) {
-    detectStartSimulation();
-  }
+
+  document.getElementById('start').addEventListener('click', startSimulation, false);
+  document.getElementById('stop').addEventListener('click', stopSimulation, false);
 
   socket.on('ping', function (data) {
     changesOnEveryPrint(data);
