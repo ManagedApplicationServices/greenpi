@@ -23,7 +23,10 @@
     var capstyle = document.createElement('style');
     capstyle.innerHTML = '.cap:after{content: "monthly limit: ' + cap + '";}';
     document.head.appendChild(capstyle);
+    paperUsage = [];
     dataset = [0];
+    monthset = [];
+    removeGraph();
   });
 
   // ----------- WITH EACH LEAF / PRINT JOB --------
@@ -67,11 +70,7 @@
     return dataset;
   }
 
-  function drawGraph(dataset, maxHeightNormalised, maxHeight, maxWidth, monthset, cap) {
-    console.log('dataset before drawing graph: ');
-    console.log(dataset);
-    console.log(monthset);
-
+  function removeGraph() {
     if(!d3.select('.cap').empty()){
       $('.cap').remove();
     }
@@ -79,6 +78,14 @@
     if(d3.selectAll('.bar') !== null) {
       d3.selectAll('.bar').remove();
     }
+  }
+
+  function drawGraph(dataset, maxHeightNormalised, maxHeight, maxWidth, monthset, cap) {
+    console.log('dataset before drawing graph: ');
+    console.log(dataset);
+    console.log(monthset);
+
+    removeGraph();
 
     d3.select('.graph')
       .selectAll('div')

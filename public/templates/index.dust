@@ -65,7 +65,9 @@
   </div>
 
   <div class="ground">
-    <div class="forest-left" id="left"></div>
+    <div class="forest-left" id="left">
+      <button class="stop" id="stop">stop</button>
+    </div>
     <div class="forest-lost" id="lost"></div>
   </div>
 
