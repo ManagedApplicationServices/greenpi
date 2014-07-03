@@ -82,8 +82,8 @@
 
   function drawGraph(dataset, maxHeightNormalised, maxHeight, maxWidth, monthset, cap) {
     console.log('dataset before drawing graph: ');
-    console.log(dataset);
-    console.log(monthset);
+    console.log('Monthly data: ' + dataset);
+    console.log('Months: ' + monthset);
 
     removeGraph();
 

@@ -154,6 +154,7 @@
   document.getElementById('stop').addEventListener('click', stopSimulation, false);
 
   socket.on('ping', function (data) {
+    console.log('Yearly CAP remaining: ' + data);
     changesOnEveryPrint(data);
 
     if(data > paperCountSections[1] && data <= paperCountSections[0]) {
