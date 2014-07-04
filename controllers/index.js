@@ -13,7 +13,7 @@ var PaperUsageModel = require('../models/paperUsage');
 
 module.exports = function (app) {
 
-  var model = new IndexModel();
+  var model = {};
   var usage = new PaperUsageModel();
 
   app.get('/', function (req, res) {
@@ -39,22 +39,28 @@ module.exports = function (app) {
             .next()
             .text();
           var singlePrinterCap = 0;
+          var simulation = ''
 
           client.get('singlePrinterCap', function(err, reply) {
             singlePrinterCap = reply;
           });
 
           console.log('Printer model name: ' + printerModel);
-          client.set('printerModel', printerModel);
-
           console.log('Printer ID: ' + printerID);
-          client.set('printerID', printerID);
 
-          res.render('index', {
+          client.get('simulation', function(err, reply) {
+            simulation = reply;
+          })
+
+          model = {
             printerModel: printerModel,
             printerID: printerID,
-            singlePrinterCap: singlePrinterCap
-          });
+            singlePrinterCap: singlePrinterCap,
+            simulation: simulation
+          };
+
+          res.render('index', model);
+
         }
       });
     });

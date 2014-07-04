@@ -73,8 +73,6 @@ return c>=_s?n?"M0,"+i+"A"+i+","+i+" 0 1,1 0,"+-i+"A"+i+","+i+" 0 1,1 0,"+i+"M0,
     simulationStartedAt;
 
   function startSimulation() {
-    console.log('simulation started');
-
     document.getElementById('stop').style.display = 'block';
     socket.emit('start', true);
     socket.emit('stop', false);
@@ -87,12 +85,9 @@ return c>=_s?n?"M0,"+i+"A"+i+","+i+" 0 1,1 0,"+-i+"A"+i+","+i+" 0 1,1 0,"+i+"M0,
     });
 
     initialiseSimulation();
-
   }
 
   function stopSimulation() {
-    console.log('simulation stopped');
-
     document.getElementById('stop').style.display = 'none';
     socket.emit('stop', true);
     socket.emit('start', false);

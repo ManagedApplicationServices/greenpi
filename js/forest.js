@@ -26,8 +26,6 @@
     simulationStartedAt;
 
   function startSimulation() {
-    console.log('simulation started');
-
     document.getElementById('stop').style.display = 'block';
     socket.emit('start', true);
     socket.emit('stop', false);
@@ -40,12 +38,9 @@
     });
 
     initialiseSimulation();
-
   }
 
   function stopSimulation() {
-    console.log('simulation stopped');
-
     document.getElementById('stop').style.display = 'none';
     socket.emit('stop', true);
     socket.emit('start', false);
