@@ -170,7 +170,14 @@
     var data = 0;
 
     if(result.simulation === 'running' && result.paperRemaining > 0) {
+      maxPaperCount = result.paperCapPerPrinterPerYear;
       data = result.paperRemaining;
+      simulationStartedAt = result.simulationStartAt;
+
+      console.log('Max paper to print: ' + maxPaperCount);
+      console.log('Remaining paper to print: ' + data);
+      console.log('Simulation started at: ' + simulationStartedAt);
+      console.log(typeof simulationStartedAt);
 
       document.getElementById('start').style.display = 'none';
       createPaperCountSections(data);
