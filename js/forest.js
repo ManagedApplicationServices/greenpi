@@ -114,8 +114,8 @@
     var currTree = document.getElementById('t' + currentTreeNum);
 
     for(i = 1; i < currentTreeNum; i++) {
-      document.getElementById('t' + i).width = 0 + treeSizeUnit;
-      document.getElementById('f' + i).width = 0 + treeSizeUnit;
+      document.getElementById('t' + i).style.width = 0;
+      document.getElementById('t' + i).style.height = 0;
       document.getElementById('f' + i).style.display = 'none';
     }
 

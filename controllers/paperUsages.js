@@ -18,8 +18,6 @@ module.exports = function (app) {
 
   app.get('/usages', function (request, response) {
 
-    var i = 0;
-
     client.select(0, function(error,res){
       if(error) return error;
 
@@ -40,8 +38,9 @@ module.exports = function (app) {
       });
 
       client.llen('monthset', function(err, reply){
+        var i = 0;
         usages.monthset = [];
-        for(i=0; i<reply; i++) {
+        for(i = 0; i < reply; i++) {
           client.lindex('monthset', i, function(err, reply) {
             usages.monthset.push(parseInt(reply));
           });
@@ -49,8 +48,10 @@ module.exports = function (app) {
       });
 
       client.llen('dataset', function(err, reply){
+        var i = 0;
         usages.dataset = [];
-        for(i=0; i<reply; i++) {
+
+        for(i = 0; i < reply; i++) {
           client.lindex('dataset', i, function(err, reply) {
             usages.dataset.push(parseInt(reply));
           });
