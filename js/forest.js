@@ -23,7 +23,8 @@
     currLeafCount = 0,
     prevLeafCount = maxPaperCount,
     differenceLeafCount = 0,
-    simulationStartedAt;
+    simulationStartedAt,
+    socket = io.connect('/');
 
   function startSimulation() {
     document.getElementById('stop').style.display = 'block';
@@ -32,9 +33,7 @@
 
     socket.on('paperRemaining', function (data) {
       maxPaperCount = data;
-      treeSizeRatios.forEach(function (element, index, array) {
-        paperCountSections.push(maxPaperCount * element);
-      });
+      createPaperCountSections(data);
     });
 
     initialiseSimulation();
@@ -111,15 +110,13 @@
   }
 
   function reduceForest(min, max, currentTreeNum, data) {
-    var prevTreeNum = currentTreeNum - 1;
-    var prevTree = document.getElementById('t' + prevTreeNum);
-    var prevFlower = document.getElementById('f' + prevTreeNum);
+    var i = 0;
     var currTree = document.getElementById('t' + currentTreeNum);
 
-    if(prevTreeNum > 0) {
-      prevTree.style.width = 0 + treeSizeUnit;
-      prevTree.style.height = 0 + treeSizeUnit;
-      prevFlower.style.display = 'none';
+    for(i = 1; i < currentTreeNum; i++) {
+      document.getElementById('t' + i).width = 0 + treeSizeUnit;
+      document.getElementById('f' + i).width = 0 + treeSizeUnit;
+      document.getElementById('f' + i).style.display = 'none';
     }
 
     treeSize = treeSizeOriginal[currentTreeNum-1]*((data-min)/(max-min));
@@ -143,14 +140,13 @@
     document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + maxPaperCount + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
   }
 
-  var socket = io.connect('/');
+  function createPaperCountSections(data) {
+    treeSizeRatios.forEach(function (element, index, array) {
+      paperCountSections.push(data * element);
+    });
+  }
 
-  document.getElementById('start').addEventListener('click', startSimulation, false);
-  document.getElementById('stop').addEventListener('click', stopSimulation, false);
-
-  socket.on('ping', function (data) {
-    changesOnEveryPrint(data);
-
+  function triggerReduceForest(data) {
     if(data > paperCountSections[1] && data <= paperCountSections[0]) {
       reduceForest(paperCountSections[1], paperCountSections[0], 1, data);
     } else if(data > paperCountSections[2] && data <= paperCountSections[1]) {
@@ -164,6 +160,29 @@
     } else {
       changesOnLastPrint(data);
     }
+  }
+
+  document.getElementById('start').addEventListener('click', startSimulation, false);
+  document.getElementById('stop').addEventListener('click', stopSimulation, false);
+
+  // get current status
+  $.getJSON('/usages', function(result) {
+    var data = 0;
+
+    if(result.simulation === 'running' && result.paperRemaining > 0) {
+      data = result.paperRemaining;
+
+      document.getElementById('start').style.display = 'none';
+      createPaperCountSections(data);
+      triggerReduceForest(data);
+    }
+
+  });
+
+  socket.on('ping', function (data) {
+    console.log(data);
+    changesOnEveryPrint(data);
+    triggerReduceForest(data);
   });
 
 })();
