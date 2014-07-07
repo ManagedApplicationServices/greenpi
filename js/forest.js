@@ -7,10 +7,10 @@
 
     currentTree = 0,
     percentSize = 0,
-    treeSizeOriginal = [],
-    treeLeftPosition = [],
-    treeLeftPositionOriginal = [],
-    treeSizeUnit = '',
+    treeSizeOriginal = [20, 40, 35, 30, 25],
+    treeLeftPosition = [11, 26, 46, 72, 82], // css - .treeN, left
+    treeLeftPositionOriginal = [2, 7, 29.5, 58, 70.5], //css - .leavesN, left
+    treeSizeUnit = 'vw',
     treeSize = 0,
     min = 0,
     max = 0,
@@ -144,22 +144,24 @@
     treeSizeRatios.forEach(function (element, index, array) {
       paperCountSections.push(data * element);
     });
+
+    paperCountSections.push(1);
   }
 
   function triggerReduceForest(data) {
-    if(data > paperCountSections[1] && data <= paperCountSections[0]) {
-      reduceForest(paperCountSections[1], paperCountSections[0], 1, data);
-    } else if(data > paperCountSections[2] && data <= paperCountSections[1]) {
-      reduceForest(paperCountSections[2], paperCountSections[1], 2, data);
-    } else if(data > paperCountSections[3] && data <= paperCountSections[2]) {
-      reduceForest(paperCountSections[3], paperCountSections[2], 3, data);
-    } else if(data > paperCountSections[4] && data <= paperCountSections[3]) {
-      reduceForest(paperCountSections[4], paperCountSections[3], 4, data);
-    } else if(data > 1 && data <= 100) {
-      reduceForest(1, paperCountSections[4], 5, data);
-    } else {
+    var i = 0;
+
+    if(data < 1) {
       changesOnLastPrint(data);
+    } else {
+      for(i = 1; i <= paperCountSections.length; i++) {
+        if(data > paperCountSections[i]) {
+          reduceForest(paperCountSections[i], paperCountSections[i-1], i, data);
+          break;
+        }
+      }
     }
+
   }
 
   document.getElementById('start').addEventListener('click', startSimulation, false);
@@ -173,11 +175,6 @@
       maxPaperCount = result.paperCapPerPrinterPerYear;
       data = result.paperRemaining;
       simulationStartedAt = result.simulationStartAt;
-
-      console.log('Max paper to print: ' + maxPaperCount);
-      console.log('Remaining paper to print: ' + data);
-      console.log('Simulation started at: ' + simulationStartedAt);
-      console.log(typeof simulationStartedAt);
 
       document.getElementById('start').style.display = 'none';
       createPaperCountSections(data);
