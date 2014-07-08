@@ -12,6 +12,7 @@ module.exports = function (app) {
     paperRemaining: 0,
     simulation: '',
     simulationStartAt: '',
+    currentTreeNum: 0,
     monthset: [],
     dataset: []
   };
@@ -23,6 +24,10 @@ module.exports = function (app) {
 
       client.get('paperCapPerPrinterPerYear', function(err, reply) {
         usages.paperCapPerPrinterPerYear = parseInt(reply);
+      });
+
+      client.get('currentTreeNum', function(err, reply) {
+        usages.currentTreeNum = parseInt(reply);
       });
 
       client.get('paperRemaining', function(err, reply) {
@@ -45,6 +50,7 @@ module.exports = function (app) {
             usages.monthset.push(parseInt(reply));
           });
         }
+
       });
 
       client.llen('dataset', function(err, reply){
@@ -56,6 +62,7 @@ module.exports = function (app) {
             usages.dataset.push(parseInt(reply));
           });
         }
+
       });
 
       response.json(usages);

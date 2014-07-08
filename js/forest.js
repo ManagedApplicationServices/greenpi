@@ -33,7 +33,7 @@
 
     socket.on('paperRemaining', function (data) {
       maxPaperCount = data;
-      createPaperCountSections(data);
+      createPaperCountSections(maxPaperCount);
     });
 
     initialiseSimulation();
@@ -51,10 +51,6 @@
   function initialiseSimulation() {
     currentTree = 1;
     percentSize = 0;
-    treeSizeOriginal = [20, 40, 35, 30, 25];
-    treeLeftPosition = [11, 26, 46, 72, 82]; // css - .treeN, left
-    treeLeftPositionOriginal = [2, 7, 29.5, 58, 70.5]; //css - .leavesN, left
-    treeSizeUnit = 'vw';
     treeSize = 0;
     min = 0;
     max = 0;
@@ -109,7 +105,7 @@
     prevLeafCount = data;
   }
 
-  function reduceForest(min, max, currentTreeNum, data) {
+  function reduceForest(min, max, data, currentTreeNum) {
     var i = 0;
     var currTree = document.getElementById('t' + currentTreeNum);
 
@@ -120,6 +116,7 @@
     }
 
     treeSize = treeSizeOriginal[currentTreeNum-1]*((data-min)/(max-min));
+
     currTree.style.width = treeSize + treeSizeUnit;
     currTree.style.height = treeSize + treeSizeUnit;
     currTree.style.left = treeLeftPosition[currentTreeNum - 1] - treeSize / 2 + treeSizeUnit;
@@ -150,13 +147,16 @@
 
   function triggerReduceForest(data) {
     var i = 0;
+    var currentTreeNum = 0;
 
     if(data < 1) {
       changesOnLastPrint(data);
     } else {
       for(i = 1; i <= paperCountSections.length; i++) {
         if(data > paperCountSections[i]) {
-          reduceForest(paperCountSections[i], paperCountSections[i-1], i, data);
+          currentTreeNum = i;
+          socket.emit('currentTreeNum', i);
+          reduceForest(paperCountSections[i], paperCountSections[i-1], data, currentTreeNum);
           break;
         }
       }
@@ -171,20 +171,20 @@
   $.getJSON('/usages', function(result) {
     var data = 0;
 
+
     if(result.simulation === 'running' && result.paperRemaining > 0) {
       maxPaperCount = result.paperCapPerPrinterPerYear;
       data = result.paperRemaining;
       simulationStartedAt = result.simulationStartAt;
 
       document.getElementById('start').style.display = 'none';
-      createPaperCountSections(data);
+      createPaperCountSections(maxPaperCount);
       triggerReduceForest(data);
     }
 
   });
 
   socket.on('ping', function (data) {
-    console.log(data);
     changesOnEveryPrint(data);
     triggerReduceForest(data);
   });
