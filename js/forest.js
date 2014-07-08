@@ -167,7 +167,7 @@
   document.getElementById('start').addEventListener('click', startSimulation, false);
   document.getElementById('stop').addEventListener('click', stopSimulation, false);
 
-  // get current status
+  // get current status upon page refresh
   $.getJSON('/usages', function(result) {
     var data = 0;
 

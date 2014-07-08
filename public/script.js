@@ -214,7 +214,7 @@ return c>=_s?n?"M0,"+i+"A"+i+","+i+" 0 1,1 0,"+-i+"A"+i+","+i+" 0 1,1 0,"+i+"M0,
   document.getElementById('start').addEventListener('click', startSimulation, false);
   document.getElementById('stop').addEventListener('click', stopSimulation, false);
 
-  // get current status
+  // get current status upon page refresh
   $.getJSON('/usages', function(result) {
     var data = 0;
 
@@ -244,9 +244,10 @@ return c>=_s?n?"M0,"+i+"A"+i+","+i+" 0 1,1 0,"+-i+"A"+i+","+i+" 0 1,1 0,"+i+"M0,
   var numPosters = 4;
   var posterDiv = document.getElementsByClassName('overlay')[0];
   var posterIntervalTime = 150000; // 150000 every 2.5 minutes
-  var posterDisplay = 135000; // 135000 every 2.25 minutes
+  var posterDisplayTime = 135000; // 135000 every 2.25 minutes
   var currPoster = 1;
-  var currImage = 'img/poster-' + currPoster + '.jpg';
+  var imagePath = 'img/poster';
+  var currImage = imagePath + currPoster + '.jpg';
 
   if(posterDiv) {
     posterDiv.style.display = 'none';
@@ -256,9 +257,9 @@ return c>=_s?n?"M0,"+i+"A"+i+","+i+" 0 1,1 0,"+-i+"A"+i+","+i+" 0 1,1 0,"+i+"M0,
       setTimeout(function() {
         posterDiv.style.display = 'block';
         currPoster = currPoster % numPosters + 1;
-        currImage = 'img/poster' + currPoster + '.jpg';
+        currImage = imagePath + currPoster + '.jpg';
         document.getElementById('poster').setAttribute('src', currImage);
-      }, posterDisplay);
+      }, posterDisplayTime);
     }, posterIntervalTime);
   }
 
@@ -281,14 +282,106 @@ return c>=_s?n?"M0,"+i+"A"+i+","+i+" 0 1,1 0,"+-i+"A"+i+","+i+" 0 1,1 0,"+i+"M0,
   var i = 0; // iterator
   var MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
 
+  function getLast12MonthsPaperUsage(paperUsage) {
+    var dataset = [];
+
+    if(paperUsage.length > 12) {
+      dataset = paperUsage.slice(Math.max(paperUsage.length - 12, 1));
+    } else {
+      dataset = paperUsage;
+    }
+
+    return dataset;
+  }
+
+  function removeGraph() {
+    if(!d3.select('.cap').empty()){
+      $('.cap').remove();
+    }
+
+    if(d3.selectAll('.bar') !== null) {
+      d3.selectAll('.bar').remove();
+    }
+  }
+
+  function drawGraph(maxHeight, maxWidth, cap, dataset, monthset) {
+    var maxHeightNormalised = getMaxHeightNormalised(cap, d3.max(dataset));
+    removeGraph();
+
+    drawGraphDataset(dataset, maxHeightNormalised, maxHeight);
+    drawGraphCap(maxHeightNormalised, maxHeight, cap);
+    drawGraphMonthset(monthset);
+  }
+
+  function drawGraphMonthset(monthset) {
+    d3.selectAll('.bar')
+      .data(monthset)
+      .append('p')
+      .attr('class', 'months')
+      .text(function(d) {
+        return MONTHS[d];
+      });
+  }
+
+  function drawGraphCap(maxHeightNormalised, maxHeight, cap) {
+    d3.select('.graph')
+      .append('div')
+      .attr('class', 'cap')
+      .style('height', function() {
+        var barHeight = cap / maxHeightNormalised * maxHeight;
+        return barHeight + 'vh';
+      })
+      .style('margin-top', function() {
+        var barHeight = cap / maxHeightNormalised * maxHeight;
+        return '-' + barHeight + 'vh';
+      });
+  }
+
+  function drawGraphDataset(dataset, maxHeightNormalised, maxHeight) {
+    d3.select('.graph')
+      .selectAll('div')
+      .data(dataset)
+      .enter()
+
+      .append('div')
+      .attr('class', 'bar')
+      .style('height', function(d) {
+        var barHeight = d / maxHeightNormalised * maxHeight;
+        return barHeight + 'vh';
+      })
+      .style('width', function(d) {
+        var barWidth = (maxWidth - 2*dataset.length)/dataset.length;
+        return barWidth + 'vw';
+      })
+
+      .append('text')
+      .text(function(d) {
+        return d;
+      });
+  }
+
+  function getMaxHeightNormalised(cap, maxDataset) {
+    if(cap > maxDataset) {
+      return cap;
+    } else {
+      return maxDataset;
+    }
+  }
+
+  function setCapLine(data) {
+    var capstyle = document.createElement('style');
+
+    cap = data / 12;
+    capstyle.innerHTML = '.cap:after{content: "monthly limit: ' + cap + '";}';
+    document.head.appendChild(capstyle);
+  }
+
   // ----------- INITIALISATIONS --------------
 
   // single printer paper usage limit
   socket.on('singlePrinterCap', function (data) {
-    cap = data / 12; // per month per printer paper usage cap
-    var capstyle = document.createElement('style');
-    capstyle.innerHTML = '.cap:after{content: "monthly limit: ' + cap + '";}';
-    document.head.appendChild(capstyle);
+    setCapLine(data);
+
     paperUsage = [];
     dataset = [0];
     monthset = [];
@@ -316,96 +409,28 @@ return c>=_s?n?"M0,"+i+"A"+i+","+i+" 0 1,1 0,"+-i+"A"+i+","+i+" 0 1,1 0,"+i+"M0,
 
   // if new leaf fall / print job
   socket.on('currentMonthTotal', function(data) {
-    maxWidth = 80;
     paperUsage[paperUsage.length - 1] = parseInt(data);
     dataset = getLast12MonthsPaperUsage(paperUsage);
     maxDataset = d3.max(dataset);
     maxHeightNormalised = getMaxHeightNormalised(cap, maxDataset);
-    drawGraph(maxHeight, maxWidth, cap);
+    drawGraph(maxHeight, maxWidth, cap, dataset, monthset);
   });
 
-  function getLast12MonthsPaperUsage(paperUsage) {
-    var dataset = [];
+  // get current status upon page refresh
+  $.getJSON('/usages', function(result) {
 
-    if(paperUsage.length > 12) {
-      dataset = paperUsage.slice(Math.max(paperUsage.length - 12, 1));
-    } else {
-      dataset = paperUsage;
-    }
-
-    return dataset;
-  }
-
-  function removeGraph() {
-    if(!d3.select('.cap').empty()){
-      $('.cap').remove();
-    }
-
-    if(d3.selectAll('.bar') !== null) {
-      d3.selectAll('.bar').remove();
-    }
-  }
-
-  function drawGraph(maxHeight, maxWidth, cap) {
-    removeGraph();
-    var maxHeightNormalised = getMaxHeightNormalised(cap, d3.max(dataset));
-    dataset = [];
-    monthset = [];
-
-    $.getJSON('/usages', function(result) {
-      dataset = result.dataset;
+    if(result.simulation === 'running' && result.paperRemaining > 0) {
+      paperUsage = result.dataset;
+      dataset = getLast12MonthsPaperUsage(paperUsage);
       monthset = result.monthset;
-    });
+      maxDataset = d3.max(dataset);
+      maxHeightNormalised = getMaxHeightNormalised(cap, maxDataset);
 
-    d3.select('.graph')
-      .selectAll('div')
-      .data(dataset)
-      .enter()
-
-      .append('div')
-      .attr('class', 'bar')
-      .style('height', function(d) {
-        var barHeight = d / maxHeightNormalised * maxHeight;
-        return barHeight + 'vh';
-      })
-      .style('width', function(d) {
-        var barWidth = (maxWidth - 2*dataset.length)/dataset.length;
-        return barWidth + 'vw';
-      })
-
-      .append('text')
-      .text(function(d) {
-        return d;
-      });
-
-    d3.select('.graph')
-      .append('div')
-      .attr('class', 'cap')
-      .style('height', function() {
-        var barHeight = cap / maxHeightNormalised * maxHeight;
-        return barHeight + 'vh';
-      })
-      .style('margin-top', function() {
-        var barHeight = cap / maxHeightNormalised * maxHeight;
-        return '-' + barHeight + 'vh';
-      });
-
-    d3.selectAll('.bar')
-      .data(monthset)
-      .append('p')
-      .attr('class', 'months')
-      .text(function(d) {
-        return MONTHS[d];
-      });
-  }
-
-  function getMaxHeightNormalised(cap, maxDataset) {
-    if(cap > maxDataset) {
-      return cap;
-    } else {
-      return maxDataset;
+      setCapLine(result.paperCapPerPrinterPerYear);
+      drawGraph(maxHeight, maxWidth, cap, dataset, monthset);
     }
-  }
+
+  });
 
 })();
 
