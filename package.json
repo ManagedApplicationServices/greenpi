@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "adaro": "0.1.x",
+    "async": "0.2.5",
     "bcrypt": "0.7.8",
     "chai": "1.9.1",
     "connect-redis": "1.4.7",
