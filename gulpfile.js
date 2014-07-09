@@ -29,7 +29,8 @@ var paths = {
 };
 
 gulp.task('style', function() {
-  return gulp.src(paths.style)
+  return gulp
+    .src(paths.style)
     .pipe(plumber())
     .pipe(sass())
     .pipe(gulp.dest('css'))
