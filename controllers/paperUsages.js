@@ -3,74 +3,93 @@
 var path = require('path');
 var PaperUsageModel = require('../models/paperUsage');
 var redis = require('redis');
+var async = require('async');
 var client = redis.createClient();
 
 module.exports = function (app) {
-
-  var usages = {
+  var model = {
     paperCapPerPrinterPerYear: 0,
     paperRemaining: 0,
     simulation: '',
     simulationStartAt: '',
     currentTreeNum: 0,
     monthset: [],
-    dataset: []
+    dataset: [],
+    demo: 0
   };
 
-  app.get('/usages', function (request, response) {
+  function readData(callback) {
+    var data = [
+      'paperCapPerPrinterPerYear',
+      'currentTreeNum',
+      'paperRemaining',
+      'demo',
+      'simulation',
+      'simulationStartAt'
+    ];
+    var count = 0;
 
-    client.select(0, function(error,res){
-      if(error) return error;
-
-      client.get('paperCapPerPrinterPerYear', function(err, reply) {
-        usages.paperCapPerPrinterPerYear = parseInt(reply);
-      });
-
-      client.get('currentTreeNum', function(err, reply) {
-        usages.currentTreeNum = parseInt(reply);
-      });
-
-      client.get('paperRemaining', function(err, reply) {
-        usages.paperRemaining = parseInt(reply);
-      });
-
-      client.get('simulation', function(err, reply) {
-        usages.simulation = reply;
-      });
-
-      client.get('simulationStartAt', function(err, reply) {
-        usages.simulationStartAt = reply;
-      });
-
-      client.llen('monthset', function(err, reply){
-        var i = 0;
-        usages.monthset = [];
-        for(i = 0; i < reply; i++) {
-          client.lindex('monthset', i, function(err, reply) {
-            usages.monthset.push(parseInt(reply));
-          });
-        }
-
-      });
-
-      client.llen('dataset', function(err, reply){
-        var i = 0;
-        usages.dataset = [];
-
-        for(i = 0; i < reply; i++) {
-          client.lindex('dataset', i, function(err, reply) {
-            usages.dataset.push(parseInt(reply));
-          });
-        }
-
-      });
-
-      response.json(usages);
-
+    data.forEach(function(element, index, array) {
+      client.select(0, function(error,res){
+        if(error) return error;
+        client.get(element, function(err, reply) {
+          model[element] = reply;
+          count++;
+          if(count === data.length) {
+            callback(null, model);
+          }
+        });
+      })
     });
+  }
 
+  function parseIntData(callback) {
+    var data = [
+      'paperCapPerPrinterPerYear',
+      'currentTreeNum',
+      'paperRemaining'
+    ];
+    var count = 0;
+
+    data.forEach(function(element, index, array) {
+      model[element] = parseInt(model[element]);
+      count++;
+      if(count === data.length) {
+        callback(null, model);
+      }
+    })
+  }
+
+  function readArrayData(callback) {
+    var data = [
+      'dataset',
+      'monthset'
+    ];
+    var count = 0;
+
+    data.forEach(function(element, index, array) {
+      client.llen(element, function(err, reply){
+        var i = 0;
+        model[element] = [];
+
+        for(i = 0; i < reply; i++) {
+          client.lindex(element, i, function(err, reply) {
+            model[element].push(parseInt(reply));
+          });
+        }
+      });
+      count++;
+      if(count === data.length) {
+        callback(null, model);
+      }
+    });
+  }
+
+  app.get('/usages', function(req, res) {
+    async.series([readData, parseIntData, readArrayData], function() {
+      res.json(model);
+    });
   });
-
 
 
 };
