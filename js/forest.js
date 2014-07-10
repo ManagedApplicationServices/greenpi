@@ -24,6 +24,7 @@
     prevLeafCount = maxPaperCount,
     differenceLeafCount = 0,
     simulationStartedAt,
+    demo = 0,
     socket = io.connect('/');
 
   function startSimulation() {
@@ -34,6 +35,10 @@
     socket.on('paperRemaining', function (data) {
       maxPaperCount = data;
       createPaperCountSections(maxPaperCount);
+    });
+
+    socket.on('demo', function (data) {
+      setDemoMode(data);
     });
 
     initialiseSimulation();
@@ -163,6 +168,14 @@
     }
   }
 
+  function setDemoMode(isDemoMode) {
+    if(isDemoMode) {
+      document.getElementById('demo').style.display = 'block';
+    } else {
+      document.getElementById('demo').style.display = 'none';
+    }
+  }
+
   document.getElementById('start').addEventListener('click', startSimulation, false);
   document.getElementById('stop').addEventListener('click', stopSimulation, false);
 
@@ -170,11 +183,12 @@
   $.getJSON('/usages', function(result) {
     var data = 0;
 
-
     if(result.simulation === 'running' && result.paperRemaining > 0) {
       maxPaperCount = result.paperCapPerPrinterPerYear;
       data = result.paperRemaining;
       simulationStartedAt = result.simulationStartAt;
+      demo = result.demo;
+      setDemoMode(demo);
 
       document.getElementById('start').style.display = 'none';
       createPaperCountSections(maxPaperCount);
@@ -186,16 +200,6 @@
   socket.on('ping', function (data) {
     changesOnEveryPrint(data);
     triggerReduceForest(data);
-  });
-
-  socket.on('demo', function (data) {
-    console.log(data);
-
-    if(data) {
-      document.getElementById('demo').style.display = 'block';
-    } else {
-      document.getElementById('demo').style.display = 'none';
-    }
   });
 
 })();

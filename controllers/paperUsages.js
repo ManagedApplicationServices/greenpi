@@ -14,7 +14,8 @@ module.exports = function (app) {
     simulationStartAt: '',
     currentTreeNum: 0,
     monthset: [],
-    dataset: []
+    dataset: [],
+    demo: 0
   };
 
   app.get('/usages', function (request, response) {
@@ -32,6 +33,11 @@ module.exports = function (app) {
 
       client.get('paperRemaining', function(err, reply) {
         usages.paperRemaining = parseInt(reply);
+      });
+
+      client.get('demo', function(err, reply) {
+        console.log('DEMO    ' + reply);
+        usages.demo = reply;
       });
 
       client.get('simulation', function(err, reply) {
