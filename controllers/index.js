@@ -33,9 +33,7 @@ module.exports = function (app) {
   }
 
   function setDemoMode(callback) {
-    var options = { hostname: config.printerIP };
-
-    url.isAvailable(options, model.timeout, function(isAvailable) {
+    url.isAvailable(config.printerIP, model.timeout, function(isAvailable) {
       model.demo = !isAvailable;
 
       callback(null, model);
