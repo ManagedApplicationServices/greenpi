@@ -37,7 +37,6 @@
   var positionBottom = document.body.scrollHeight; // right at the bottom
   var timeAtScrollTop = 600000; // scroll to top to the sky every 5 min
   var timeAtScrollBottom = 30000; // scroll to bottom to the forest after 30 sec
-  var timeStartToScrollBottom = 500; // scroll to bottom once immediately at start after 0.5s
 
   setInterval(function() {
     window.smoothScrollTo(positionTop, timeToScroll);
@@ -48,6 +47,6 @@
 
   setTimeout(function() {
     window.smoothScrollTo(99999, timeToScroll);
-  }, timeStartToScrollBottom);
+  }, 0);
 
 })();

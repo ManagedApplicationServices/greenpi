@@ -7,10 +7,10 @@
 
     currentTree = 0,
     percentSize = 0,
-    treeSizeOriginal = [],
-    treeLeftPosition = [],
-    treeLeftPositionOriginal = [],
-    treeSizeUnit = '',
+    treeSizeOriginal = [20, 40, 35, 30, 25],
+    treeLeftPosition = [11, 26, 46, 72, 82], // css - .treeN, left
+    treeLeftPositionOriginal = [2, 7, 29.5, 58, 70.5], //css - .leavesN, left
+    treeSizeUnit = 'vw',
     treeSize = 0,
     min = 0,
     max = 0,
@@ -23,30 +23,39 @@
     currLeafCount = 0,
     prevLeafCount = maxPaperCount,
     differenceLeafCount = 0,
-    simulationStartedAt;
+    simulationStartedAt,
+    demo = 0,
+    socket = io.connect('/');
 
-  function detectStartSimulation() {
-    document.getElementById('start').onclick = function() {
-      socket.emit('simulation', 'start');
+  function startSimulation() {
+    document.getElementById('stop').style.display = 'block';
+    socket.emit('start', true);
+    socket.emit('stop', false);
 
-      socket.on('paperRemaining', function (data) {
-        maxPaperCount = data;
-        treeSizeRatios.forEach(function (element, index, array) {
-          paperCountSections.push(maxPaperCount * element);
-        })
-      });
+    socket.on('paperRemaining', function (data) {
+      maxPaperCount = data;
+      createPaperCountSections(maxPaperCount);
+    });
 
-      initialiseSimulation();
-    };
+    socket.on('demo', function (data) {
+      setDemoMode(data);
+    });
+
+    initialiseSimulation();
+  }
+
+  function stopSimulation() {
+    document.getElementById('stop').style.display = 'none';
+    socket.emit('stop', true);
+    socket.emit('start', false);
+
+    initialiseSimulation();
+    document.getElementById('start').style.display = 'block';
   }
 
   function initialiseSimulation() {
     currentTree = 1;
     percentSize = 0;
-    treeSizeOriginal = [20, 40, 35, 30, 25];
-    treeLeftPosition = [11, 26, 46, 72, 82]; // css - .treeN, left
-    treeLeftPositionOriginal = [2, 7, 29.5, 58, 70.5]; //css - .leavesN, left
-    treeSizeUnit = 'vw';
     treeSize = 0;
     min = 0;
     max = 0;
@@ -101,19 +110,18 @@
     prevLeafCount = data;
   }
 
-  function reduceForest(min, max, currentTreeNum, data) {
-    var prevTreeNum = currentTreeNum - 1;
-    var prevTree = document.getElementById('t' + prevTreeNum);
-    var prevFlower = document.getElementById('f' + prevTreeNum);
+  function reduceForest(min, max, data, currentTreeNum) {
+    var i = 0;
     var currTree = document.getElementById('t' + currentTreeNum);
 
-    if(prevTreeNum > 0) {
-      prevTree.style.width = 0 + treeSizeUnit;
-      prevTree.style.height = 0 + treeSizeUnit;
-      prevFlower.style.display = 'none';
+    for(i = 1; i < currentTreeNum; i++) {
+      document.getElementById('t' + i).style.width = 0;
+      document.getElementById('t' + i).style.height = 0;
+      document.getElementById('f' + i).style.display = 'none';
     }
 
     treeSize = treeSizeOriginal[currentTreeNum-1]*((data-min)/(max-min));
+
     currTree.style.width = treeSize + treeSizeUnit;
     currTree.style.height = treeSize + treeSizeUnit;
     currTree.style.left = treeLeftPosition[currentTreeNum - 1] - treeSize / 2 + treeSizeUnit;
@@ -134,25 +142,64 @@
     document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + maxPaperCount + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
   }
 
-  var socket = io.connect('/');
-  detectStartSimulation();
+  function createPaperCountSections(data) {
+    treeSizeRatios.forEach(function (element, index, array) {
+      paperCountSections.push(data * element);
+    });
+
+    paperCountSections.push(1);
+  }
+
+  function triggerReduceForest(data) {
+    var i = 0;
+    var currentTreeNum = 0;
+
+    if(data < 1) {
+      changesOnLastPrint(data);
+    } else {
+      for(i = 1; i <= paperCountSections.length; i++) {
+        if(data > paperCountSections[i]) {
+          currentTreeNum = i;
+          socket.emit('currentTreeNum', i);
+          reduceForest(paperCountSections[i], paperCountSections[i-1], data, currentTreeNum);
+          break;
+        }
+      }
+    }
+  }
+
+  function setDemoMode(isDemoMode) {
+    if(isDemoMode) {
+      document.getElementById('demo').style.display = 'block';
+    } else {
+      document.getElementById('demo').style.display = 'none';
+    }
+  }
+
+  document.getElementById('start').addEventListener('click', startSimulation, false);
+  document.getElementById('stop').addEventListener('click', stopSimulation, false);
+
+  // get current status upon page refresh
+  $.getJSON('/usages', function(result) {
+    var data = 0;
+
+    if(result.simulation === 'running' && result.paperRemaining > 0) {
+      maxPaperCount = result.paperCapPerPrinterPerYear;
+      data = result.paperRemaining;
+      simulationStartedAt = result.simulationStartAt;
+      demo = result.demo;
+      setDemoMode(demo);
+
+      document.getElementById('start').style.display = 'none';
+      createPaperCountSections(maxPaperCount);
+      triggerReduceForest(data);
+    }
+
+  });
 
   socket.on('ping', function (data) {
     changesOnEveryPrint(data);
-
-    if(data > paperCountSections[1] && data <= paperCountSections[0]) {
-      reduceForest(paperCountSections[1], paperCountSections[0], 1, data);
-    } else if(data > paperCountSections[2] && data <= paperCountSections[1]) {
-      reduceForest(paperCountSections[2], paperCountSections[1], 2, data);
-    } else if(data > paperCountSections[3] && data <= paperCountSections[2]) {
-      reduceForest(paperCountSections[3], paperCountSections[2], 3, data);
-    } else if(data > paperCountSections[4] && data <= paperCountSections[3]) {
-      reduceForest(paperCountSections[4], paperCountSections[3], 4, data);
-    } else if(data > 1 && data <= 100) {
-      reduceForest(1, paperCountSections[4], 5, data);
-    } else {
-      changesOnLastPrint(data);
-    }
+    triggerReduceForest(data);
   });
 
 })();

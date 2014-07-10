@@ -16,6 +16,8 @@
     "strict": true,
     "globalstrict": true,
     "globals": {
+      "$": true,
+      "alert": true,
       "console": true,
       "d3": true,
       "window": true,
@@ -65,7 +67,7 @@
     "indent": 2,
     "white": false,
     "quotmark": true,
-    "maxparams": 5,
+    "maxparams": 6,
     "maxdepth": 3,
     "maxstatements": 50,
     "maxcomplexity": 6

@@ -7,6 +7,14 @@
       "503": "errors/503"
     },
 
+    "multipart": true,
+    "appsec": {
+      "csrf": false,
+      "csp": false,
+      "p3p": false,
+      "xframe": "SAMEORIGIN"
+    },
+
     "session": {
       "module": "connect-redis",
       "config": {
@@ -16,6 +24,5 @@
       },
       "secret": "127ab98c3e47a0cb7ce1acfe9390c8e45e8c54a5"
     }
-
   }
 }

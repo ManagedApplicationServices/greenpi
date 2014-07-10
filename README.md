@@ -4,11 +4,16 @@
 
 ##install
 
-1. make a config file to input the internal IP address:
+1. start the server
 
-  ```
-  $ cp lib/config.sample.js lib/config.js
-  ```
+	```
+	$ node index.js
+	```
+1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
+
+	- username: `sprout`
+	- password: `greenpi`
+
 
 ##development
 
@@ -45,6 +50,7 @@
 
 ##changelog
 
+1. `v0.12.0` refresh page, async pattern and demo mode
 1. `v0.10.0` connected to live printer data
 1. `v0.9.0` rotating posters at intervals of 2.5 minutes
 1. `v0.8.1` moved the last tree away from the right scrollbar and positioned the graph
