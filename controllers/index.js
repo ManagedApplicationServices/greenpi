@@ -6,6 +6,7 @@ var fs = require('fs');
 var jsdom = require('jsdom');
 var async = require('async');
 
+var url = require('../lib/url');
 var configFile = './config.json';
 var jquery = fs.readFileSync('./js/vendor/jquery/dist/jquery.min.js', 'utf-8');
 
@@ -17,7 +18,9 @@ module.exports = function (app) {
     printerModel: '',
     printerID: '',
     singlePrinterCap: 0,
-    simulation: ''
+    simulation: '',
+    demo: 0,
+    timeout: 2000
   };
 
   var config = {};
@@ -29,31 +32,32 @@ module.exports = function (app) {
     });
   }
 
+  function setDemoMode(callback) {
+    var options = { hostname: config.printerIP };
+
+    url.isAvailable(options, model.timeout, function(isAvailable) {
+      model.demo = !isAvailable;
+
+      callback(null, model);
+    });
+  }
+
   function getPrinterInfo(callback) {
     var completePrinterInfoURL = 'http://' + config.printerIP + config.machineDetailPath;
 
-    jsdom.env({
-      url: completePrinterInfoURL,
-      src: [jquery],
-      done: function (errors, window) {
+    if(model.demo) {
 
-        model.printerModel = window.$('.staticProp')
-          .find("td:contains('Model Name')")
-          .first()
-          .next()
-          .next()
-          .text();
-
-        model.printerID = window.$('.staticProp')
-          .find("td:contains('Machine ID')")
-          .first()
-          .next()
-          .next()
-          .text();
-
+      model.printerModel = 'printer';
+      model.printerID = 'demo';
+      callback(null, model);
+    } else {
+      scrapURL(completePrinterInfoURL, function(reply) {
+        model.printerModel = reply.printerModel;
+        model.printerID = reply.printerID;
         callback(null, model);
-        }
       });
+    }
+
   }
 
   function getPrinterCap(callback) {
@@ -71,7 +75,7 @@ module.exports = function (app) {
   }
 
   async.series(
-    [readConfigFile, getPrinterInfo, getPrinterCap, getSimulationStatus],
+    [readConfigFile, setDemoMode, getPrinterInfo, getPrinterCap, getSimulationStatus],
     function () {
       app.get('/', function (req, res) {
         res.render('index', model);
@@ -80,3 +84,30 @@ module.exports = function (app) {
   );
 
 };
+
+function scrapURL(url, callback) {
+  var printer = {};
+
+  jsdom.env({
+    url: url,
+    src: [jquery],
+    done: function (errors, window) {
+
+      printer.printerModel = window.$('.staticProp')
+        .find("td:contains('Model Name')")
+        .first()
+        .next()
+        .next()
+        .text();
+
+      printer.printerID = window.$('.staticProp')
+        .find("td:contains('Machine ID')")
+        .first()
+        .next()
+        .next()
+        .text();
+
+      callback(null, printer);
+      }
+    });
+}

@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "adaro": "0.1.x",
-    "async": "0.2.5",
+    "async": "0.9.0",
     "bcrypt": "0.7.8",
     "chai": "1.9.1",
     "connect-redis": "1.4.7",
@@ -37,8 +37,8 @@
     "supertest": "0.13.0"
   },
   "devDependencies": {
-    "gulp": "3.8.5",
-    "gulp-concat": "2.3.0",
+    "gulp": "3.8.6",
+    "gulp-concat": "2.3.3",
     "gulp-minify-css": "0.3.6",
     "gulp-jshint": "1.7.0",
     "gulp-plumber": "0.6.3",
