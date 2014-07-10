@@ -161,7 +161,6 @@
         }
       }
     }
-
   }
 
   document.getElementById('start').addEventListener('click', startSimulation, false);
@@ -187,6 +186,16 @@
   socket.on('ping', function (data) {
     changesOnEveryPrint(data);
     triggerReduceForest(data);
+  });
+
+  socket.on('demo', function (data) {
+    console.log(data);
+
+    if(data) {
+      document.getElementById('demo').style.display = 'block';
+    } else {
+      document.getElementById('demo').style.display = 'none';
+    }
   });
 
 })();

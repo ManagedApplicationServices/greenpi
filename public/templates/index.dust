@@ -62,9 +62,9 @@
     <div class="cloud-3"></div>
     <div class="cloud-4"></div>
     <div class="cloud-1">
+      <div class="demo" id="demo">demo mode</div>
       <div class="logo">
         <img src="img/logo.jpg">
-        <div class="demo">demo mode</div>
       </div>
     </div>
   </div>
