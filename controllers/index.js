@@ -104,8 +104,7 @@ function scrapURL(url, callback) {
         .next()
         .next()
         .text();
-
-      callback(null, printer);
+      callback(printer);
       }
     });
 }
