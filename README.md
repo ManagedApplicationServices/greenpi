@@ -2,8 +2,38 @@
 
 > raising environmental consciousness within an organization
 
-##install
+##install in production
 
+1. clone the repo
+
+	```
+	git clone git@github.com:ManagedApplicationServices/greenpi.git
+	```
+1. create the config file
+
+	```
+	cp config.sample.json config.json
+	```
+1. edit the config file `sudo nano config.json`
+
+	```
+	{
+    "printerIP": "172.19.107.61",
+    "paperUsageCap": 96,
+    "totalPrinters": 4,
+    "appPath": "/path/to/app",
+    "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi",
+    "machineDetailPath": "/web/guest/en/websys/status/configuration.cgi",
+    "username": "sprout",
+    "passwordHash": "$2a$08$oAXUGmm186QSjofIjM.fLur6ru7S6KW3L5gw9.wBMW9T9imqL/tSC"
+}
+	```	
+1. install bower and npm packages
+
+	```
+	npm install
+	bower install
+	```
 1. start the server
 
 	```
@@ -47,6 +77,63 @@
 	npm start
 	```
 1. visit browser [localhost:9000](http://localhost:9000)
+
+##configure RPi Wifi
+
+1. edit file `sudo nano /etc/network/interfaces`
+
+	```
+	auto lo
+
+	iface lo inet loopback
+	iface eth0 inet dhcp
+	
+	allow-hotplug wlan0
+	auto wlan0
+	
+	iface wlan0 inet dhcp
+	
+	pre-up wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+	post-down killall -q wpa_supplicant
+	
+	address 192.168.1.189
+	```
+
+1. edit config file `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
+
+	```
+	update_config=1
+	
+	network={
+		ssid="funnybunny"
+		psk="i2n$a@i32"
+		proto=WPA
+		key_mgmt=WPA-PSK
+		pairwise=TKIP
+	   auth_alg=OPEN
+	}
+	
+	ctrl_interface=DIR=/var/run/wpa_supplicant
+	```
+	
+
+1. shutdown and restart connection
+
+	```
+	sudo ifdown wlan0
+	sudo ifup wlan0
+	```	
+1. check connection
+
+	```
+	ping 8.8.8.8
+	```
+1. get rpi's ip address
+
+	```
+	ifconfig # read wlan0, 2nd line: inet addr
+	```
+
 
 ##changelog
 

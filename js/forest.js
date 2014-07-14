@@ -29,8 +29,7 @@
 
   function startSimulation() {
     document.getElementById('stop').style.display = 'block';
-    socket.emit('start', true);
-    socket.emit('stop', false);
+    socket.emit('start');
 
     socket.on('paperRemaining', function (data) {
       maxPaperCount = data;
@@ -46,9 +45,7 @@
 
   function stopSimulation() {
     document.getElementById('stop').style.display = 'none';
-    socket.emit('stop', true);
-    socket.emit('start', false);
-
+    socket.emit('stop');
     initialiseSimulation();
     document.getElementById('start').style.display = 'block';
   }
@@ -94,7 +91,7 @@
     fallingLeaf = (count % 5) + 1;
     vanishingLeaf = (fallingLeaf % 5) + 1;
 
-    differenceLeafCount = prevLeafCount - currLeafCount;
+    differenceLeafCount = Math.round(prevLeafCount - currLeafCount);
 
     document.getElementById('l' + fallingLeaf).style.display = 'block';
     if(differenceLeafCount > 0) {
@@ -139,7 +136,7 @@
     document.getElementById('start').style.display = 'block';
 
     document.getElementById('status').style.display = 'block';
-    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + maxPaperCount + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
+    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + Math.round(maxPaperCount) + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
   }
 
   function createPaperCountSections(data) {
@@ -200,6 +197,14 @@
   socket.on('ping', function (data) {
     changesOnEveryPrint(data);
     triggerReduceForest(data);
+  });
+
+  socket.on('printerID', function (data) {
+    document.getElementById('printer-id').innerHTML = data + ', ';
+  });
+
+  socket.on('printerModel', function (data) {
+    document.getElementById('printer-model').innerHTML = data;
   });
 
 })();

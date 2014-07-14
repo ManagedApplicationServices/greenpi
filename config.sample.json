@@ -1,8 +1,8 @@
 {
-  "printerIP": "172.19.107.61",
-  "paperUsageCap": 400,
+  "printerIP": "172.00.00.00",
+  "paperUsageCap": 1000000,
   "totalPrinters": 4,
-  "appPath": "/Users/sayanee/Workspace/greenpi/app",
+  "appPath": "/home/developer/apps/greenpi",
   "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi",
   "machineDetailPath": "/web/guest/en/websys/status/configuration.cgi",
   "username": "sprout",
