@@ -91,7 +91,7 @@
     fallingLeaf = (count % 5) + 1;
     vanishingLeaf = (fallingLeaf % 5) + 1;
 
-    differenceLeafCount = prevLeafCount - currLeafCount;
+    differenceLeafCount = Math.round(prevLeafCount - currLeafCount);
 
     document.getElementById('l' + fallingLeaf).style.display = 'block';
     if(differenceLeafCount > 0) {
