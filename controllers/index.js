@@ -15,8 +15,6 @@ var IndexModel = require('../models/index');
 module.exports = function (app) {
 
   var model = {
-    printerModel: '',
-    printerID: '',
     singlePrinterCap: 0,
     simulation: '',
     demo: 0,
@@ -40,24 +38,6 @@ module.exports = function (app) {
     });
   }
 
-  function getPrinterInfo(callback) {
-    var completePrinterInfoURL = 'http://' + config.printerIP + config.machineDetailPath;
-
-    if(model.demo) {
-
-      model.printerModel = 'printer';
-      model.printerID = 'demo';
-      callback(null, model);
-    } else {
-      scrapURL(completePrinterInfoURL, function(reply) {
-        model.printerModel = reply.printerModel;
-        model.printerID = reply.printerID;
-        callback(null, model);
-      });
-    }
-
-  }
-
   function getPrinterCap(callback) {
     client.get('singlePrinterCap', function(err, reply) {
       model.singlePrinterCap = reply;
@@ -73,7 +53,7 @@ module.exports = function (app) {
   }
 
   async.series(
-    [readConfigFile, setDemoMode, getPrinterInfo, getPrinterCap, getSimulationStatus],
+    [readConfigFile, setDemoMode, getPrinterCap, getSimulationStatus],
     function () {
       app.get('/', function (req, res) {
         res.render('index', model);
@@ -82,29 +62,3 @@ module.exports = function (app) {
   );
 
 };
-
-function scrapURL(url, callback) {
-  var printer = {};
-
-  jsdom.env({
-    url: url,
-    src: [jquery],
-    done: function (errors, window) {
-
-      printer.printerModel = window.$('.staticProp')
-        .find("td:contains('Model Name')")
-        .first()
-        .next()
-        .next()
-        .text();
-
-      printer.printerID = window.$('.staticProp')
-        .find("td:contains('Machine ID')")
-        .first()
-        .next()
-        .next()
-        .text();
-      callback(printer);
-      }
-    });
-}

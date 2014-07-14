@@ -4,7 +4,7 @@
 
 <div class="sky">
 
-  <h1 class="graph-heading">Paper usage for {printerModel}, {printerID}</h1>
+  <h1 class="graph-heading">Paper usage <span id="printer-id"></span><span id="printer-model"></span></h1>
 
   <div class="graph"></div>
 

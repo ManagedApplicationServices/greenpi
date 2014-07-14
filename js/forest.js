@@ -199,4 +199,12 @@
     triggerReduceForest(data);
   });
 
+  socket.on('printerID', function (data) {
+    document.getElementById('printer-id').innerHTML = data + ', ';
+  });
+
+  socket.on('printerModel', function (data) {
+    document.getElementById('printer-model').innerHTML = data;
+  });
+
 })();
