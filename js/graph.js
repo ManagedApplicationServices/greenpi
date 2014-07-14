@@ -105,7 +105,7 @@
     var capstyle = document.createElement('style');
 
     cap = data / 12;
-    capstyle.innerHTML = '.cap:after{content: "monthly limit: ' + cap + '";}';
+    capstyle.innerHTML = '.cap:after{content: "monthly limit: ' + Math.round(cap) + '";}';
     document.head.appendChild(capstyle);
   }
 
