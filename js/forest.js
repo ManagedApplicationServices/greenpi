@@ -29,8 +29,7 @@
 
   function startSimulation() {
     document.getElementById('stop').style.display = 'block';
-    socket.emit('start', true);
-    socket.emit('stop', false);
+    socket.emit('start');
 
     socket.on('paperRemaining', function (data) {
       maxPaperCount = data;
@@ -46,9 +45,7 @@
 
   function stopSimulation() {
     document.getElementById('stop').style.display = 'none';
-    socket.emit('stop', true);
-    socket.emit('start', false);
-
+    socket.emit('stop');
     initialiseSimulation();
     document.getElementById('start').style.display = 'block';
   }
