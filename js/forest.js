@@ -136,7 +136,7 @@
     document.getElementById('start').style.display = 'block';
 
     document.getElementById('status').style.display = 'block';
-    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + maxPaperCount + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
+    document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + Math.round(maxPaperCount) + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';
   }
 
   function createPaperCountSections(data) {
