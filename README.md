@@ -416,7 +416,7 @@ Just go to any browser fro your admin laptop and access
 	```
 	df -h
 	```
-1. make an image of the SD Card with the name corresponding the the git tag shipped to production (raspberry pi)
+1. make an image of the SD Card with the name corresponding the the git tag shipped to production (raspberry pi) as noted on the [release github page](https://github.com/ManagedApplicationServices/greenpi/releases)
 
 	```
 	sudo dd bs=1m if=/dev/disk1 of=greenpiV0.14.0.img
