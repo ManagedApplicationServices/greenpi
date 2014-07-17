@@ -432,6 +432,7 @@ Just go to any browser fro your admin laptop and access
 
 ##changelog
 
+1. `v0.14.0` minor adjustments 
 1. `v0.13.0` printer info is gotten upon clicking the start button
 1. `v0.12.0` refresh page, async pattern and demo mode
 1. `v0.10.0` connected to live printer data
