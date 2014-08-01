@@ -397,13 +397,42 @@ Just go to any browser fro your admin laptop and access
 
 ##backups for the sd card images
 
-###get the backups
+###from backup to sd card
 
-1. All SD card images can be found in RSP AWS S3 bucket `rspdeveloper`. Versions correspond to git tags deployed to production in the Raspberry PI.
+1. All SD card images can be found in RSP AWS S3 bucket `rspdeveloper` in the filename format of `YYYYMMDD-greenpiVxx.xx.xx.img.gz`. Versions correspond to git tags deployed to production in the Raspberry PI.
 
 	![](readme-img/aws-s3-backups.png)
+	
+1. Choose the latest image according to part of the filename `YYMMDD` > Right click > Download
+1. Unzip / decompress it in the command line
 
-###creating backups for sd cards
+	```
+	tar -zvxf greenpi.img.gz
+	```	
+1. insert SD Card into your computer to [install the image](http://www.raspberrypi.org/documentation/installation/installing-images/mac.md) 	
+1. run `diskutil` to find out which disk name e.g. `/dev/disk1`
+
+	```
+	diskutil list
+	```
+1. unmount the SD card
+
+	```
+	diskutil unmountDisk /dev/disk1
+	```
+1. load the image into the SD Card [ 8GB card will take *60 mins* ]
+
+	```
+	sudo dd bs=1m if=greenpi.img of=/dev/disk1
+	```
+1. pull out the SD card from the computer to the Raspberry PI
+1. Ensure the RPi is connected to:
+	1. has the Wifi Module
+	1. power
+	1. LCD with HDMI
+1. Turn on the power for RPi
+
+###from sd card to backup
 
 1. shutdown the pi properly through ssh
 
