@@ -175,23 +175,19 @@
   document.getElementById('start').addEventListener('click', function() {
     startSimulation();
     socket.emit('start');
-    console.log('Start');
   }, false);
   // start event pushed to the rest of the client
   socket.on('started', function() {
-    console.log('Started');
     startSimulation();
   });
 
   // stop event triggered by one client
   document.getElementById('stop').addEventListener('click', function() {
     stopSimulation();
-    console.log('Stop');
     socket.emit('stop');
   }, false);
   // stop event pushed to the rest of the client
   socket.on('stopped', function() {
-    console.log('Stopped');
     stopSimulation();
   });
 
