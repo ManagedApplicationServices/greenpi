@@ -1,6 +1,6 @@
 {
   "name": "greenpi",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "dependencies": {
     "momentjs": "2.8.2",
     "socket.io-client": "0.9.16",
