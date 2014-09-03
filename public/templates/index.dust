@@ -57,6 +57,12 @@
     <div class="flower flower-5" id="f5"></div>
   </div>
 
+  <div class="printer-info">
+    <ul>
+      <li><span id="printer-info-id"></span></li>
+      <li><span id="printer-info-model"></span></li>
+    </ul>
+  </div>
   <div class="clouds">
     <div class="cloud-2"></div>
     <div class="cloud-3"></div>

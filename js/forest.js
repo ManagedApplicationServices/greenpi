@@ -216,10 +216,12 @@
 
   socket.on('printerID', function (data) {
     document.getElementById('printer-id').innerHTML = data + ', ';
+    document.getElementById('printer-info-id').innerHTML = 'Printer ID: ' + data;
   });
 
   socket.on('printerModel', function (data) {
     document.getElementById('printer-model').innerHTML = data;
+    document.getElementById('printer-info-model').innerHTML = 'Printer Model: ' + data;
   });
 
 })();

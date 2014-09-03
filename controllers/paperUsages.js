@@ -15,17 +15,27 @@ module.exports = function (app) {
     currentTreeNum: 0,
     monthset: [],
     dataset: [],
-    demo: 0
+    demo: 0,
+    printerID: '',
+    printerModel: '',
+    simulationCurrentTime: '',
+    count: 0,
+    livePrinterCount: 0
   };
 
-  function readData(callback) {
+  function readAllData(callback) {
     var data = [
       'paperCapPerPrinterPerYear',
       'currentTreeNum',
       'paperRemaining',
       'demo',
       'simulation',
-      'simulationStartAt'
+      'simulationStartAt',
+      'simulationCurrentTime',
+      'printerID',
+      'printerModel',
+      'livePrinterCount',
+      'count'
     ];
     var count = 0;
 
@@ -47,7 +57,9 @@ module.exports = function (app) {
     var data = [
       'paperCapPerPrinterPerYear',
       'currentTreeNum',
-      'paperRemaining'
+      'paperRemaining',
+      'livePrinterCount',
+      'count'
     ];
     var count = 0;
 
@@ -86,7 +98,7 @@ module.exports = function (app) {
   }
 
   app.get('/usages', function(req, res) {
-    async.series([readData, parseIntData, readArrayData], function() {
+    async.series([readAllData, parseIntData, readArrayData], function() {
       res.json(model);
     });
   });

@@ -1,5 +1,6 @@
 $sun-color: #f6cc30
 $cloud-bgr: #fff
+$forest-bgr: #FCF9CE
 
 @mixin rotate($degree)
   -webkit-transform: rotate($degree)
@@ -16,6 +17,16 @@ $cloud-bgr: #fff
   -webkit-transform: scale($amount)
   -moz-transform: scale($amount)
   transform: scale($amount)
+
+.printer-info
+  z-index: 999
+  display: block
+  color: $forest-bgr
+  position: relative
+  margin: 0 auto
+  width: 20vw
+  &:hover
+    color: black
 
 .sun
   display: block
