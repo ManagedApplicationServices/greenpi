@@ -288,6 +288,10 @@ Just go to any browser fro your admin laptop and access
 	Ctrl + Alt + F2
 	```
 
+##access logs
+
+1. Access URL in the browser `<RPi-IP-Address>:28778`
+
 ##create splash screen
 
 **Note**: Reference on [how to create the splash screen](http://www.edv-huber.com/index.php/problemloesungen/15-custom-splash-screen-for-raspberry-pi-raspbian). This splash screen will only be available after complete boot up.
