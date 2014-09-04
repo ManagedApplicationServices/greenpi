@@ -4,6 +4,7 @@
 node_modules/
 *.iml
 dump.rdb
+logs/
 
 # build files
 css/style.css

@@ -1,7 +1,25 @@
 'use strict';
 
 var kraken = require('kraken-js'),
-  app = {};
+  app = {},
+  winston = require ('winston'),
+  path = require ('path'),
+  transports = [],
+  logger = {};
+
+
+transports.push(new winston.transports.DailyRotateFile({
+  name: 'log',
+  datePattern: '.HH',
+  filename: path.join(__dirname, "logs", "log.backup"),
+  level: 'error',
+  json: false,
+  timestamp: false,
+  colorize: false
+}));
+
+logger = new winston.Logger({transports: transports});
+logger.setLevels(winston.config.syslog.levels);
 
 app.configure = function configure(nconf, next) {
   // Async method run on startup.
@@ -25,7 +43,7 @@ if (require.main === module) {
     if (err) {
       console.error(err.stack);
     }
-    var io = require('./lib/socket').listen(server);
+    var io = require('./lib/socket').listen(server, logger);
   });
 }
 

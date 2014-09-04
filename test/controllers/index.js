@@ -3,7 +3,6 @@ require('../test-helper');
 
 describe('index', function () {
   it('should say "hello"', function (done) {
-    console.log(appPath);
     request(server)
     .get('/')
     .expect(200)
