@@ -10,7 +10,7 @@ var kraken = require('kraken-js'),
   fs = require('fs');
 
 // cron job for logging - symlink and delete oldest file every 30th sec
-new CronJob('* 0 * * * *', function(){
+new CronJob('* 1 * * * *', function(){
   var now = new Date(),
     nowHour = now.getHours(),
     nowFormatted = dateFormat(now, 'yyyymmdd-HH-MM-ss') + ': ',
