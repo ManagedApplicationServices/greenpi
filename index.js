@@ -5,9 +5,31 @@ var kraken = require('kraken-js'),
   winston = require ('winston'),
   path = require ('path'),
   transports = [],
-  logger = {};
+  logger = {},
+  CronJob = require('cron').CronJob,
+  fs = require('fs');
 
+// cron job for logging - symlink and delete oldest file every 30th sec
+new CronJob('* 0 * * * *', function(){
+  var now = new Date(),
+    nowHour = now.getHours(),
+    nowFormatted = dateFormat(now, 'yyyymmdd-HH-MM-ss') + ': ',
+    srcLog = __dirname + 'logs/log.backup.' + nowHour,
+    destLog =  __dirname + 'logs/log',
+    oldestLog = --dirname + 'logs/log.backup.' + (nowHour + 1);
 
+  fs.symlink(srcLog, destLog, 'file', function(err) {
+    if (err) logger.error(nowFormatted + err);
+
+    fs.unlink(oldestLog, function (err) {
+      if (err) logger.error(nowFormatted + err);
+      logger.info(nowFormatted + ' Successfully deleted oldest log ' + oldestLog);
+    });
+
+  });
+}, null, true, 'Asia/Singapore');
+
+// logging
 transports.push(new winston.transports.DailyRotateFile({
   name: 'log',
   datePattern: '.HH',

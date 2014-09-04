@@ -21,6 +21,7 @@
     "bcrypt": "0.8.0",
     "chai": "1.9.1",
     "connect-redis": "1.4.7",
+    "cron": "1.0.4",
     "dateformat": "1.0.8-1.2.3",
     "dustjs-helpers": "1.2.0",
     "dustjs-linkedin": "2.4.1",
