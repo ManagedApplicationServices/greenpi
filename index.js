@@ -22,7 +22,7 @@ new CronJob('* 2 * * * *', function(){
   // delete log file
   fs.unlink(destLog, function(err) {
     if (err) logger.error(nowFormatted + err);
-    logger.info(nowFormatted + ' Successfully deleted log ' + srcLog);
+    logger.info(nowFormatted + ' Deleted ' + srcLog);
 
     // symlink to log file
     fs.symlink(srcLog, destLog, 'file', function(err) {
@@ -31,7 +31,7 @@ new CronJob('* 2 * * * *', function(){
       // delete oldest log file
       fs.unlink(oldestLog, function(err) {
         if (err) logger.error(nowFormatted + err);
-        logger.info(nowFormatted + ' Successfully deleted oldest log ' + oldestLog);
+        logger.info(nowFormatted + ' Deleted ' + oldestLog);
       });
 
     });
