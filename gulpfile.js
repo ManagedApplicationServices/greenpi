@@ -1,13 +1,16 @@
-var gulp = require('gulp'),
-  sass = require('gulp-ruby-sass'),
-  minifyCSS = require('gulp-minify-css'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
-  plumber = require('gulp-plumber'),
-  jshint = require('gulp-jshint'),
-  clean = require('gulp-clean');;
+'use strict';
 
-var paths = {
+var clean = require('gulp-clean'),
+  concat = require('gulp-concat'),
+  gulp = require('gulp'),
+  jshint = require('gulp-jshint'),
+  jscs = require('gulp-jscs'),
+  minifyCSS = require('gulp-minify-css'),
+  plumber = require('gulp-plumber'),
+  sass = require('gulp-ruby-sass'),
+  uglify = require('gulp-uglify'),
+
+  paths = {
   style: 'css/**/*',
   script: [
     'js/vendor/jquery/dist/jquery.min.js',
@@ -21,21 +24,26 @@ var paths = {
     'js/scrollSkyToForest.js'
   ],
   scriptToLint: [
+    'controllers/**/*',
+    'models/**/*',
     'js/graph.js',
     'js/forest.js',
     'js/poster.js',
     'js/scrollSkyToForest.js',
-    'js/setting.js'
+    'js/setting.js',
+    'gulpfile.js'
   ],
   filesToClean: [
     'public/script.js',
-    'public/style.css',
+    'public/style.css'
   ]
 };
 
-gulp.task('clean', function () {
-  return gulp.src(paths.filesToClean, {read: false})
-    .pipe(clean());
+gulp.task('clean', function() {
+  return gulp.src(paths.filesToClean, {
+    read: false
+  })
+  .pipe(clean());
 });
 
 gulp.task('style', function() {
@@ -58,17 +66,29 @@ gulp.task('script', function() {
     .pipe(gulp.dest('public'));
 });
 
+gulp.task('jscs', function() {
+  return gulp.src(paths.scriptToLint)
+    .pipe(jscs());
+});
+
 gulp.task('jshint', function() {
   return gulp.src(paths.scriptToLint)
     .pipe(plumber())
     .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.style, ['style']);
-  gulp.watch(paths.script, ['script']);
-  gulp.watch(paths.scriptToLint, ['jshint']);
+  gulp.watch(paths.style, [ 'style' ]);
+  gulp.watch(paths.script, [ 'script' ]);
+  gulp.watch(paths.scriptToLint, [ 'jshint' ]);
 });
 
-gulp.task('default', ['clean', 'jshint', 'style', 'script', 'watch']);
+gulp.task('default', [
+  'clean',
+  'jscs',
+  'jshint',
+  'style',
+  'script',
+  'watch'
+]);

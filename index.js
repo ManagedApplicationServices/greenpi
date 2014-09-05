@@ -20,7 +20,7 @@ new CronJob('* 2 * * * *', function(){
     oldestLog = __dirname + '/logs/log.backup.' + (nowHour + 1);
 
   // delete log file
-  fs.unlink(destLog, function (err) {
+  fs.unlink(destLog, function(err) {
     if (err) logger.error(nowFormatted + err);
     logger.info(nowFormatted + ' Successfully deleted log ' + srcLog);
 
@@ -29,7 +29,7 @@ new CronJob('* 2 * * * *', function(){
       if (err) logger.error(nowFormatted + err);
 
       // delete oldest log file
-      fs.unlink(oldestLog, function (err) {
+      fs.unlink(oldestLog, function(err) {
         if (err) logger.error(nowFormatted + err);
         logger.info(nowFormatted + ' Successfully deleted oldest log ' + oldestLog);
       });
@@ -71,7 +71,7 @@ app.requestAfterRoute = function requestAfterRoute(server) {
 };
 
 if (require.main === module) {
-  kraken.create(app).listen(function (err, server) {
+  kraken.create(app).listen(function(err, server) {
     if (err) {
       console.error(err.stack);
     }

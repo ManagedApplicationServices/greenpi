@@ -23,7 +23,19 @@
       "window": true,
       "document": true,
       "io": true,
-      "moment": true
+      "moment": true,
+      "socket": true,
+
+      "monthset": true,
+      "dataset": true,
+      "maxWidth": true,
+      "maxHeight": true,
+      "maxDataset": true,
+      "maxHeightNormalised": true,
+      "capset": true,
+      "i": true,
+      "MONTHS": true,
+      "res": true
     },
     "asi": false,
     "laxbreak": false,
@@ -37,7 +49,7 @@
     "forin": false,
     "immed": true,
     "latedef": false,
-    "loopfunc": false,
+    "loopfunc": true,
     "noarg": false,
     "regexp": false,
     "regexdash": false,
@@ -70,5 +82,5 @@
     "maxparams": 6,
     "maxdepth": 3,
     "maxstatements": 50,
-    "maxcomplexity": 6
+    "maxcomplexity": 20
 }
