@@ -63,6 +63,15 @@
       <li><span id="printer-info-model"></span></li>
     </ul>
   </div>
+
+  <div class="internet-availability" id="internet">
+    <p>
+      Internet not available.
+      <br>
+      <small>Make sure your network connection is active again.</small>
+    </p>
+  </div>
+
   <div class="clouds">
     <div class="cloud-2"></div>
     <div class="cloud-3"></div>

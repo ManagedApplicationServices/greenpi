@@ -219,6 +219,14 @@
     document.getElementById('printer-info-id').innerHTML = 'Printer ID: ' + data;
   });
 
+  socket.on('internetAvailable', function (data) {
+    document.getElementById('internet').style.display = 'none';
+  });
+
+  socket.on('internetNotAvailable', function (data) {
+    document.getElementById('internet').style.display = 'block';
+  });
+
   socket.on('printerModel', function (data) {
     document.getElementById('printer-model').innerHTML = data;
     document.getElementById('printer-info-model').innerHTML = 'Printer Model: ' + data;

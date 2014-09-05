@@ -2,6 +2,7 @@
 
 var kraken = require('kraken-js'),
   app = {},
+  dateFormat = require('dateformat'),
   winston = require ('winston'),
   path = require ('path'),
   transports = [],
@@ -10,20 +11,29 @@ var kraken = require('kraken-js'),
   fs = require('fs');
 
 // cron job for logging - symlink and delete oldest file every 30th sec
-new CronJob('* 1 * * * *', function(){
+new CronJob('* 2 * * * *', function(){
   var now = new Date(),
     nowHour = now.getHours(),
     nowFormatted = dateFormat(now, 'yyyymmdd-HH-MM-ss') + ': ',
-    srcLog = __dirname + 'logs/log.backup.' + nowHour,
-    destLog =  __dirname + 'logs/log',
-    oldestLog = --dirname + 'logs/log.backup.' + (nowHour + 1);
+    srcLog = __dirname + '/logs/log.backup.' + nowHour,
+    destLog =  __dirname + '/logs/log',
+    oldestLog = __dirname + '/logs/log.backup.' + (nowHour + 1);
 
-  fs.symlink(srcLog, destLog, 'file', function(err) {
+  // delete log file
+  fs.unlink(destLog, function (err) {
     if (err) logger.error(nowFormatted + err);
+    logger.info(nowFormatted + ' Successfully deleted log ' + srcLog);
 
-    fs.unlink(oldestLog, function (err) {
+    // symlink to log file
+    fs.symlink(srcLog, destLog, 'file', function(err) {
       if (err) logger.error(nowFormatted + err);
-      logger.info(nowFormatted + ' Successfully deleted oldest log ' + oldestLog);
+
+      // delete oldest log file
+      fs.unlink(oldestLog, function (err) {
+        if (err) logger.error(nowFormatted + err);
+        logger.info(nowFormatted + ' Successfully deleted oldest log ' + oldestLog);
+      });
+
     });
 
   });
