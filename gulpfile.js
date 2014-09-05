@@ -4,7 +4,8 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
   plumber = require('gulp-plumber'),
-  jshint = require('gulp-jshint');
+  jshint = require('gulp-jshint'),
+  clean = require('gulp-clean');;
 
 var paths = {
   style: 'css/**/*',
@@ -25,8 +26,17 @@ var paths = {
     'js/poster.js',
     'js/scrollSkyToForest.js',
     'js/setting.js'
+  ],
+  filesToClean: [
+    'public/script.js',
+    'public/style.css',
   ]
 };
+
+gulp.task('clean', function () {
+  return gulp.src(paths.filesToClean, {read: false})
+    .pipe(clean());
+});
 
 gulp.task('style', function() {
   return gulp
@@ -61,4 +71,4 @@ gulp.task('watch', function() {
   gulp.watch(paths.scriptToLint, ['jshint']);
 });
 
-gulp.task('default', ['jshint', 'style', 'script', 'watch']);
+gulp.task('default', ['clean', 'jshint', 'style', 'script', 'watch']);
