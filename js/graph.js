@@ -3,7 +3,7 @@
   'use strict';
 
   var paperUsage = [], // all months paper usage
-    cap = 0; // organization's single printer paper usage cap
+    cap = 0, // organization's single printer paper usage cap
     socket = io.connect('/'),
     dataset = [], // last 12 months of monthly paper usage
     capset = [], // an array of single printer paper usage cap
