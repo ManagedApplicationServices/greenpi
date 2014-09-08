@@ -28,6 +28,7 @@
 
       "monthset": true,
       "dataset": true,
+      "logger": true,
       "maxWidth": true,
       "maxHeight": true,
       "maxDataset": true,

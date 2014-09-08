@@ -26,11 +26,13 @@ var clean = require('gulp-clean'),
   scriptToLint: [
     'controllers/**/*',
     'models/**/*',
+    'lib/**/*',
     'js/graph.js',
     'js/forest.js',
     'js/poster.js',
     'js/scrollSkyToForest.js',
     'js/setting.js',
+    'index.js',
     'gulpfile.js'
   ],
   filesToClean: [
