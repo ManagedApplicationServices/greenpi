@@ -49,7 +49,9 @@
     differenceLeafCount = 0,
     simulationStartedAt,
     demo = 0,
-    socket = io.connect('/');
+    socket = io.connect('/'),
+    startEl = document.getElementById('start'),
+    stopEl = document.getElementById('stop');
 
   function startSimulation() {
     document.getElementById('stop').style.display = 'block';
@@ -202,20 +204,27 @@
   }
 
   // start event triggered by one client
-  document.getElementById('start').addEventListener('click', function() {
-    startSimulation();
-    socket.emit('start');
-  }, false);
+  if (startEl !== null) {
+    startEl.addEventListener('click', function() {
+      startSimulation();
+      socket.emit('start');
+    }, false);
+  }
+
   // start event pushed to the rest of the client
   socket.on('started', function() {
     startSimulation();
+    socket.emit('set');
   });
 
   // stop event triggered by one client
-  document.getElementById('stop').addEventListener('click', function() {
-    stopSimulation();
-    socket.emit('stop');
-  }, false);
+  if (stopEl) {
+    stopEl.addEventListener('click', function() {
+      stopSimulation();
+      socket.emit('stop');
+    }, false);
+  }
+
   // stop event pushed to the rest of the client
   socket.on('stopped', function() {
     stopSimulation();

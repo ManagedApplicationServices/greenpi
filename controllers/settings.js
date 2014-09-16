@@ -10,23 +10,24 @@ var SettingModel = require('../models/setting'),
 module.exports = function(app) {
   var model = {},
     auth = express.basicAuth(function(usernameInput, passwordInput, callback) {
-    var result, username, passwordHash, hashCompare;
 
-    fs.readFile(configFile, 'utf8', function(err, data) {
-      if (err) {
-        console.log('Error: ' + err);
-        return;
-      }
-      username = JSON.parse(data).username;
-      passwordHash = JSON.parse(data).passwordHash;
+      var result, username, passwordHash, hashCompare;
 
-      bcrypt.compare(passwordInput, passwordHash, function(err, res) {
-        result = (usernameInput === username && res);
-        callback(null, result);
+      fs.readFile(configFile, 'utf8', function(err, data) {
+        if (err) {
+          console.log('Error: ' + err);
+          return;
+        }
+        username = JSON.parse(data).username;
+        passwordHash = JSON.parse(data).passwordHash;
+
+        bcrypt.compare(passwordInput, passwordHash, function(err, res) {
+          result = (usernameInput === username && res);
+          callback(null, result);
+        });
       });
-    });
 
-  });
+    });
 
   app.get('/admin', auth, function(req, res) {
     res.render('setting', model);
