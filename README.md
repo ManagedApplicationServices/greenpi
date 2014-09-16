@@ -170,7 +170,7 @@ Just go to any browser fro your admin laptop and access
 
 	```
 	exports.config = {
-	  nodeName: "node_server",
+	  nodeName: "express_server",
 	  logStreams: {
 	    greenpi: [
 	      "/absolute/path/to/greenpi/logs/log.backup.00",
