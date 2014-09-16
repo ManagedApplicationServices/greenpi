@@ -40,7 +40,10 @@ module.exports = function(app) {
     fs.readFile(configFile, 'utf8', function(err, data) {
       var newConfig = {};
 
-      if (err) {console.log('Error: ' + err); return; }
+      if (err) {
+        console.log('Error in reading file: ' + err);
+        return;
+      }
       config = JSON.parse(data);
 
       // create new config file based on admin input

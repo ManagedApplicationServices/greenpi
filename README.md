@@ -157,6 +157,70 @@ Just go to any browser fro your admin laptop and access
 	```
 
 
+##logging
+
+###first time
+
+1. create empty log files for hour `00` to hour `23`:
+
+	```
+	for file in log.backup.{00..23}; do touch "$file"; done
+	```
+- configure log harvester file `nano ~/.log.io/harvester.conf` with the log filepaths
+
+	```
+	exports.config = {
+	  nodeName: "node_server",
+	  logStreams: {
+	    greenpi: [
+	      "/absolute/path/to/greenpi/logs/log.backup.00",
+	      "/absolute/path/to/greenpi/logs/log.backup.01",
+	      "/absolute/path/to/greenpi/logs/log.backup.02",
+	      "/absolute/path/to/greenpi/logs/log.backup.03",
+	      "/absolute/path/to/greenpi/logs/log.backup.04",
+	      "/absolute/path/to/greenpi/logs/log.backup.05",
+	      "/absolute/path/to/greenpi/logs/log.backup.06",
+	      "/absolute/path/to/greenpi/logs/log.backup.07",
+	      "/absolute/path/to/greenpi/logs/log.backup.08",
+	      "/absolute/path/to/greenpi/logs/log.backup.09",
+	      "/absolute/path/to/greenpi/logs/log.backup.10",
+	      "/absolute/path/to/greenpi/logs/log.backup.11",
+	      "/absolute/path/to/greenpi/logs/log.backup.12",
+	      "/absolute/path/to/greenpi/logs/log.backup.13",
+	      "/absolute/path/to/greenpi/logs/log.backup.14",
+	      "/absolute/path/to/greenpi/logs/log.backup.15",
+	      "/absolute/path/to/greenpi/logs/log.backup.16",
+	      "/absolute/path/to/greenpi/logs/log.backup.17",
+	      "/absolute/path/to/greenpi/logs/log.backup.18",
+	      "/absolute/path/to/greenpi/logs/log.backup.19",
+	      "/absolute/path/to/greenpi/logs/log.backup.20",
+	      "/absolute/path/to/greenpi/logs/log.backup.21",
+	      "/absolute/path/to/greenpi/logs/log.backup.22",
+	      "/absolute/path/to/greenpi/logs/log.backup.23"
+	    ]
+	  },
+	  server: {
+	    host: '0.0.0.0',
+	    port: 28777
+	  }
+	}
+	```
+
+###each time
+	
+1. start log server and harvester (should be started by the kiosk mode)
+
+	```
+	$ log.io-server
+	$ log.io-harvester
+	```
+- For accessing logs in the browser, go to:
+
+	```
+	http://<rpi_ip>:28778
+	```
+
+
 
 ##prepare sd card from brand new rpi
 

@@ -6,7 +6,7 @@ windows:
       panes:
         - cd app && npm outdated --depth 0 && git status
         - cd app && gulp
-        - cd app && node index.js > ~/Desktop/greenpi.txt
+        - cd app && node index.js
   - logs:
       layout: even-horizontal
       panes:
