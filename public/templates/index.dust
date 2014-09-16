@@ -82,7 +82,7 @@
         <div class="cloud-1">
           <div class="demo" id="demo">demo mode</div>
           <div class="logo">
-            <img src="img/logo.jpg">
+            <img src="img/logo.jpg?rand=1234" id="logo">
           </div>
         </div>
       </div>
