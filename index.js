@@ -16,7 +16,7 @@ var kraken = require('kraken-js'),
 // cron job for logging
 new CronJob('1 0 * * * *', function() {
   logging.setupLogging(function() {
-    logger.info(nowFormatted + 'Started logging');
+    logger.info(nowFormatted + 'Started logging in new hour!');
   });
 }, null, true, 'Asia/Singapore');
 
