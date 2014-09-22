@@ -196,10 +196,13 @@
   }
 
   function setDemoMode(isDemoMode) {
-    if (isDemoMode) {
-      document.getElementById('demo').style.display = 'block';
-    } else {
-      document.getElementById('demo').style.display = 'none';
+    var demoEl = document.getElementById('demo');
+    if (startEl !== null) {
+      if (isDemoMode) {
+        document.getElementById('demo').style.display = 'block';
+      } else {
+        document.getElementById('demo').style.display = 'none';
+      }
     }
   }
 
@@ -214,7 +217,6 @@
   // start event pushed to the rest of the client
   socket.on('started', function() {
     startSimulation();
-    socket.emit('set');
   });
 
   // stop event triggered by one client
@@ -251,6 +253,10 @@
   socket.on('ping', function(data) {
     changesOnEveryPrint(data);
     triggerReduceForest(data);
+  });
+
+  socket.on('test', function(data) {
+    console.log('admin setting amended');
   });
 
   socket.on('printerID', function(data) {

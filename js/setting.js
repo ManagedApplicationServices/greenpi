@@ -1,15 +1,6 @@
 (function() {
   'use strict';
 
-  var socket = io.connect('/'),
-    setEl = document.getElementById('set');
-
-  if (setEl !== null) {
-    setEl.addEventListener('click', function() {
-      socket.broadcast.emit('set');
-    }, false);
-  }
-
   $(document).on('change', '.btn-file :file', function() {
 
     var input = $(this),

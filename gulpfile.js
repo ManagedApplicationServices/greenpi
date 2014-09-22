@@ -11,35 +11,44 @@ var clean = require('gulp-clean'),
   uglify = require('gulp-uglify'),
 
   paths = {
-  style: 'css/**/*',
-  script: [
-    'js/vendor/jquery/dist/jquery.min.js',
-    'js/vendor/momentjs/min/moment.min.js',
-    'js/vendor/socket.io-client/dist/socket.io.min.js',
-    'js/vendor/d3/d3.min.js',
-    'js/setting.js',
-    'js/forest.js',
-    'js/poster.js',
-    'js/graph.js',
-    'js/scrollSkyToForest.js'
-  ],
-  scriptToLint: [
-    'controllers/**/*',
-    'models/**/*',
-    'lib/**/*',
-    'js/graph.js',
-    'js/forest.js',
-    'js/poster.js',
-    'js/scrollSkyToForest.js',
-    'js/setting.js',
-    'index.js',
-    'gulpfile.js'
-  ],
-  filesToClean: [
-    'public/script.js',
-    'public/style.css'
-  ]
-};
+    style: 'css/**/*',
+    script: [
+      'js/vendor/jquery/dist/jquery.min.js',
+      'js/vendor/momentjs/min/moment.min.js',
+      'js/vendor/socket.io-client/dist/socket.io.min.js',
+      'js/vendor/d3/d3.min.js',
+      'js/forest.js',
+      'js/poster.js',
+      'js/graph.js',
+      'js/scrollSkyToForest.js'
+    ],
+    scriptSetting: [
+      'js/vendor/jquery/dist/jquery.min.js',
+      'js/setting.js'
+    ],
+    scriptSettingDone: [
+      'js/vendor/socket.io-client/dist/socket.io.min.js',
+      'js/done.js'
+    ],
+    scriptToLint: [
+      'controllers/**/*',
+      'models/**/*',
+      'lib/**/*',
+      'js/graph.js',
+      'js/forest.js',
+      'js/poster.js',
+      'js/setting.js',
+      'js/scrollSkyToForest.js',
+      'index.js',
+      'gulpfile.js'
+    ],
+    filesToClean: [
+      'public/script.js',
+      'public/setting.js',
+      'public/done.js',
+      'public/style.css'
+    ]
+  };
 
 gulp.task('clean', function() {
   return gulp.src(paths.filesToClean, {
@@ -66,7 +75,34 @@ gulp.task('script', function() {
     .pipe(plumber())
     .pipe(concat('script.js'))
     .pipe(gulp.dest('public'))
-    .pipe(uglify())
+    .pipe(uglify({
+      outSourceMap: false,
+      preserveComments: false
+    }))
+    .pipe(gulp.dest('public'));
+});
+
+gulp.task('scriptSetting', function() {
+  return gulp.src(paths.scriptSetting)
+    .pipe(plumber())
+    .pipe(concat('setting.js'))
+    .pipe(gulp.dest('public'))
+    .pipe(uglify({
+      outSourceMap: false,
+      preserveComments: false
+    }))
+    .pipe(gulp.dest('public'));
+});
+
+gulp.task('scriptSettingDone', function() {
+  return gulp.src(paths.scriptSettingDone)
+    .pipe(plumber())
+    .pipe(concat('done.js'))
+    .pipe(gulp.dest('public'))
+    .pipe(uglify({
+      outSourceMap: false,
+      preserveComments: false
+    }))
     .pipe(gulp.dest('public'));
 });
 
@@ -94,5 +130,7 @@ gulp.task('default', [
   'jshint',
   'style',
   'script',
+  'scriptSetting',
+  'scriptSettingDone',
   'watch'
 ]);

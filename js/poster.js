@@ -3,8 +3,8 @@
 
   var numPosters = 4,
     posterDiv = document.getElementsByClassName('overlay')[0],
-    posterIntervalTime = 150000,  // 150000 every 2 min 30 sec
-    posterDisplayTime = 135000,   // 135000 every 2 min 15 sec
+    posterIntervalTime = 5000,  // 150000 every 2 min 30 sec
+    posterDisplayTime = 3000,   // 135000 every 2 min 15 sec
     currPoster = 1,
     imagePath = 'img/poster',
     currImage = imagePath + currPoster + '.jpg',
@@ -14,8 +14,15 @@
     randomAlphaNumeric = '',
     socket = io.connect('/');
 
-  socket.on('set', function(data) {
-    console.log('Admin settings amended!');
+  // trigger poster & logo when first started
+  triggerPosterAndLogo();
+
+  // upon admin setting, trigger changes in posters and logo
+  socket.on('setting', function(data) {
+    triggerPosterAndLogo();
+  });
+
+  function triggerPosterAndLogo() {
     if (posterDiv !== null) {
       posterDiv.style.display = 'none';
 
@@ -25,7 +32,7 @@
 
       // set new logo
       currLogo = 'img/logo.jpg?rand=' + randomString(6, allowedAlphaNumeric);
-      document.getElementById('logo').setAttribute('src', currImage);
+      document.getElementById('logo').setAttribute('src', currLogo);
 
       // set interval for new poster images
       posterRotation = setInterval(function() {
@@ -38,7 +45,7 @@
         }, posterDisplayTime);
       }, posterIntervalTime);
     }
-  });
+  }
 
   function randomString(length, chars) {
     var result = '',
