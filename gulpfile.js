@@ -52,7 +52,9 @@ gulp.task('style', function() {
   return gulp
     .src(paths.style)
     .pipe(plumber())
-    .pipe(sass())
+    .pipe(sass({
+      sourcemap: false
+    }))
     .pipe(gulp.dest('css'))
     .pipe(concat('style.css'))
     .pipe(minifyCSS())

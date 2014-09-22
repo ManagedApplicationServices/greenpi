@@ -7,6 +7,7 @@ dump.rdb
 logs/
 
 # build files
+css/**/*.map
 css/style.css
 css/sass/*.css
 css/sass/forest/*.css
