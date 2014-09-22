@@ -14,7 +14,7 @@ var kraken = require('kraken-js'),
   nowFormatted = dateFormat(now, 'yyyymmdd-HH-MM-ss') + ': ';
 
 // cron job for logging
-new CronJob('* 0 * * * *', function() {
+new CronJob('1 0 * * * *', function() {
   logging.setupLogging(function() {
     logger.info(nowFormatted + 'Started logging');
   });
