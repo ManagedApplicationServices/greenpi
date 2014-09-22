@@ -23,36 +23,36 @@
               <div class="col-lg-6">
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Current printer IP</p>
-                  <div class="col-lg-9">
+                  <p class="col-lg-4 setting-label">Printer IP</p>
+                  <div class="col-lg-8">
                     <input type="text" class="form-control" placeholder="172.19.107.61" name="printerIP">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Organisation CAP</p>
-                  <div class="col-lg-9">
+                  <p class="col-lg-4 setting-label">Paper CAP</p>
+                  <div class="col-lg-8">
                     <input type="number" min=100 class="form-control" placeholder="1000000" name="paperUsageCap">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Total printers</p>
-                  <div class="col-lg-9">
+                  <p class="col-lg-4 setting-label">Total printers</p>
+                  <div class="col-lg-8">
                     <input type="number" min=1 class="form-control" placeholder="4" name="totalPrinters">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">New password</p>
-                  <div class="col-lg-9">
+                  <p class="col-lg-4 setting-label">New password</p>
+                  <div class="col-lg-8">
                     <input type="password" class="form-control" placeholder="secret" name="password">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Confirm password</p>
-                  <div class="col-lg-9">
+                  <p class="col-lg-4 setting-label">Confirm password</p>
+                  <div class="col-lg-8">
                     <input type="password" class="form-control" placeholder="secret" name="passwordConfirm">
                   </div>
                 </div>
@@ -60,8 +60,8 @@
 
               <div class="col-lg-6">
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Company Logo</p>
-                  <div class="col-lg-9">
+                  <p class="col-lg-4 setting-label">Company Logo</p>
+                  <div class="col-lg-8">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
@@ -74,8 +74,8 @@
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Poster 1</p>
-                  <div class="col-lg-9">
+                  <p class="col-lg-4 setting-label">Poster 1</p>
+                  <div class="col-lg-8">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
@@ -88,8 +88,8 @@
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Poster 2</p>
-                  <div class="col-lg-9 pull-right">
+                  <p class="col-lg-4 setting-label">Poster 2</p>
+                  <div class="col-lg-8 pull-right">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
@@ -102,8 +102,8 @@
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Poster 3</p>
-                  <div class="col-lg-9 pull-right">
+                  <p class="col-lg-4 setting-label">Poster 3</p>
+                  <div class="col-lg-8 pull-right">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
@@ -116,8 +116,8 @@
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Poster 4</p>
-                  <div class="col-lg-9 pull-right">
+                  <p class="col-lg-4 setting-label">Poster 4</p>
+                  <div class="col-lg-8 pull-right">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
@@ -130,8 +130,8 @@
                 </div>
 
                 <div class="form-group">
-                  <p class="col-lg-3 setting-label">Poster 5</p>
-                  <div class="col-lg-9 pull-right">
+                  <p class="col-lg-4 setting-label">Poster 5</p>
+                  <div class="col-lg-8 pull-right">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
