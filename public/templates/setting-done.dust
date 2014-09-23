@@ -50,6 +50,10 @@
           {/password}
         </ul>
 
+        <form class="form-horizontal" action="/admin" method="get" enctype="multipart/form-data">
+          <button type="submit" class="btn btn-primary btn-lg btn-extend">Back to Settings</button>
+        </form>
+
       </div>
     </div>
   </div>
