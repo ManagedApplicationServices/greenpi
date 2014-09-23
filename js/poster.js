@@ -3,8 +3,8 @@
 
   var numPosters = 4,
     posterDiv = document.getElementsByClassName('overlay')[0],
-    posterIntervalTime = 5000,  // 150000 every 2 min 30 sec
-    posterDisplayTime = 3000,   // 135000 every 2 min 15 sec
+    posterIntervalTime = 150000,  // 150000 every 2 min 30 sec
+    posterDisplayTime = 135000,   // 135000 every 2 min 15 sec
     currPoster = 1,
     imagePath = 'img/poster',
     currImage = imagePath + currPoster + '.jpg',

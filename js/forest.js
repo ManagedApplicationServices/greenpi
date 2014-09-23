@@ -51,10 +51,14 @@
     demo = 0,
     socket = io.connect('/'),
     startEl = document.getElementById('start'),
-    stopEl = document.getElementById('stop');
+    resumeEl = document.getElementById('resume'),
+    pauseEl = document.getElementById('pause'),
+    demoEl = document.getElementById('demo');
 
   function startSimulation() {
-    document.getElementById('stop').style.display = 'block';
+    pauseEl.style.display = 'block';
+    startEl.style.display = 'none';
+    resumeEl.style.display = 'none';
 
     socket.on('paperRemaining', function(data) {
       maxPaperCount = data;
@@ -66,12 +70,30 @@
     });
 
     initialiseSimulation();
+    return;
   }
 
-  function stopSimulation() {
-    document.getElementById('stop').style.display = 'none';
+  function resetSimulation() {
+    pauseEl.style.display = 'none';
+    resumeEl.style.display = 'none';
+    startEl.style.display = 'block';
+
     initialiseSimulation();
-    document.getElementById('start').style.display = 'block';
+    return;
+  }
+
+  function resumeSimulation() {
+    pauseEl.style.display = 'block';
+    resumeEl.style.display = 'none';
+    startEl.style.display = 'none';
+    return;
+  }
+
+  function pauseSimulation() {
+    pauseEl.style.display = 'none';
+    resumeEl.style.display = 'block';
+    startEl.style.display = 'none';
+    return;
   }
 
   function initialiseSimulation() {
@@ -196,16 +218,16 @@
   }
 
   function setDemoMode(isDemoMode) {
-    var demoEl = document.getElementById('demo');
     if (startEl !== null) {
       if (isDemoMode) {
-        document.getElementById('demo').style.display = 'block';
+        demoEl.style.display = 'block';
       } else {
-        document.getElementById('demo').style.display = 'none';
+        demoEl.style.display = 'none';
       }
     }
   }
 
+  // ------- START ------ //
   // start event triggered by one client
   if (startEl !== null) {
     startEl.addEventListener('click', function() {
@@ -214,38 +236,61 @@
     }, false);
   }
 
-  // start event pushed to the rest of the client
+  // start simulation sent to other clients
   socket.on('started', function() {
     startSimulation();
   });
 
-  // stop event triggered by one client
-  if (stopEl) {
-    stopEl.addEventListener('click', function() {
-      stopSimulation();
-      socket.emit('stop');
+  // ------- PAUSE ------ //
+  // pause event triggered by one client
+  if (pauseEl) {
+    pauseEl.addEventListener('click', function() {
+      pauseSimulation();
+      socket.emit('pause');
     }, false);
   }
 
-  // stop event pushed to the rest of the client
-  socket.on('stopped', function() {
-    stopSimulation();
+  // stop simulation sent to other clients
+  socket.on('paused', function() {
+    pauseSimulation();
+  });
+
+  // ------- RESUME ------ //
+  // resume event triggered by one client
+  if (resumeEl) {
+    resumeEl.addEventListener('click', function() {
+      socket.emit('resume');
+      resumeSimulation();
+    }, false);
+  }
+
+  // resume simulation sent to other clients
+  socket.on('resumed', function() {
+    resumeSimulation();
   });
 
   // get current status upon page refresh
   $.getJSON('/usages', function(result) {
     var data = 0;
 
-    if (result.simulation === 'running' && result.paperRemaining > 0) {
+    if (result.paperRemaining > 0) {
       maxPaperCount = result.paperCapPerPrinterPerYear;
       data = result.paperRemaining;
       simulationStartedAt = result.simulationStartAt;
       demo = result.demo;
       setDemoMode(demo);
-
-      document.getElementById('start').style.display = 'none';
       createPaperCountSections(maxPaperCount);
-      triggerReduceForest(data);
+
+      if (result.simulation === 'running') {
+        startEl.style.display = 'none';
+        resumeEl.style.display = 'none';
+        pauseEl.style.display = 'block';
+        triggerReduceForest(data);
+      } else if (result.simulation === 'paused') {
+        startEl.style.display = 'none';
+        resumeEl.style.display = 'block';
+        pauseEl.style.display = 'none';
+      }
     }
 
   });
@@ -253,10 +298,6 @@
   socket.on('ping', function(data) {
     changesOnEveryPrint(data);
     triggerReduceForest(data);
-  });
-
-  socket.on('test', function(data) {
-    console.log('admin setting amended');
   });
 
   socket.on('printerID', function(data) {

@@ -25,6 +25,7 @@
     <div class="forest">
 
       <button type="button" class="btn btn-primary btn-lg btn-simulation" id="start">Start</button>
+      <button type="button" class="btn btn-primary btn-lg btn-simulation" id="resume" style="display:none;">Resume</button>
 
       <div class="sun"></div>
 
@@ -89,7 +90,7 @@
 
       <div class="ground">
         <div class="forest-left" id="left">
-          <button class="stop" id="stop">stop</button>
+          <button class="pause" id="pause">pause</button>
         </div>
         <div class="forest-lost" id="lost"></div>
       </div>
