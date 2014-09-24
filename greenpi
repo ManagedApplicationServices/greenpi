@@ -6,7 +6,7 @@
 # USAGE in the command line:
 # greenpi
 
-app="/Users/sayanee/Workspace/greenpi"
+app="~/Workspace/greenpi"
 backend="/app"
 readme="/readme.md"
 
@@ -19,6 +19,7 @@ open /Applications/Tower.app
 
 # app + logs
 open http://localhost:9000
+open http://localhost:9000/usages
 open http://localhost:28778
 
 # remote repo

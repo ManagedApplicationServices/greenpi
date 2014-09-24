@@ -9,14 +9,12 @@ var kraken = require('kraken-js'),
   CronJob = require('cron').CronJob,
   fs = require('fs'),
   logging = require('./lib/logging'),
-  dateFormat = require('dateformat'),
-  now = new Date(),
-  nowFormatted = dateFormat(now, 'yyyymmdd-HH-MM-ss') + ': ';
+  timestamp = require('./lib/timestamp');
 
 // cron job for logging
 new CronJob('1 0 * * * *', function() {
   logging.setupLogging(function() {
-    logger.info(nowFormatted + 'Started logging in new hour!');
+    logger.info(timestamp.get() + 'Started logging in new hour!');
   });
 }, null, true, 'Asia/Singapore');
 
