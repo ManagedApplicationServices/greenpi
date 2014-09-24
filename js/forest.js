@@ -270,7 +270,7 @@
   });
 
   // get current status upon page refresh
-  $.getJSON('/usages', function(result) {
+  $.getJSON('/status', function(result) {
     var data = 0;
 
     if (result.paperRemaining > 0) {

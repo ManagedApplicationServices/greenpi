@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-  PaperUsageModel = require('../models/paperUsage'),
+  PaperUsageModel = require('../models/status'),
   redis = require('redis'),
   async = require('async'),
   client = redis.createClient();
@@ -100,7 +100,7 @@ module.exports = function(app) {
     });
   }
 
-  app.get('/usages', function(req, res) {
+  app.get('/status', function(req, res) {
     async.series([
       readAllData,
       parseIntData,

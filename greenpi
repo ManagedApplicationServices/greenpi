@@ -19,7 +19,7 @@ open /Applications/Tower.app
 
 # app + logs
 open http://localhost:9000
-open http://localhost:9000/usages
+open http://localhost:9000/status
 open http://localhost:28778
 
 # remote repo

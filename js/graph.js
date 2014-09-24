@@ -162,7 +162,7 @@
   });
 
   // get current status upon page refresh
-  $.getJSON('/usages', function(result) {
+  $.getJSON('/status', function(result) {
 
     if (result.simulation === 'running' && result.paperRemaining > 0) {
       paperUsage = result.dataset;

@@ -23,6 +23,7 @@
 
 1. In your administrator computer, find out the IP address of this RaspberryPI by scanning the connected devices to your router. E.g. `192.168.1.149`
 1. Visit the IP address in your computer's Chrome browser. E.g. `192.168.1.149:9000`	
+1. Visit the status your computer's Chrome browser. E.g. `192.168.1.149:9000/status`	
 1. Visit the admin page in your computer's Chrome browser. E.g. `192.168.1.149:9000/admin`. The default login credentials are:
 
 	```
@@ -99,15 +100,16 @@ Just go to any browser fro your admin laptop and access
 
 	```
 	{
-    "printerIP": "172.19.107.61",
-    "paperUsageCap": 96,
-    "totalPrinters": 4,
-    "appPath": "/path/to/app",
-    "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi",
-    "machineDetailPath": "/web/guest/en/websys/status/configuration.cgi",
-    "username": "sprout",
-    "passwordHash": "$2a$08$oAXUGmm186QSjofIjM.fLur6ru7S6KW3L5gw9.wBMW9T9imqL/tSC"
-}
+	    "printerIP": "172.19.107.61",
+	    "paperUsageCap": 1000,
+	    "totalPrinters": 4,
+	    "interval": 20000,
+	    "appPath": "/home/developer/apps/greenpi",
+	    "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi",
+	    "machineDetailPath": "/web/guest/en/websys/status/configuration.cgi",
+	    "username": "sprout",
+	    "passwordHash": "$2a$08$oAXUGmm186QSjofIjM.fLur6ru7S6KW3L5gw9.wBMW9T9imqL/tSC"
+	}
 	```	
 1. install bower and npm packages
 
@@ -115,11 +117,17 @@ Just go to any browser fro your admin laptop and access
 	npm install
 	bower install
 	```
-1. start the server
+1. start the server in any one of the 2 ways:
 
-	```
-	$ node index.js
-	```
+	1. to reset the db
+
+		```
+		$ node index.js reset
+		```
+	- to start the server without any reset and continue automatically from last left state
+		```
+		$ node index.js
+		```
 1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
 
 	- username: `sprout`
