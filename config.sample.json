@@ -2,6 +2,7 @@
   "printerIP": "172.00.00.00",
   "paperUsageCap": 1000000,
   "totalPrinters": 4,
+  "interval": 20000,
   "appPath": "/home/developer/apps/greenpi",
   "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi",
   "machineDetailPath": "/web/guest/en/websys/status/configuration.cgi",
