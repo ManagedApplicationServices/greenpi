@@ -17,6 +17,11 @@ windows:
       panes:
         - redis-server
         - redis-cli
+  - test:
+      layout: even-horizontal
+      panes:
+        - npm test
+        - http-server test/fixtures
   - production:
       layout: even-horizontal
       panes:

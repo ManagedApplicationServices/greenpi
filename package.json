@@ -21,7 +21,8 @@
         "lib/month.js",
         "lib/timestamp.js",
         "lib/random.js",
-        "lib/configFile.js"
+        "lib/configFile.js",
+        "lib/forest.js"
       ]
     }
   },
