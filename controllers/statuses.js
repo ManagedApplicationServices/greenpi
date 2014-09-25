@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-  PaperUsageModel = require('../models/status'),
+  StatusModel = require('../models/status'),
   redis = require('redis'),
   async = require('async'),
   client = redis.createClient();
@@ -67,7 +67,7 @@ module.exports = function(app) {
     count = 0;
 
     data.forEach(function(element, index, array) {
-      model[element] = parseInt(model[element]);
+      model[element] = parseInt(model[element], 10);
       count++;
       if (count === data.length) {
         callback(null, model);
@@ -89,7 +89,7 @@ module.exports = function(app) {
 
         for (i = 0; i < reply; i++) {
           client.lindex(element, i, function(err, reply) {
-            model[element].push(parseInt(reply));
+            model[element].push(parseInt(reply), 10);
           });
         }
       });

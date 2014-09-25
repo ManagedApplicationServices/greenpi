@@ -131,7 +131,7 @@
     document.getElementById('left').style.width = '100%';
     document.getElementById('left').style.display = 'block';
 
-    document.getElementById('start').style.display = 'none';
+    startEl.style.display = 'none';
     document.getElementById('status').style.display = 'none';
   }
 
@@ -185,7 +185,7 @@
     document.getElementById('lost').style.width = '100%';
     document.getElementById('lost').innerHTML = '100% forest is lost :(';
 
-    document.getElementById('start').style.display = 'block';
+    startEl.style.display = 'block';
 
     document.getElementById('status').style.display = 'block';
     document.getElementById('status').innerHTML = '<h1>All forest is lost</h1>' + '<p>' + Math.round(maxPaperCount) + ' papers were printed since ' + moment(simulationStartedAt).startOf('minute').fromNow() + '.<br>Can we do better next time?</p>';

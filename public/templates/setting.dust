@@ -162,11 +162,12 @@
         <div class="well bs-component">
           <div class="form-group">
             <div class="col-lg-12">
-              <h4>Once you reset the running simulation, there is no going back. All data will be deleted. Please be certain.</h4>
-
-              <button type="submit" class="btn btn-danger btn-lg btn-extend" id="reset">
-                <h3>Reset forest simulation</h3>
-              </button>
+              <h4>Once you reset, there is no going back. All <strong>data will be deleted</strong> and the simulation will <strong>re-start immediately</strong>. Please be certain.</h4>
+              <form class="form-horizontal" action="/reset" method="post" enctype="multipart/form-data">
+                <button type="submit" class="btn btn-danger btn-lg btn-extend" id="reset">
+                  <h3>Reset forest simulation</h3>
+                </button>
+              </form>
             </div>
           </div>
         </div>

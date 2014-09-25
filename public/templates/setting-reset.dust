@@ -1,0 +1,24 @@
+{>"layouts/master" /}
+
+{<body}
+<div class="container">
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <h1>Reset completed. Simulation has started</h1>
+        <hr>
+        <form class="form-horizontal" action="/admin" method="get" enctype="multipart/form-data">
+          <a href="/" class="btn btn-primary btn-lg">Visit Homepage</a>
+          <button type="submit" class="btn btn-primary btn-lg">Back to Settings</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="reset.js"></script>
+{/body}
+
+

@@ -33,6 +33,10 @@ module.exports = function(app) {
     res.render('setting', model);
   });
 
+  app.post('/reset', function(req, res) {
+    res.render('setting-reset', model);
+  });
+
   app.post('/admin', function(req, res) {
     var companyLogoFile = req.files.companyLogo,
       uploadedImages = [],

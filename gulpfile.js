@@ -12,7 +12,7 @@ var clean = require('gulp-clean'),
 
   paths = {
     style: 'css/**/*',
-    script: [
+    scriptHome: [
       'js/vendor/jquery/dist/jquery.min.js',
       'js/vendor/momentjs/min/moment.min.js',
       'js/vendor/socket.io-client/dist/socket.io.min.js',
@@ -30,6 +30,10 @@ var clean = require('gulp-clean'),
       'js/vendor/socket.io-client/dist/socket.io.min.js',
       'js/done.js'
     ],
+    scriptSettingReset: [
+      'js/vendor/socket.io-client/dist/socket.io.min.js',
+      'js/reset.js'
+    ],
     scriptToLint: [
       'controllers/**/*',
       'models/**/*',
@@ -39,6 +43,7 @@ var clean = require('gulp-clean'),
       'js/poster.js',
       'js/setting.js',
       'js/scrollSkyToForest.js',
+      'js/reset.js',
       'index.js',
       'gulpfile.js'
     ],
@@ -46,6 +51,7 @@ var clean = require('gulp-clean'),
       'public/script.js',
       'public/setting.js',
       'public/done.js',
+      'public/reset.js',
       'public/style.css'
     ]
   };
@@ -70,8 +76,8 @@ gulp.task('style', function() {
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('script', function() {
-  return gulp.src(paths.script)
+gulp.task('scriptHome', function() {
+  return gulp.src(paths.scriptHome)
     .pipe(plumber())
     .pipe(concat('script.js'))
     .pipe(gulp.dest('public'))
@@ -106,6 +112,18 @@ gulp.task('scriptSettingDone', function() {
     .pipe(gulp.dest('public'));
 });
 
+gulp.task('scriptSettingReset', function() {
+  return gulp.src(paths.scriptSettingReset)
+    .pipe(plumber())
+    .pipe(concat('reset.js'))
+    .pipe(gulp.dest('public'))
+    .pipe(uglify({
+      outSourceMap: false,
+      preserveComments: false
+    }))
+    .pipe(gulp.dest('public'));
+});
+
 gulp.task('jscs', function() {
   return gulp.src(paths.scriptToLint)
     .pipe(jscs());
@@ -129,8 +147,9 @@ gulp.task('default', [
   'jscs',
   'jshint',
   'style',
-  'script',
+  'scriptHome',
   'scriptSetting',
   'scriptSettingDone',
+  'scriptSettingReset',
   'watch'
 ]);
