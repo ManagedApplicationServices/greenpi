@@ -123,26 +123,25 @@
     document.head.appendChild(capstyle);
   }
 
-  // ----------- INITIALISATIONS --------------
-
-  // single printer paper usage limit
-  socket.on('singlePrinterCap', function(data) {
-    singlePrinterCap = data;
-    setCapLine(data);
-    paperUsage = [];
-    dataset = [ 0 ];
-    monthset = [];
-    removeGraph();
-  });
-
-  // reset
-  socket.on('resetted', function() {
-    console.log('redraw graph on reset');
+  function initGraph(singlePrinterCap) {
     setCapLine(singlePrinterCap);
     paperUsage = [];
     dataset = [ 0 ];
     monthset = [];
     removeGraph();
+  }
+
+  // ----------- INITIALISATIONS --------------
+
+  // single printer paper usage limit
+  socket.on('singlePrinterCap', function(data) {
+    singlePrinterCap = data;
+    initGraph(singlePrinterCap);
+  });
+
+  // reset
+  socket.on('resetted', function() {
+    initGraph(singlePrinterCap);
   });
 
   // ----------- WITH EACH LEAF / PRINT JOB --------
@@ -150,7 +149,12 @@
   // if new month, then add another array data
   socket.on('newMonthStarted', function(data) {
     var firstMonth = (new Date().getMonth() + 13 - dataset.length) % 12;
-    if (data) {paperUsage.push(0);} // push new array item
+
+    if (data) {
+      // push new array item
+      paperUsage.push(0);
+    }
+
     dataset = getLast12MonthsPaperUsage(paperUsage);
 
     monthset.push(firstMonth); // index 0 is filled in
