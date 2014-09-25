@@ -5,7 +5,7 @@ var redis = require('redis'),
   fs = require('fs'),
   jsdom = require('jsdom'),
   async = require('async'),
-  url = require('../lib/url'),
+  isOnline = require('is-online'),
   configFile = './config.json',
   jquery = fs.readFileSync('./js/vendor/jquery/dist/jquery.min.js', 'utf-8'),
   IndexModel = require('../models/index');
@@ -28,9 +28,10 @@ module.exports = function(app) {
   }
 
   function setDemoMode(callback) {
-    url.isAvailable(config.printerIP, model.timeout, function(isAvailable) {
-      model.demo = !isAvailable;
+    var printerIP = 'http://' + config.printerIP;
 
+    isOnline([ printerIP ], function(err, online) {
+      model.demo = !online;
       callback(null, model);
     });
   }
