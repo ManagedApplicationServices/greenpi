@@ -153,3 +153,14 @@ gulp.task('default', [
   'scriptSettingReset',
   'watch'
 ]);
+
+gulp.task('hook', [
+  'clean',
+  'jscs',
+  'jshint',
+  'style',
+  'scriptHome',
+  'scriptSetting',
+  'scriptSettingDone',
+  'scriptSettingReset'
+]);
