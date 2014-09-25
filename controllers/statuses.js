@@ -89,7 +89,7 @@ module.exports = function(app) {
 
         for (i = 0; i < reply; i++) {
           client.lindex(element, i, function(err, reply) {
-            model[element].push(parseInt(reply), 10);
+            model[element].push(parseInt(reply, 10));
           });
         }
       });
