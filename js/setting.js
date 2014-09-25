@@ -1,14 +1,6 @@
 (function() {
   'use strict';
 
-  var socket = io.connect('/'),
-    resetEl = document.getElementById('reset');
-
-  // click reset, trigger reset
-  resetEl.addEventListener('click', function() {
-    socket.emit('reset');
-  }, false);
-
   // file upload
   $(document).on('change', '.btn-file :file', function() {
 

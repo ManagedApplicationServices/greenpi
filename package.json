@@ -9,7 +9,7 @@
     "url": "https://github.com/ManagedApplicationServices/greenpi.git"
   },
   "scripts": {
-    "test": "mocha test/**/*.js && mocha test/**/*.js --require blanket -R html-cov > coverage.html",
+    "test": "mocha test/lib/*.js && mocha test/lib/*.js --require blanket -R html-cov > coverage.html",
     "start": "node index.js"
   },
   "engines": {
@@ -20,7 +20,8 @@
       "pattern": [
         "lib/month.js",
         "lib/timestamp.js",
-        "lib/random.js"
+        "lib/random.js",
+        "lib/configFile.js"
       ]
     }
   },

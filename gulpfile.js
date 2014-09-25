@@ -45,7 +45,8 @@ var clean = require('gulp-clean'),
       'js/scrollSkyToForest.js',
       'js/reset.js',
       'index.js',
-      'gulpfile.js'
+      'gulpfile.js',
+      'test/**/*.js'
     ],
     filesToClean: [
       'public/script.js',
