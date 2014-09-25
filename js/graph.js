@@ -13,6 +13,7 @@
     maxHeight = 75,
     maxWidth = 75,
     i = 0, // iterator
+    singlePrinterCap = 0,
     MONTHS = [
       'jan',
       'feb',
@@ -126,7 +127,18 @@
 
   // single printer paper usage limit
   socket.on('singlePrinterCap', function(data) {
+    singlePrinterCap = data;
     setCapLine(data);
+    paperUsage = [];
+    dataset = [ 0 ];
+    monthset = [];
+    removeGraph();
+  });
+
+  // reset
+  socket.on('resetted', function() {
+    console.log('redraw graph on reset');
+    setCapLine(singlePrinterCap);
     paperUsage = [];
     dataset = [ 0 ];
     monthset = [];
