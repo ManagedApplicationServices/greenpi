@@ -62,7 +62,7 @@ describe('Simulation: ', function() {
     beforeEach(function(done) {
       forest = {};
       done();
-    })
+    });
 
     it('returns a forest object', function(done) {
       expect(simulation.reset(forest)).to.be.an('object');

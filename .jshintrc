@@ -18,6 +18,7 @@
     "globals": {
       "$": true,
       "alert": true,
+      "beforeEach": true,
       "console": true,
       "d3": true,
       "describe": true,
