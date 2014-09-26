@@ -77,14 +77,14 @@
 			wsMenu_jumpUrl_control = "";
 		}
 	</script><script type="text/javascript" language="javascript">
-	
+
 	function menuParent_MouseOver(obj)
 	{
 		var selfMenu = $(obj);
 		var menus = selfMenu.parent().find(".li_menu");
 		var uls = selfMenu.find("ul");
 		var lastLi = selfMenu.find("li:last");
-		
+
 		menus.each(function()
 		{
 			if( selfMenu.get(0) != $(this).get(0) )
@@ -93,10 +93,10 @@
 				mouseOutTransfer($(this).find("a.rollover"));
 			}
 		});
-		
+
 		uls.removeClass("display-n");
 		lastLi.css("borderBottom","none");
-		
+
 		var childs = selfMenu.find(".submenu li");
 		var clientwidth = 190;
 		if( !selfMenu.attr("widthCheck") )
@@ -108,7 +108,7 @@
 					clientwidth = $(this).width();
 				}
 			});
-			
+
 			childs.each(function()
 			{
 				$(this).width( clientwidth );
@@ -126,7 +126,7 @@
 		var uls = $(obj).find("ul");
 		uls.addClass("display-n");
 	}
-	
+
 	function menuChild_MouseOver(obj)
 	{
 		var parent = $(obj).parents(".li_menu");
@@ -139,7 +139,7 @@
 		var a_parent = parent.find(".a_parent");
 		mouseOutTransfer(a_parent);
 	}
-	
+
 var preReloadImage = new Array();
 var idx = 0;
 for( idx = 1; 7 > idx; idx++ )
@@ -194,7 +194,7 @@ var buttonImg = new Array();
 	buttonImg[1].src = "/images/gotoPageTop-r.gif";
 </script><script language="javascript">
 				function onBodyLoad() {
-					
+
 					wsMenu_jumpUrl_init();
 				}
 

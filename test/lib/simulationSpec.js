@@ -97,4 +97,38 @@ describe('Simulation: ', function() {
 
   });
 
+  describe('Get live printer count', function() {
+
+    var forest = {
+      completePrinterURL: 'http://localhost:8080/printer-count.html',
+      livePrinterCount: 0
+    };
+
+    beforeEach(function(done) {
+      forest.livePrinterCount = 0;
+      done();
+    });
+
+    it('returns a forest object', function(done) {
+      simulation.getLivePrinterCount(forest, function(reply) {
+        expect(reply).to.be.an('object');
+        done();
+      });
+    });
+
+    it('return a printer live count number', function(done) {
+      simulation.getLivePrinterCount(forest, function(reply) {
+        expect(reply.livePrinterCount).to.be.a('number');
+        done();
+      });
+    });
+
+    it('return a printer live count', function(done) {
+      simulation.getLivePrinterCount(forest, function(reply) {
+        expect(reply.livePrinterCount).to.equal(299112);
+        done();
+      });
+    });
+  });
+
 });
