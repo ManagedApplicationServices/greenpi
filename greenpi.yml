@@ -20,8 +20,8 @@ windows:
   - test:
       layout: even-horizontal
       panes:
-        - npm test
-        - http-server test/fixtures
+        - cd app && npm test
+        - cd app && http-server test/fixtures
   - production:
       layout: even-horizontal
       panes:

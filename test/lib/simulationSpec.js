@@ -3,14 +3,14 @@
 var expect = require('expect.js'),
   simulation = require('../../lib/simulation');
 
-describe('Forest', function() {
+describe('Simulation', function() {
 
   it('returns a demo printer model if in demo mode', function(done) {
     var data = {
       demo: true
     };
 
-    forest.getPrinterInfo(data, function(forest) {
+    simulation.getPrinterInfo(data, function(forest) {
       expect(forest.printerModel).to.equal('printer');
       done();
     });
@@ -21,7 +21,7 @@ describe('Forest', function() {
         demo: true
       };
 
-      forest.getPrinterInfo(data, function(forest) {
+      simulation.getPrinterInfo(data, function(forest) {
         expect(forest.printerID).to.equal('demo');
         done();
       });
@@ -33,7 +33,7 @@ describe('Forest', function() {
       printerInfoUrl: 'http://localhost:8080/printer-info.html'
     };
 
-    forest.getPrinterInfo(data, function(forest) {
+    simulation.getPrinterInfo(data, function(forest) {
       expect(forest.printerModel).to.equal('MP C6502');
       done();
     });
@@ -46,7 +46,7 @@ describe('Forest', function() {
       printerInfoUrl: 'http://localhost:8080/printer-info.html'
     };
 
-    forest.getPrinterInfo(data, function(forest) {
+    simulation.getPrinterInfo(data, function(forest) {
       expect(forest.printerID).to.equal('E233C850036');
       done();
     });
