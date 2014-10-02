@@ -250,7 +250,7 @@
     }, false);
   }
 
-  // stop simulation sent to other clients
+  // pause event sent to other clients
   socket.on('paused', function() {
     pauseSimulation();
   });

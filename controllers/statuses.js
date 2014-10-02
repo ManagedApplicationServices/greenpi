@@ -84,19 +84,28 @@ module.exports = function(app) {
 
     data.forEach(function(element, index, array) {
       client.llen(element, function(err, reply) {
-        var i = 0;
+        var i = 0,
+          iCount = 0,
+          length = reply;
         model[element] = [];
 
-        for (i = 0; i < reply; i++) {
-          client.lindex(element, i, function(err, reply) {
-            model[element].push(parseInt(reply, 10));
-          });
+        if (length < 1) {
+          callback(null, model);
+        } else {
+          for (i = 0; i < length; i++) {
+            client.lindex(element, i, function(err, reply) {
+              model[element].push(parseInt(reply, 10));
+              iCount++;
+              if (iCount >= length){
+                count++;
+                if (count >= data.length) {
+                  callback(null, model);
+                }
+              }
+            });
+          }
         }
       });
-      count++;
-      if (count === data.length) {
-        callback(null, model);
-      }
     });
   }
 
