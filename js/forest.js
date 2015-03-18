@@ -1,59 +1,35 @@
 (function() {
 
   'use strict';
-  var maxPaperCount = 0,
-    treeSizeRatios = [
-      1,
-      0.9,
-      0.55,
-      0.3,
-      0.1
-    ],
-    paperCountSections = [],
+  var maxPaperCount = 0;
+  var treeSizeRatios = [ 1, 0.9, 0.55, 0.3, 0.1 ];
+  var paperCountSections = [];
+  var currentTree = 0;
+  var percentSize = 0;
+  var treeSizeOriginal = [ 20, 40, 35, 30, 25 ];
+  var treeLeftPosition = [ 11, 26, 46, 72, 82 ]; // css - .treeN, left
+  var treeLeftPositionOriginal = [ 2, 7, 29.5, 58, 70.5 ]; //css - .leavesN, left
+  var treeSizeUnit = 'vw';
+  var treeSize = 0;
+  var min = 0;
+  var max = 0;
+  var position = '';
+  var lostWords = '';
+  var lost = '';
+  var count = 0;
+  var fallingLeaf = 0;
+  var vanishingLeaf = 0;
+  var currLeafCount = 0;
+  var prevLeafCount = maxPaperCount;
+  var differenceLeafCount = 0;
+  var simulationStartedAt;
+  var demo = 0;
+  var socket = io();
 
-    currentTree = 0,
-    percentSize = 0,
-    treeSizeOriginal = [
-      20,
-      40,
-      35,
-      30,
-      25
-    ],
-    treeLeftPosition = [
-      11,
-      26,
-      46,
-      72,
-      82
-    ], // css - .treeN, left
-    treeLeftPositionOriginal = [
-      2,
-      7,
-      29.5,
-      58,
-      70.5
-    ], //css - .leavesN, left
-    treeSizeUnit = 'vw',
-    treeSize = 0,
-    min = 0,
-    max = 0,
-    position = '',
-    lostWords = '',
-    lost = '',
-    count = 0,
-    fallingLeaf = 0,
-    vanishingLeaf = 0,
-    currLeafCount = 0,
-    prevLeafCount = maxPaperCount,
-    differenceLeafCount = 0,
-    simulationStartedAt,
-    demo = 0,
-    socket = io.connect('/'),
-    startEl = document.getElementById('start'),
-    resumeEl = document.getElementById('resume'),
-    pauseEl = document.getElementById('pause'),
-    demoEl = document.getElementById('demo');
+  var startEl = document.getElementById('start');
+  var resumeEl = document.getElementById('resume');
+  var pauseEl = document.getElementById('pause');
+  var demoEl = document.getElementById('demo');
 
   function startSimulation() {
     pauseEl.style.display = 'block';
@@ -68,15 +44,6 @@
     socket.on('demo', function(data) {
       setDemoMode(data);
     });
-
-    initialiseSimulation();
-    return;
-  }
-
-  function resetSimulation() {
-    pauseEl.style.display = 'none';
-    resumeEl.style.display = 'none';
-    startEl.style.display = 'block';
 
     initialiseSimulation();
     return;
@@ -113,13 +80,7 @@
     differenceLeafCount = 0;
     simulationStartedAt = Date();
 
-    [
-      1,
-      2,
-      3,
-      4,
-      5
-    ].forEach(function(element, index, array) {
+    [ 1, 2, 3, 4, 5 ].forEach(function(element, index) {
       document.getElementById('t' + element).style.width = treeSizeOriginal[index] + treeSizeUnit;
       document.getElementById('t' + element).style.height = treeSizeOriginal[index] + treeSizeUnit;
       document.getElementById('t' + element).style.left = treeLeftPositionOriginal[index] + treeSizeUnit;
@@ -160,8 +121,8 @@
   }
 
   function reduceForest(min, max, data, currentTreeNum) {
-    var i = 0,
-      currTree = document.getElementById('t' + currentTreeNum);
+    var i = 0;
+    var currTree = document.getElementById('t' + currentTreeNum);
 
     for (i = 1; i < currentTreeNum; i++) {
       document.getElementById('t' + i).style.width = 0;
@@ -176,7 +137,7 @@
     currTree.style.left = treeLeftPosition[currentTreeNum - 1] - treeSize / 2 + treeSizeUnit;
   }
 
-  function changesOnLastPrint(data) {
+  function changesOnLastPrint() {
     document.getElementById('t5').style.width = 0 + treeSizeUnit;
     document.getElementById('t5').style.height = 0 + treeSizeUnit;
     document.getElementById('f5').style.display = 'none';
@@ -192,7 +153,7 @@
   }
 
   function createPaperCountSections(data) {
-    treeSizeRatios.forEach(function(element, index, array) {
+    treeSizeRatios.forEach(function(element) {
       paperCountSections.push(data * element);
     });
 
@@ -200,8 +161,8 @@
   }
 
   function triggerReduceForest(data) {
-    var i = 0,
-      currentTreeNum = 0;
+    var i = 0;
+    var currentTreeNum = 0;
 
     if (data < 1) {
       changesOnLastPrint(data);
@@ -305,11 +266,11 @@
     document.getElementById('printer-info-id').innerHTML = 'Printer ID: ' + data;
   });
 
-  socket.on('internetAvailable', function(data) {
+  socket.on('internetAvailable', function() {
     document.getElementById('internet').style.display = 'none';
   });
 
-  socket.on('internetNotAvailable', function(data) {
+  socket.on('internetNotAvailable', function() {
     document.getElementById('internet').style.display = 'block';
   });
 

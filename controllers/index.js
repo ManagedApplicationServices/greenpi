@@ -1,67 +1,44 @@
 'use strict';
 
-var redis = require('redis'),
-  client = redis.createClient(),
-  fs = require('fs'),
-  jsdom = require('jsdom'),
-  async = require('async'),
-  isOnline = require('is-online'),
-  configFile = './config.json',
-  jquery = fs.readFileSync('./js/vendor/jquery/dist/jquery.min.js', 'utf-8'),
-  IndexModel = require('../models/index');
+var IndexModel = require('../models/index');
+var StatusModel = require('../models/status');
+var AdminModel = require('../models/admin');
 
-module.exports = function(app) {
+var routesLib = require('../lib/routes');
+var adminLib = require('../lib/admin');
+var config = require('../config');
 
-  var model = {
-    singlePrinterCap: 0,
-    simulation: '',
-    demo: 0,
-    timeout: 2000
-  },
-  config = {};
+module.exports = function(router) {
+  var model = new IndexModel();
+  var status = new StatusModel();
+  var admin = new AdminModel();
 
-  function readConfigFile(callback) {
-    fs.readFile(configFile, 'utf8', function(err, data) {
-      config = JSON.parse(data);
-      callback(null, model);
+  router.get('/', function(req, res) {
+    routesLib.start(model, function(reply) {
+      res.render('index', reply);
     });
-  }
+  })
 
-  function setDemoMode(callback) {
-    var printerIP = 'http://' + config.printerIP;
+  router.get('/status', function(req, res) {
+    routesLib.getStatus(status, function(reply) {
+      res.json(reply);
+    })
+  })
 
-    isOnline([ printerIP ], function(err, online) {
-      model.demo = !online;
-      callback(null, model);
-    });
-  }
+  router.get('/admin', adminLib.authenticate, function(req, res) {
+    res.render('admin', admin);
+  });
 
-  function getPrinterCap(callback) {
-    client.get('singlePrinterCap', function(err, reply) {
-      model.singlePrinterCap = reply;
-      callback(null, model);
-    });
-  }
+  router.post('/admin', function(req, res) {
+    adminLib.createNewConfig(config, req.body);
+    adminLib.transferUploadedImages(req.files, res, config);
+    adminLib.insertToModel(model, req);
 
-  function getSimulationStatus(callback) {
-    client.get('simulation', function(err, reply) {
-      model.simulation = reply;
-      callback(null, model);
-    });
-  }
+    res.render('admin-done');
+  })
 
-  async.series(
-    [
-      readConfigFile,
-      setDemoMode,
-      getPrinterCap,
-      getSimulationStatus
-    ],
-    function() {
-      app.get('/', function(req, res) {
-        res.render('index', model);
-      });
-    }
-  );
+  router.post('/reset', function(req, res) {
+    res.render('reset');
+  })
 
 };

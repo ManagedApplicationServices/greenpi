@@ -2,32 +2,19 @@
 
   'use strict';
 
-  var paperUsage = [], // all months paper usage
-    cap = 0, // organization's single printer paper usage cap
-    socket = io.connect('/'),
-    dataset = [], // last 12 months of monthly paper usage
-    capset = [], // an array of single printer paper usage cap
-    monthset = [],
-    maxDataset = 0, // max of all monthly paper usage
-    maxHeightNormalised = 0,
-    maxHeight = 75,
-    maxWidth = 75,
-    i = 0, // iterator
-    singlePrinterCap = 0,
-    MONTHS = [
-      'jan',
-      'feb',
-      'mar',
-      'apr',
-      'may',
-      'jun',
-      'jul',
-      'aug',
-      'sep',
-      'oct',
-      'nov',
-      'dec'
-    ];
+  var paperUsage = []; // all months paper usage
+  var cap = 0; // organization's single printer paper usage cap
+  var socket = io();
+  var dataset = []; // last 12 months of monthly paper usage
+  var capset = []; // an array of single printer paper usage cap
+  var monthset = [];
+  var maxDataset = 0; // max of all monthly paper usage
+  var maxHeightNormalised = 0;
+  var maxHeight = 75;
+  var maxWidth = 75;
+  var i = 0; // iterator
+  var singlePrinterCap = 0;
+  var MONTHS = [ 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ];
 
   function getLast12MonthsPaperUsage(paperUsage) {
     var dataset = [];
@@ -96,7 +83,7 @@
         var barHeight = d / maxHeightNormalised * maxHeight;
         return barHeight + 'vh';
       })
-      .style('width', function(d) {
+      .style('width', function() {
         var barWidth = (maxWidth - 2 * dataset.length) / dataset.length;
         return barWidth + 'vw';
       })

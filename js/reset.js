@@ -1,6 +1,6 @@
 ;(function() {
   'use strict';
-  var socket = io.connect('/');
+  var socket = io();
   socket.emit('reset');
 
 })();

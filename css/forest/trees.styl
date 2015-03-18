@@ -1,0 +1,99 @@
+$tree-branch = #AF692C
+$leaves-dark = #8CB350
+$leaves-darker = #6A8D3E
+$leaves-darkest = #527033
+
+$tree1-left = 11vw
+$leaves1-radius = 20vw
+$tree2-left = 26vw
+$leaves2-radius = 40vw
+$tree3-left = 46vw
+$leaves3-radius = 35vw
+$tree4-left = 72vw
+$leaves4-radius = 30vw
+$tree5-left = 82vw
+$leaves5-radius = 25vw
+
+.tree
+  width: 3vw
+  background: $tree-branch
+
+.leaves
+  border-radius: 50%
+  display: block
+
+.tree1
+  position: absolute
+  bottom: 5vh
+  left: $tree1-left
+  height: 30vh
+
+.leaves1
+  position: absolute
+  bottom: 24vh
+  left: $tree1-left - ($leaves1-radius/2) + 1vw
+  width: $leaves1-radius
+  height: $leaves1-radius
+  opacity: 0.8
+  background: $leaves-darkest
+
+.tree2
+  position: absolute
+  bottom: 5vh
+  left: $tree2-left
+  height: 40vh
+
+.leaves2
+  position: absolute
+  bottom: 22vh
+  left: $tree2-left - ($leaves2-radius/2) + 1vw
+  width: $leaves2-radius
+  height: $leaves2-radius
+  opacity: 0.8
+  background-color: $leaves-dark
+
+.tree3
+  position: absolute
+  bottom: 5vh
+  left: $tree3-left
+  height: 30vh
+
+.leaves3
+  position: absolute
+  bottom: 14vh
+  left: $tree3-left - ($leaves3-radius/2) + 1vw
+  width: $leaves3-radius
+  height: $leaves3-radius
+  opacity: 0.8
+  background: $leaves-darker
+
+.tree4
+  position: absolute
+  bottom: 5vh
+  left: $tree4-left
+  height: 50vh
+
+.leaves4
+  position: absolute
+  bottom: 23vh
+  left: $tree4-left - ($leaves4-radius/2) + 1vw
+  width: $leaves4-radius
+  height: $leaves4-radius
+  opacity: 0.8
+  background: $leaves-darker
+
+.tree5
+  position: absolute
+  bottom: 5vh
+  left: $tree5-left
+  height: 30vh
+
+.leaves5
+  position: absolute
+  bottom: 14vh
+  left: $tree5-left - ($leaves5-radius/2) + 1vw
+  width: $leaves5-radius
+  height: $leaves5-radius
+  opacity: 0.8
+  background: $leaves-dark
+

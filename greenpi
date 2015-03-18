@@ -15,11 +15,11 @@ subl $app$backend
 open $app$backend$readme
 
 # native apps
-open /Applications/Tower.app
+open /Applications/GitX.app
 
 # app + logs
-open http://localhost:9000
-open http://localhost:9000/status
+open http://localhost:8000
+open http://localhost:8000/status
 open http://localhost:28778
 
 # remote repo

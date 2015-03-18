@@ -4,9 +4,9 @@ windows:
   - app:
       layout: main-vertical
       panes:
-        - cd app && npm outdated --depth 0 && git status
+        - cd app && npm outdated --depth 0 && bower list && git status
         - cd app && gulp
-        - cd app && node index.js
+        - cd app && node server.js
   - logs:
       layout: even-horizontal
       panes:

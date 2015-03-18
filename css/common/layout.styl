@@ -1,0 +1,108 @@
+$forest-bgr = #FCF9CE
+$sky-bgr = #27353A
+
+*
+  -webkit-transition-property: all
+  -webkit-transition-duration: 0.2s
+  -webkit-transition-timing-function: ease-in
+
+#wrapper
+  overflow: hidden
+  margin: 0 auto
+  width: 100%
+
+.sky, .forest
+  width: 100%
+  height: 100vh
+  position: relative
+
+.sky
+  background: $sky-bgr
+
+.atmosphere
+  width: 100%
+  height: 80vh
+  background: -webkit-linear-gradient(top, $sky-bgr 0%, $forest-bgr 100%)
+  background: linear-gradient(to bottom, $sky-bgr 0, $forest-bgr 100%)
+
+.forest
+  background: $forest-bgr
+
+$btn-width = 15vw
+.btn-simulation
+  display: block
+  position: absolute
+  bottom: 20vh
+  left: 50vw - ($btn-width / 2)
+  z-index: 1000
+  font-size: 3vw
+  padding: 1vw 3vw
+  border-radius: 1vh
+  text-align: center
+
+.jumbotron
+  position: absolute
+  width: 100%
+  top: 18vh
+  text-align: center
+  display: none
+  opacity: .9
+
+.well
+  overflow: hidden
+
+.btn-file
+  position: relative
+  overflow: hidden
+
+.btn-file input[type=file]
+  position: absolute
+  top: 0
+  right: 0
+  min-width: 100%
+  min-height: 100%
+  font-size: 999px
+  text-align: right
+  filter: alpha(rgba(0,0,0,0))
+  opacity: 0
+  background: red
+  cursor: inherit
+  display: block
+
+input[readonly]
+  background-color: white !important
+  cursor: text !important
+
+.btn-extend
+  width: 100%
+  h3
+    margin: 0
+
+.setting-label
+  font-size: 1.5em
+  text-align: left
+  padding-left: .8em
+
+.no-scrollbar
+  overflow: hidden
+
+hr
+  border-top: 1px solid #ddd
+
+.hover-img
+  position: relative
+  &:hover
+    cursor: pointer
+    .img-setting
+      display: block
+
+.img-setting
+  max-height: 150px
+  position: absolute
+  display: none
+  z-index: 10
+  left: -130%
+  top: 10%
+  border: 2px solid #aaa
+  max-width: 250px
+
