@@ -1,0 +1,34 @@
+name: greenpi
+root: ~/Workspace/greenpi
+windows:
+  - app:
+      layout: main-vertical
+      panes:
+        - cd app && npm outdated --depth 0 && bower list && git status
+        - cd app && gulp
+        - cd app && node server.js
+  - logs:
+      layout: even-horizontal
+      panes:
+        - log.io-server
+        - log.io-harvester
+  - redis:
+      layout: even-horizontal
+      panes:
+        - redis-server
+        - redis-cli
+  - test:
+      layout: even-horizontal
+      panes:
+        - cd app && npm test
+        - cd app && http-server test/fixtures
+  - production:
+      layout: even-horizontal
+      panes:
+        - ssh greenpi -t "cd ~/apps/greenpi ; /bin/zsh"
+        - ls
+  - experiments:
+      layout: even-horizontal
+      panes:
+        - cd spiking
+        - cd spiking

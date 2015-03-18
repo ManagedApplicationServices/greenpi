@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Start up this app for development quickly
+# EDIT accordingly before using
+
+# USAGE in the command line:
+# greenpi
+
+app="~/Workspace/greenpi"
+backend="/app"
+readme="/readme.md"
+
+open $app
+subl $app$backend
+open $app$backend$readme
+
+# native apps
+open /Applications/GitX.app
+
+# app + logs
+open http://localhost:8000
+open http://localhost:8000/status
+open http://localhost:28778
+
+# remote repo
+open https://github.com/ManagedApplicationServices/greenpi
+
+# trello tasks
+open https://trello.com/b/aCzyAr1j/green-project
+
+tmuxinator greenpi

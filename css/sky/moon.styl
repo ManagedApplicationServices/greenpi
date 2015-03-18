@@ -1,0 +1,74 @@
+$moon-color = #fff
+
+.moon
+  position: relative
+  top: 5vh
+  left: 87vw
+  width: 10vw
+  height: 10vw
+  border-radius: 50%
+  background: $moon-color
+  box-shadow: 0px 0px 100px $moon-color
+  z-index: 5
+
+.crater1
+  position: absolute
+  top: 0
+  left: 2vw
+  width: 2vw
+  height: 5vw
+  background: darken($moon-color, 5%)
+  border-top-right-radius: 50px 100px
+  border-top-left-radius: 50px 100px
+  border-bottom-right-radius: 50px 100px
+  border-bottom-left-radius: 50px 100px
+  -webkit-transform: rotate(40deg)
+  -moz-transform: rotate(40deg)
+  -o-transform: rotate(40deg)
+  -ms-transform: rotate(40deg)
+  transform: rotate(40deg)
+
+.crater2
+  position: absolute
+  top: 5vh
+  right: 2vw
+  width: 2vw
+  height: 2vw
+  background: darken($moon-color, 10%)
+  border-top-right-radius: 20px 20px
+  border-top-left-radius: 20px 20px
+  border-bottom-right-radius: 20px 30px
+  border-bottom-left-radius: 20px 30px
+  -webkit-transform: rotate(-60deg)
+  transform: rotate(-60deg)
+
+.crater3
+  position: absolute
+  top: 7vw
+  right: 4vw
+  width: 3vw
+  height: 2vw
+  background: darken($moon-color, 8%)
+  border-radius: 50%
+
+.crater4
+  position: absolute
+  bottom: 2vw
+  left: 7vw
+  width: 3vw
+  height: 2vw
+  background: darken($moon-color, 13%)
+  border-radius: 50%
+  -webkit-transform: rotate(122deg)
+  transform: rotate(122deg)
+
+.crater5
+  position: absolute
+  bottom: 3vw
+  left: 3vw
+  width: 2vw
+  height: 2vw
+  background: darken($moon-color, 3%)
+  border-radius: 50%
+
+

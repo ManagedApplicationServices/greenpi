@@ -1,0 +1,38 @@
+.ground
+  display: block
+  height: 8vh
+  width: 100%
+  position: absolute
+  bottom: 0
+  left: 0
+
+$tree-branch = #AF692C
+$leaves-dark = #8CB350
+$leaves-darker = #6A8D3E
+$leaves-darkest = #527033
+
+.forest-left
+  width: 100%
+  height: 100%
+  background: $leaves-darkest
+  float: left
+
+.forest-lost
+  width: 0%
+  height: 100%
+  background: $tree-branch
+  float: left
+  color: darken($tree-branch, 20%)
+  font-size: 5vh
+  overflow: hidden
+  display: block
+  font-weight: bold
+  line-height: 1.6
+
+.pause
+  background: $leaves-darkest
+  border: none
+  height: 100%
+  color: $leaves-darkest
+  &:hover
+    background: white

@@ -1,0 +1,104 @@
+{
+  "express": {
+    "view cache": false,
+    "view engine": "js",
+    "views": "path:./views"
+  },
+  "view engines": {
+    "js": {
+      "module": "engine-munger",
+      "renderer": {
+        "method": "js",
+        "arguments": [
+          {
+            "cache": true
+          },
+          {
+            "views": "config:express.views",
+            "view engine": "config:express.view engine",
+            "specialization": "config:specialization"
+          }
+        ]
+      }
+    }
+  },
+
+  "middleware": {
+    "static": {
+      "module": {
+        "arguments": [ "path:./public" ]
+      }
+    },
+    "router": {
+      "module": {
+        "arguments": [{ "directory": "path:./controllers" }]
+      }
+    },
+    "logger": {
+      "module": {
+        "name": "morgan",
+        "arguments": [
+          "dev"
+        ]
+      }
+    },
+    "expressView": {
+      "priority": 100,
+      "enabled": true,
+      "module": {
+        "name": "engine-munger/lib/expressView"
+      }
+    },
+    "errorHandler": {
+      "enabled": true,
+      "priority": 300,
+      "dumpExceptions": true,
+      "showStack": true,
+      "module": {
+        "name" : "path:./lib/errorHandler",
+        "arguments": [
+          "path:./views/errors/500",
+          "path:./views/errors/403"
+        ]
+      }
+    },
+    "fileNotFound": {
+      "enabled": true,
+      "priority": 130,
+      "module": {
+        "name": "kraken-js/middleware/404",
+        "arguments": [ "path:./views/errors/404" ]
+      }
+    },
+    "session": {
+      "enabled": true,
+      "priority": 100,
+      "module": {
+        "name": "express-session",
+        "arguments": [
+          {
+            "key": "",
+            "secret": "keyboard cat",
+            "cookie": {
+              "path": "/",
+              "httpOnly": true,
+              "maxAge": null
+            },
+            "resave": true,
+            "saveUninitialized": true,
+            "proxy": null
+          }
+        ]
+      }
+    },
+    "urlencoded": {
+      "enabled": true,
+      "priority": 70,
+      "module": {
+        "name": "body-parser",
+        "method": "urlencoded",
+        "arguments": [{ "extended": true }]
+      }
+    }
+  }
+}

@@ -1,32 +1,20 @@
 'use strict';
 
-var kraken = require('kraken-js'),
-  app = {};
+var express = require('express');
+var kraken = require('kraken-js');
+var bodyParser = require('body-parser');
 
-app.configure = function configure(nconf, next) {
-  // Async method run on startup.
-  next(null);
+var options = {
+  onconfig: function(config, next) {
+    next(null, config);
+  }
 };
+var app = module.exports = express();
 
-app.requestStart = function requestStart(server) {
-  // Run before most express middleware has been registered.
-};
+app.use(kraken(options));
+app.use(bodyParser.json());
 
-app.requestBeforeRoute = function requestBeforeRoute(server) {
-  require('dustjs-linkedin').optimizers.format = function(ctx, node) { return node };
-};
-
-app.requestAfterRoute = function requestAfterRoute(server) {
-  // Run after all routes have been added.
-};
-
-if (require.main === module) {
-  kraken.create(app).listen(function (err, server) {
-    if (err) {
-      console.error(err.stack);
-    }
-    var io = require('./lib/socket').listen(server);
-  });
-}
-
-module.exports = app;
+app.on('start', function() {
+  console.log('Application ready to serve requests.');
+  console.log('Environment: %s', app.kraken.get('env:env'));
+});

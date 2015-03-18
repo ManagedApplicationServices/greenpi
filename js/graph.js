@@ -1,10 +1,10 @@
-(function () {
+(function() {
 
   'use strict';
 
   var paperUsage = []; // all months paper usage
   var cap = 0; // organization's single printer paper usage cap
-  var socket = io.connect('/');
+  var socket = io();
   var dataset = []; // last 12 months of monthly paper usage
   var capset = []; // an array of single printer paper usage cap
   var monthset = [];
@@ -13,12 +13,13 @@
   var maxHeight = 75;
   var maxWidth = 75;
   var i = 0; // iterator
-  var MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+  var singlePrinterCap = 0;
+  var MONTHS = [ 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ];
 
   function getLast12MonthsPaperUsage(paperUsage) {
     var dataset = [];
 
-    if(paperUsage.length > 12) {
+    if (paperUsage.length > 12) {
       dataset = paperUsage.slice(Math.max(paperUsage.length - 12, 1));
     } else {
       dataset = paperUsage;
@@ -28,11 +29,11 @@
   }
 
   function removeGraph() {
-    if(!d3.select('.cap').empty()){
+    if (!d3.select('.cap').empty()) {
       $('.cap').remove();
     }
 
-    if(d3.selectAll('.bar') !== null) {
+    if (d3.selectAll('.bar') !== null) {
       d3.selectAll('.bar').remove();
     }
   }
@@ -82,8 +83,8 @@
         var barHeight = d / maxHeightNormalised * maxHeight;
         return barHeight + 'vh';
       })
-      .style('width', function(d) {
-        var barWidth = (maxWidth - 2*dataset.length)/dataset.length;
+      .style('width', function() {
+        var barWidth = (maxWidth - 2 * dataset.length) / dataset.length;
         return barWidth + 'vw';
       })
 
@@ -94,7 +95,7 @@
   }
 
   function getMaxHeightNormalised(cap, maxDataset) {
-    if(cap > maxDataset) {
+    if (cap > maxDataset) {
       return cap;
     } else {
       return maxDataset;
@@ -109,16 +110,25 @@
     document.head.appendChild(capstyle);
   }
 
+  function initGraph(singlePrinterCap) {
+    setCapLine(singlePrinterCap);
+    paperUsage = [];
+    dataset = [ 0 ];
+    monthset = [];
+    removeGraph();
+  }
+
   // ----------- INITIALISATIONS --------------
 
   // single printer paper usage limit
-  socket.on('singlePrinterCap', function (data) {
-    setCapLine(data);
+  socket.on('singlePrinterCap', function(data) {
+    singlePrinterCap = data;
+    initGraph(singlePrinterCap);
+  });
 
-    paperUsage = [];
-    dataset = [0];
-    monthset = [];
-    removeGraph();
+  // reset
+  socket.on('resetted', function() {
+    initGraph(singlePrinterCap);
   });
 
   // ----------- WITH EACH LEAF / PRINT JOB --------
@@ -126,13 +136,18 @@
   // if new month, then add another array data
   socket.on('newMonthStarted', function(data) {
     var firstMonth = (new Date().getMonth() + 13 - dataset.length) % 12;
-    if(data) {paperUsage.push(0);} // push new array item
+
+    if (data) {
+      // push new array item
+      paperUsage.push(0);
+    }
+
     dataset = getLast12MonthsPaperUsage(paperUsage);
 
     monthset.push(firstMonth); // index 0 is filled in
     capset.push(cap); // index 0 is filled in
 
-    for(i = 1; i < dataset.length; i ++) {
+    for (i = 1; i < dataset.length; i++) {
       firstMonth++;
       firstMonth = (firstMonth + 12) % 12;
       monthset.push(firstMonth);
@@ -150,9 +165,9 @@
   });
 
   // get current status upon page refresh
-  $.getJSON('/usages', function(result) {
+  $.getJSON('/status', function(result) {
 
-    if(result.simulation === 'running' && result.paperRemaining > 0) {
+    if (result.simulation === 'running' && result.paperRemaining > 0) {
       paperUsage = result.dataset;
       dataset = getLast12MonthsPaperUsage(paperUsage);
       monthset = result.monthset;

@@ -1,0 +1,21 @@
+{>"layouts/master" /}
+
+{<body}
+
+<div class="container">
+  <h1>Error {statusCode}</h1>
+  <p>Oops! Something went wrong :(</p>
+
+  <p>{err.error}</p>
+
+  {#err.frames}
+  <code>
+    <strong>function:</strong> {function}
+    <br>
+    <strong>file:</strong> {file}:<strong>{line}:{column}</strong>
+    <br><br>
+  </code>
+  {/err.frames}
+</div>
+
+{/body}

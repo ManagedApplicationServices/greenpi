@@ -1,17 +1,16 @@
-.DS_Store
+=.DS_Store
 .idea/
 .build/
-node_modules/
+node_modules
 *.iml
 dump.rdb
+logs/
 
 # build files
-css/style.css
-css/sass/*.css
-css/sass/forest/*.css
-css/sass/sky/*.css
+css/**/*.css
 js/vendor
+coverage.html
 
 # confidential data
-config.json
+config.js
 public/img/*
