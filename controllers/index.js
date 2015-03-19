@@ -19,8 +19,8 @@ module.exports = function(router) {
     });
   })
 
-  router.get('/status', function(req, res) {
-    routesLib.getStatus(status, function(reply) {
+  routesLib.getStatus(status, function(reply) {
+    router.get('/status', function(req, res) {
       res.json(reply);
     })
   })
