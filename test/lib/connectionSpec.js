@@ -5,7 +5,7 @@ var connectionLib = require('../../lib/connection');
 
 describe('From Connection Library', function() {
   describe('#isAvailable', function() {
-    it('returns true when printer ip is available', function(done) {
+    it.skip('returns true when printer ip is available', function(done) {
       var forest = {
         printerIP: '172.19.107.61',
         demo: false

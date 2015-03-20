@@ -19,11 +19,12 @@ module.exports = function(router) {
     });
   })
 
-  routesLib.getStatus(status, function(reply) {
-    router.get('/status', function(req, res) {
+  router.get('/status', function(req, res) {
+    routesLib.getStatus(status, function(reply) {
       res.json(reply);
-    })
-  })
+      res.end();
+    });
+  });
 
   router.get('/admin', adminLib.authenticate, function(req, res) {
     res.render('admin', admin);
