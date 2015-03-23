@@ -24,7 +24,7 @@
     "express": "4.12.3",
     "express-session": "1.10.4",
     "is-online": "3.2.0",
-    "jsdom": "4.0.3",
+    "jsdom": "4.0.4",
     "kraken-js": "1.0.5",
     "log.io": "0.3.4",
     "parsetrace": "0.2.0",
