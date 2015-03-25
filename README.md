@@ -1,7 +1,7 @@
 <title>GreenPI</title>
 <div class="navbar navbar-fixed-top"></div>
 <br><br><br><br><br><br><br><br><br>
-<img src="http://mas.ricohmds.sg/assets/MAS-logo.png" style="width: 280px; margin-left: -12px;">
+<img src="readme-img/mas-logo.png" style="width: 280px; margin-left: -12px;">
 
 <xmp theme="Cerulean" style="display:none;">
 
@@ -288,6 +288,7 @@ Just go to any browser fro your admin laptop and access
   framebuffer_width=1280
   framebuffer_height=800
   ``` 
+1. install `nvm`
 1. **setup ssh**: ensure the ssh keys are stored in user folder `/home/developer/.ssh` and not under the root
 1. **shutdown / restart**
 
