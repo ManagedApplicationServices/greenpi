@@ -122,11 +122,11 @@ Just go to any browser fro your admin laptop and access
   1. to reset the db
 
     ```
-    $ node index.js reset
+    $ node server.js reset
     ```
   - to start the server without any reset and continue automatically from last left state
     ```
-    $ node index.js
+    $ node server.js
     ```
 1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
 

@@ -22,8 +22,9 @@ module.exports = function(router) {
   router.get('/status', function(req, res) {
     routesLib.getStatus(status, function(reply) {
       res.json(reply);
-    })
-  })
+      res.end();
+    });
+  });
 
   router.get('/admin', adminLib.authenticate, function(req, res) {
     res.render('admin', admin);

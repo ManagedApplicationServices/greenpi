@@ -5,7 +5,7 @@ windows:
       layout: main-vertical
       panes:
         - cd app && npm outdated --depth 0 && bower list && git status
-        - cd app && gulp
+        - cd app && gulp check
         - cd app && node server.js
   - logs:
       layout: even-horizontal
