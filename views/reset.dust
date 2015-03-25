@@ -10,6 +10,7 @@
         <hr>
         <form class="form-horizontal" action="/admin" method="get" enctype="multipart/form-data">
           <a href="/" class="btn btn-primary btn-lg">Visit Homepage</a>
+          &nbsp;
           <button type="submit" class="btn btn-primary btn-lg">Back to Settings</button>
         </form>
 
