@@ -22,9 +22,9 @@
   ![](readme-img/main.png)
 
 1. In your administrator computer, find out the IP address of this RaspberryPI by scanning the connected devices to your router. E.g. `192.168.1.149`
-1. Visit the IP address in your computer's Chrome browser. E.g. `192.168.1.149:9000`  
-1. Visit the status your computer's Chrome browser. E.g. `192.168.1.149:9000/status`  
-1. Visit the admin page in your computer's Chrome browser. E.g. `192.168.1.149:9000/admin`. The default login credentials are:
+1. Visit the IP address in your computer's Chrome browser. E.g. `192.168.1.149:8000`  
+1. Visit the status your computer's Chrome browser. E.g. `192.168.1.149:8000/status`  
+1. Visit the admin page in your computer's Chrome browser. E.g. `192.168.1.149:8000/admin`. The default login credentials are:
 
   ```
   User Name: sprout
@@ -37,7 +37,7 @@
 
   ```
   Current printer IP [192.168.1.172]
-  Organisation CAP [1000000]
+  Organisation CAP [1000000] # a million for example
   Total printers [4]
   
   Company Logo  [upload an image]  
@@ -55,13 +55,13 @@
   
   ![](readme-img/admin-success.png)
   
-1. Go to the main page `192.168.1.149:9000` from your admin computer and click start.
+1. Go to the main page `192.168.1.149:8000` from your admin computer and click start.
 
 ###future changes
 
 Just go to any browser fro your admin laptop and access
 
-1. **Change Settings**: To change any admin settings such as posters or logo access the raspberry pi's ip from your admin computer's browser again. E.g. `192.168.1.149:9000/admin`
+1. **Change Settings**: To change any admin settings such as posters or logo access the raspberry pi's ip from your admin computer's browser again. E.g. `192.168.1.149:8000/admin`
 1. **Stop simulation**: To stop the simulation and restart it clikc the hidden `STOP` simulation button as shown below.
 
   ![](readme-img/stop-click.jpg)
@@ -91,27 +91,26 @@ Just go to any browser fro your admin laptop and access
   ```
   ssh greenpi 
   ```
-1. go to `~/apps/greenpi` and get the latest repo code
+1. go to `~/greenpi` and get the latest repo code
 
   ```
-  git pull
-  npm install && bower install
-  node index.js
+  git pull && npm i
+  npm start # or npm run reset
   ```
-1. visit browser [localhost:9000](http://localhost:9000)
+1. visit browser [localhost:8000](http://localhost:8000)
 
 ##install for development
 
-1. start redis
+1. start redis (it should already be started by the daemon)
 
   ```
   redis-server
   ```
   
-1. start kraken with node and visit browser [localhost:9000](http://localhost:9000/)
+1. start kraken with node and visit browser [localhost:8000](http://localhost:8000/)
 
   ```
-  nodemon index.js 
+  NODE_ENV={ENVIRONMENT} node server.js 
   ```
 
 ##install in a raspberry pi
@@ -121,6 +120,9 @@ Just go to any browser fro your admin laptop and access
   ```
   git clone git@github.com:ManagedApplicationServices/greenpi.git
   ```
+
+###config
+  
 1. create the general config file
 
   ```
@@ -155,7 +157,7 @@ Just go to any browser fro your admin laptop and access
 	```
 
 1. initialise logging
-1. install bower and npm packages
+1. install npm packages
 
   ```
   npm i # bower not needed as css / js files are compiled
@@ -171,7 +173,7 @@ Just go to any browser fro your admin laptop and access
     ```
     $ npm start # npm node server.js
     ```
-1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
+1. go to url [localhost:8000/admin](localhost:8000/admin) to amend the settings. default settings are:
 
   - username: `sprout`
   - password: `greenpi`
@@ -203,7 +205,7 @@ Just go to any browser fro your admin laptop and access
 - For accessing logs in the browser, go to:
 
   ```
-  http://<rpi_ip>:28778
+  http://{GREENPI_IP_ADDRESS}:28778
   ```
 
 
@@ -266,13 +268,14 @@ Just go to any browser fro your admin laptop and access
 
 1. setup wifi accordingly
 1. setup logging
-	1. Access URL in the browser `<RPi-IP-Address>:28778`
+	1. Access URL in the browser `{GREENPI_IP_ADDRESS}:28778`
 
 1. **setup other config**
 
 	1. `cp config/.xinitrc /home/developer/.xinitrc` 
 	- `cp config/rc.local.sample /etc/rc.local`
-	- `cp commandline.txt.sample /boot/cmdline.txt`
+	- `cp cmdline.txt.sample /boot/cmdline.txt`
+	- `cp config.txt.sample /boot/config.txt`
 
 1. **install** login GUI with `startx`
 	1. [install](https://github.com/creationix/nvm#install-script) `nvm`
@@ -297,56 +300,36 @@ Just go to any browser fro your admin laptop and access
 
 ##configure RPi kiosk mode
 
-1. edit file `/home/developer/.xinitrc`
+1. edit file `/home/developer/.xinitrc`. Ensure you install `sudo apt-get install unclutter`.
 
   ```
   unclutter -idle 15 -root &
   xset -dpms &
   xset s off &
   
-  cd ~/apps/greenpi
-  /home/developer/.nvm/versions/io.js/v1.6.2/bin/node index.js & > greenpi_xinitrc_log.log 2> greenpi_xinitrc_error.log
+  cd ~/greenpi
+  nvm use iojs
+  log.io-server &
+  log.io-harvester &
+  NODE_ENV=production node server.js & > greenpi_xinitrc_log.log 2> greenpi_xinitrc_error.log
   sleep 10
   
   while true; do
-          killall -TERM chromium 2>/dev/null;
-          sleep 2;
-          killall -9 chromium 2>/dev/null;
-          chromium --incognito --kiosk --window-size=1280,800 --window-position=0,0 http://localhost:9000
+    killall -TERM chromium 2>/dev/null;
+    sleep 2;
+    killall -9 chromium 2>/dev/null;
+    chromium --incognito --kiosk --window-size=1280,800 --window-position=0,0 http://localhost:9000
   done;
   ```
 1. edit file `/etc/rc.local` with login as user `developer` and `startx`
 
   ```
-  #!/bin/sh -e
-  #
-  # rc.local
-  #
-  # This script is executed at the end of each multiuser runlevel.
-  # Make sure that the script will "exit 0" on success or any other
-  # value on error.
-  #
-  # In order to enable or disable this script just change the execution
-  # bits.
-  #
-  # By default this script does nothing.
-  
+  ...
   # Print the IP address
-  
   su -l developer -c startx &
-  
-  _IP=$(hostname -I) || true
-  if [ "$_IP" ]; then
-    printf "My IP address is %s\n" "$_IP"
-  fi
-  
-  exit 0
+  ...
   ```
-1. edit file `/boot/cmdline.txt` to hide bootup text
-
-  ```
-  dwc_otg.lpm_enable=0 console=ttyAMA0,115200 console=tty3 root=/dev/mmcblk0p6 rootfstype=ext4 elevator=deadline rootwait loglevel=3
-  ```
+1. edit file `/boot/cmdline.txt` add `loglevel=2` at the end
 1. exit kiosk mode to command line press:
 
   ```
@@ -370,7 +353,7 @@ Just go to any browser fro your admin laptop and access
   
   wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
   ```
-1. edit config file `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
+1. edit config file `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`.
 
   ``` 
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
