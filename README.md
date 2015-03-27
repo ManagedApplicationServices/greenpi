@@ -265,13 +265,15 @@ Just go to any browser fro your admin laptop and access
   ```
 
 1. setup wifi accordingly
-1. **screen resolution**: edit file `/boot/config.txt`
-  
-  ```
-  disable_overscan=1
-  framebuffer_width=1280
-  framebuffer_height=800
-  ``` 
+1. setup logging
+	1. Access URL in the browser `<RPi-IP-Address>:28778`
+
+1. **setup other config**
+
+	1. `cp config/.xinitrc /home/developer/.xinitrc` 
+	- `cp config/rc.local.sample /etc/rc.local`
+	- `cp commandline.txt.sample /boot/cmdline.txt`
+
 1. **install** login GUI with `startx`
 	1. [install](https://github.com/creationix/nvm#install-script) `nvm`
 	- chromium browser with Raspbian Wheezy `sudo apt-get install chromium`
@@ -303,7 +305,7 @@ Just go to any browser fro your admin laptop and access
   xset s off &
   
   cd ~/apps/greenpi
-  /home/developer/.nvm/v0.10.26/bin/node index.js & > greenpi_xinitrc_log.log 2> greenpi_xinitrc_error.log
+  /home/developer/.nvm/versions/io.js/v1.6.2/bin/node index.js & > greenpi_xinitrc_log.log 2> greenpi_xinitrc_error.log
   sleep 10
   
   while true; do
@@ -351,58 +353,6 @@ Just go to any browser fro your admin laptop and access
   Ctrl + Alt + F2
   ```
 
-##access logs
-
-1. Access URL in the browser `<RPi-IP-Address>:28778`
-
-##create splash screen
-
-**Note**: Reference on [how to create the splash screen](http://www.edv-huber.com/index.php/problemloesungen/15-custom-splash-screen-for-raspberry-pi-raspbian). This splash screen will only be available after complete boot up.
-
-1. install frame buffer image
-
-  ```
-  sudo apt-get install fbi
-  ```
-1. create a daemon file `/etc/init.d/asplashscreen`
-
-  ```
-  #!/bin/sh
-  
-  do_start () {
-  
-      /usr/bin/fbi -T 1 -noverbose -a /etc/splash.jpg
-      exit 0
-  }
-  
-  case "$1" in
-    start|"")
-      do_start
-      ;;
-    restart|reload|force-reload)
-      echo "Error: argument '$1' not supported" >&2
-      exit 3
-      ;;
-    stop)
-      # No-op
-      ;;
-    status)
-      exit 0
-      ;;
-    *)
-      echo "Usage: asplashscreen [start|stop]" >&2
-      exit 3
-      ;;
-  esac
-  
-  :
-  ```
-1. make it executable
-
-  ```
-  sudo chmod a+x /etc/init.d/asplashscreen
-  ```
-1. move an image to `/etc/splash.jpg`
 
 ##configure RPi Wifi (WPA personal)
 
