@@ -1,6 +1,6 @@
 {
   "name": "greenpi",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "raising environmental consciousness within an organization",
   "author": "rspapps developers",
   "main": "index.js",
@@ -28,6 +28,7 @@
     "is-online": "3.2.0",
     "jsdom": "4.0.5",
     "kraken-js": "1.0.5",
+    "local-ip": "1.0.1",
     "log.io": "0.3.4",
     "nconf": "0.7.1",
     "parsetrace": "0.2.0",

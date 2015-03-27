@@ -198,7 +198,7 @@
   </div>
 </div>
 
-<script src="setting.js"></script>
+<script src="js/setting.js"></script>
 </body>
 
 {/body}
