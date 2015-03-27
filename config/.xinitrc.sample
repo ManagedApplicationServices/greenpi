@@ -2,7 +2,7 @@ unclutter -idle 15 -root &
 xset -dpms &
 xset s off &
 
-cd ~/apps/greenpi
+cd ~/greenpi
 nvm use iojs
 log.io-server &
 log.io-harvester &
@@ -10,8 +10,8 @@ NODE_ENV=production node server.js & > greenpi_xinitrc_log.log 2> greenpi_xinitr
 sleep 10
 
 while true; do
-        killall -TERM chromium 2>/dev/null;
-        sleep 2;
-        killall -9 chromium 2>/dev/null;
-        chromium --incognito --kiosk --window-size=1280,800 --window-position=0,0 http://localhost:9000
+  killall -TERM chromium 2>/dev/null;
+  sleep 2;
+  killall -9 chromium 2>/dev/null;
+  chromium --incognito --kiosk --window-size=1280,800 --window-position=0,0 http://localhost:8000
 done;
