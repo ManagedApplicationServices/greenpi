@@ -75,7 +75,7 @@ Just go to any browser fro your admin laptop and access
 
 ##Equipment
 
-1. Raspberry PI Model B++
+1. Raspberry PI Model 2
 1. Micro USB power adapter for pi
 1. LCD screen
 1. HDMI cable for the LCD
@@ -91,10 +91,10 @@ Just go to any browser fro your admin laptop and access
   ```
   git clone git@github.com:ManagedApplicationServices/greenpi.git
   ```
-1. create the config file
+1. create the general config file
 
   ```
-  cp config.sample.json config.js
+  cp config.sample.js config.js
   ```
 1. edit the config file `sudo nano config.js`
 
@@ -111,22 +111,29 @@ Just go to any browser fro your admin laptop and access
       "passwordHash": "$2a$08$oAXUGmm186QSjofIjM.fLur6ru7S6KW3L5gw9.wBMW9T9imqL/tSC"
   }
   ``` 
+1. create app specific config file
+
+	```
+	cp config/development.json config/production.json
+	```  
+	
+	amend `development` to `production` for redis db select number
+
 1. install bower and npm packages
 
   ```
-  npm install
-  bower install
+  npm i # bower not needed as css / js files are compiled
   ```
 1. start the server in any one of the 2 ways:
 
   1. to reset the db
 
     ```
-    $ node server.js reset
+    $ npm run reset # node server.js reset
     ```
   - to start the server without any reset and continue automatically from last left state
     ```
-    $ node server.js
+    $ npm node server.js
     ```
 1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
 
@@ -230,7 +237,7 @@ Just go to any browser fro your admin laptop and access
 
 
 
-##prepare sd card from brand new rpi
+##prepare sd card for brand new rpi
 
 ###1. initial setup
 
@@ -296,8 +303,12 @@ Just go to any browser fro your admin laptop and access
   ``` 
 1. **install** login GUI with `startx`
 	1. [install](https://github.com/creationix/nvm#install-script) `nvm`
-	1. chromium browser
-1. **setup ssh**: ensure the ssh keys are stored in user folder `/home/developer/.ssh` and not under the root
+	- chromium browser with Raspbian Wheezy `sudo apt-get install chromium`
+	- redis with `sudo apt-get install redis-server`
+1. **setup ssh**: 
+	1. ensure the ssh keys are stored in user folder `/home/developer/.ssh` and not under the root
+	- create ssh keys with `ssh-keygen -t rsa -f greenpi -C "rspapps@ricoh.sg"`
+	- [add SSH keys to github](https://help.github.com/articles/generating-ssh-keys/#step-4-add-your-ssh-key-to-your-account)
 1. **shutdown / restart**
 
   1. shutdown
