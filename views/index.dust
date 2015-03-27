@@ -65,6 +65,7 @@
         <ul>
           <li><span id="printer-info-id"></span></li>
           <li><span id="printer-info-model"></span></li>
+          <li><span id="printer-info-ip"></span></li>
         </ul>
       </div>
 

@@ -75,7 +75,7 @@ Just go to any browser fro your admin laptop and access
 
 ##Equipment
 
-1. Raspberry PI Model B++
+1. Raspberry PI Model 2
 1. Micro USB power adapter for pi
 1. LCD screen
 1. HDMI cable for the LCD
@@ -83,56 +83,6 @@ Just go to any browser fro your admin laptop and access
 1. 8GB SD Card (Speed 10x) 
 
 <div style="page-break-after: always;"></div>
-
-##install in a raspberry pi
-
-1. clone the repo
-
-  ```
-  git clone git@github.com:ManagedApplicationServices/greenpi.git
-  ```
-1. create the config file
-
-  ```
-  cp config.sample.json config.js
-  ```
-1. edit the config file `sudo nano config.js`
-
-  ```
-  module.exports = {
-      "printerIP": "172.19.107.61",
-      "paperUsageCap": 1000,
-      "totalPrinters": 4,
-      "interval": 20000,
-      "appPath": "/home/developer/apps/greenpi",
-      "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi",
-      "machineDetailPath": "/web/guest/en/websys/status/configuration.cgi",
-      "username": "sprout",
-      "passwordHash": "$2a$08$oAXUGmm186QSjofIjM.fLur6ru7S6KW3L5gw9.wBMW9T9imqL/tSC"
-  }
-  ``` 
-1. install bower and npm packages
-
-  ```
-  npm install
-  bower install
-  ```
-1. start the server in any one of the 2 ways:
-
-  1. to reset the db
-
-    ```
-    $ node server.js reset
-    ```
-  - to start the server without any reset and continue automatically from last left state
-    ```
-    $ node server.js
-    ```
-1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
-
-  - username: `sprout`
-  - password: `greenpi`
-
 
 ##deploy to raspberrypi
 
@@ -164,54 +114,82 @@ Just go to any browser fro your admin laptop and access
   nodemon index.js 
   ```
 
+##install in a raspberry pi
+
+1. clone the repo
+
+  ```
+  git clone git@github.com:ManagedApplicationServices/greenpi.git
+  ```
+1. create the general config file
+
+  ```
+  cp config.sample.js config.js
+  ```
+1. edit the config file `sudo nano config.js`
+
+  ```
+  module.exports = {
+      "printerIP": "172.19.107.61",
+      "paperUsageCap": 1000,
+      "totalPrinters": 4,
+      ...
+  }
+  ``` 
+1. create app specific config file
+
+	```
+	cp config/development.json config/production.json
+	```  
+	
+	amend `development` to `production` and edit the wifi access:
+	
+	```
+	...
+	{
+  		"production": {
+    		"num": 1,
+    		"wifi": "wlan0"
+  		}	
+	}
+	```
+
+1. initialise logging
+1. install bower and npm packages
+
+  ```
+  npm i # bower not needed as css / js files are compiled
+  ```
+1. start the server in any one of the 2 ways:
+
+  1. to reset the db
+
+    ```
+    $ npm run reset # node server.js reset
+    ```
+  - to start the server without any reset and continue automatically from last left state
+    ```
+    $ npm start # npm node server.js
+    ```
+1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
+
+  - username: `sprout`
+  - password: `greenpi`
+
 
 ##logging
 
 ###first time
 
-1. create empty log files for hour `00` to hour `23`:
+1. create empty log files for hour `00` to hour `23` in folder `logs`:
 
   ```
-  for file in log.backup.{00..23}; do touch "$file"; done
+  $ for file in log.backup.{00..23}; do touch "$file"; done
   ```
 - configure log harvester file `nano ~/.log.io/harvester.conf` with the log filepaths
 
   ```
-  exports.config = {
-    nodeName: "express_server",
-    logStreams: {
-      greenpi: [
-        "/absolute/path/to/greenpi/logs/log.backup.00",
-        "/absolute/path/to/greenpi/logs/log.backup.01",
-        "/absolute/path/to/greenpi/logs/log.backup.02",
-        "/absolute/path/to/greenpi/logs/log.backup.03",
-        "/absolute/path/to/greenpi/logs/log.backup.04",
-        "/absolute/path/to/greenpi/logs/log.backup.05",
-        "/absolute/path/to/greenpi/logs/log.backup.06",
-        "/absolute/path/to/greenpi/logs/log.backup.07",
-        "/absolute/path/to/greenpi/logs/log.backup.08",
-        "/absolute/path/to/greenpi/logs/log.backup.09",
-        "/absolute/path/to/greenpi/logs/log.backup.10",
-        "/absolute/path/to/greenpi/logs/log.backup.11",
-        "/absolute/path/to/greenpi/logs/log.backup.12",
-        "/absolute/path/to/greenpi/logs/log.backup.13",
-        "/absolute/path/to/greenpi/logs/log.backup.14",
-        "/absolute/path/to/greenpi/logs/log.backup.15",
-        "/absolute/path/to/greenpi/logs/log.backup.16",
-        "/absolute/path/to/greenpi/logs/log.backup.17",
-        "/absolute/path/to/greenpi/logs/log.backup.18",
-        "/absolute/path/to/greenpi/logs/log.backup.19",
-        "/absolute/path/to/greenpi/logs/log.backup.20",
-        "/absolute/path/to/greenpi/logs/log.backup.21",
-        "/absolute/path/to/greenpi/logs/log.backup.22",
-        "/absolute/path/to/greenpi/logs/log.backup.23"
-      ]
-    },
-    server: {
-      host: '0.0.0.0',
-      port: 28777
-    }
-  }
+  cp config/harvester.sample.conf ~/.log.io/harvester.conf
   ```
 
 ###each time
@@ -230,11 +208,11 @@ Just go to any browser fro your admin laptop and access
 
 
 
-##prepare sd card from brand new rpi
+##prepare sd card for brand new rpi
 
 ###1. initial setup
 
-1. **Install**: [raspbian](http://www.raspberrypi.org/downloads/) with Noobs on a 8GB SD Card (speed 10x)
+1. **Install**: [raspbian](http://www.raspberrypi.org/downloads/) **Jessie** on a 8GB SD Card (speed 10x)
 1. **bootup**: rpi and login with default credntials:
 
   ```
@@ -258,6 +236,12 @@ Just go to any browser fro your admin laptop and access
   
     ```
     sudo nano /etc/default/keyboard
+    ```
+    
+    in the file
+    
+    ```
+    XKBLAYOUT="us"
     ```
 
 1. **add new user**
@@ -288,8 +272,14 @@ Just go to any browser fro your admin laptop and access
   framebuffer_width=1280
   framebuffer_height=800
   ``` 
-1. install `nvm`
-1. **setup ssh**: ensure the ssh keys are stored in user folder `/home/developer/.ssh` and not under the root
+1. **install** login GUI with `startx`
+	1. [install](https://github.com/creationix/nvm#install-script) `nvm`
+	- chromium browser with Raspbian Wheezy `sudo apt-get install chromium`
+	- redis with `sudo apt-get install redis-server`
+1. **setup ssh**: 
+	1. ensure the ssh keys are stored in user folder `/home/developer/.ssh` and not under the root
+	- create ssh keys with `ssh-keygen -t rsa -f greenpi -C "rspapps@ricoh.sg"`
+	- [add SSH keys to github](https://help.github.com/articles/generating-ssh-keys/#step-4-add-your-ssh-key-to-your-account)
 1. **shutdown / restart**
 
   1. shutdown
