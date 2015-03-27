@@ -279,4 +279,8 @@
     document.getElementById('printer-info-model').innerHTML = 'Printer Model: ' + data;
   });
 
+  socket.on('ipAddress', function(data) {
+    document.getElementById('printer-info-ip').innerHTML = 'IP Address: ' + data;
+  });
+
 })();

@@ -168,6 +168,18 @@ gulp.task('default', [
   'clean'
 ]);
 
+gulp.task('js', [
+  'jshint',
+  'jscs',
+
+  'scriptHome',
+  'scriptSetting',
+  'scriptSettingDone',
+  'scriptSettingReset',
+
+  'clean'
+]);
+
 gulp.task('check', [
   'jshint',
   'jscs'

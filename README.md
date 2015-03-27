@@ -133,12 +133,7 @@ Just go to any browser fro your admin laptop and access
       "printerIP": "172.19.107.61",
       "paperUsageCap": 1000,
       "totalPrinters": 4,
-      "interval": 20000,
-      "appPath": "/home/developer/apps/greenpi",
-      "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi",
-      "machineDetailPath": "/web/guest/en/websys/status/configuration.cgi",
-      "username": "sprout",
-      "passwordHash": "$2a$08$oAXUGmm186QSjofIjM.fLur6ru7S6KW3L5gw9.wBMW9T9imqL/tSC"
+      ...
   }
   ``` 
 1. create app specific config file
@@ -147,7 +142,17 @@ Just go to any browser fro your admin laptop and access
 	cp config/development.json config/production.json
 	```  
 	
-	amend `development` to `production` for redis db select number
+	amend `development` to `production` and edit the wifi access:
+	
+	```
+	...
+	{
+  		"production": {
+    		"num": 1,
+    		"wifi": "wlan0"
+  		}	
+	}
+	```
 
 1. initialise logging
 1. install bower and npm packages
