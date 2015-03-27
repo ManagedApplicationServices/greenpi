@@ -118,7 +118,7 @@ gulp.task('scriptSetting', function() {
       outSourceMap: false,
       preserveComments: false
     }))
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('scriptSettingDone', function() {
@@ -130,7 +130,7 @@ gulp.task('scriptSettingDone', function() {
       outSourceMap: false,
       preserveComments: false
     }))
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('scriptSettingReset', function() {
@@ -142,7 +142,7 @@ gulp.task('scriptSettingReset', function() {
       outSourceMap: false,
       preserveComments: false
     }))
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('clean', function() {
