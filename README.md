@@ -84,6 +84,36 @@ Just go to any browser fro your admin laptop and access
 
 <div style="page-break-after: always;"></div>
 
+##deploy to raspberrypi
+
+1. ssh into the greenpi
+
+  ```
+  ssh greenpi 
+  ```
+1. go to `~/apps/greenpi` and get the latest repo code
+
+  ```
+  git pull
+  npm install && bower install
+  node index.js
+  ```
+1. visit browser [localhost:9000](http://localhost:9000)
+
+##install for development
+
+1. start redis
+
+  ```
+  redis-server
+  ```
+  
+1. start kraken with node and visit browser [localhost:9000](http://localhost:9000/)
+
+  ```
+  nodemon index.js 
+  ```
+
 ##install in a raspberry pi
 
 1. clone the repo
@@ -119,6 +149,7 @@ Just go to any browser fro your admin laptop and access
 	
 	amend `development` to `production` for redis db select number
 
+1. initialise logging
 1. install bower and npm packages
 
   ```
@@ -133,7 +164,7 @@ Just go to any browser fro your admin laptop and access
     ```
   - to start the server without any reset and continue automatically from last left state
     ```
-    $ npm node server.js
+    $ npm start # npm node server.js
     ```
 1. go to url [localhost:9000/admin](localhost:9000/admin) to amend the settings. default settings are:
 
@@ -141,84 +172,19 @@ Just go to any browser fro your admin laptop and access
   - password: `greenpi`
 
 
-##deploy to raspberrypi
-
-1. ssh into the greenpi
-
-  ```
-  ssh greenpi 
-  ```
-1. go to `~/apps/greenpi` and get the latest repo code
-
-  ```
-  git pull
-  npm install && bower install
-  node index.js
-  ```
-1. visit browser [localhost:9000](http://localhost:9000)
-
-##install for development
-
-1. start redis
-
-  ```
-  redis-server
-  ```
-  
-1. start kraken with node and visit browser [localhost:9000](http://localhost:9000/)
-
-  ```
-  nodemon index.js 
-  ```
-
-
 ##logging
 
 ###first time
 
-1. create empty log files for hour `00` to hour `23`:
+1. create empty log files for hour `00` to hour `23` in folder `logs`:
 
   ```
-  for file in log.backup.{00..23}; do touch "$file"; done
+  $ for file in log.backup.{00..23}; do touch "$file"; done
   ```
 - configure log harvester file `nano ~/.log.io/harvester.conf` with the log filepaths
 
   ```
-  exports.config = {
-    nodeName: "express_server",
-    logStreams: {
-      greenpi: [
-        "/absolute/path/to/greenpi/logs/log.backup.00",
-        "/absolute/path/to/greenpi/logs/log.backup.01",
-        "/absolute/path/to/greenpi/logs/log.backup.02",
-        "/absolute/path/to/greenpi/logs/log.backup.03",
-        "/absolute/path/to/greenpi/logs/log.backup.04",
-        "/absolute/path/to/greenpi/logs/log.backup.05",
-        "/absolute/path/to/greenpi/logs/log.backup.06",
-        "/absolute/path/to/greenpi/logs/log.backup.07",
-        "/absolute/path/to/greenpi/logs/log.backup.08",
-        "/absolute/path/to/greenpi/logs/log.backup.09",
-        "/absolute/path/to/greenpi/logs/log.backup.10",
-        "/absolute/path/to/greenpi/logs/log.backup.11",
-        "/absolute/path/to/greenpi/logs/log.backup.12",
-        "/absolute/path/to/greenpi/logs/log.backup.13",
-        "/absolute/path/to/greenpi/logs/log.backup.14",
-        "/absolute/path/to/greenpi/logs/log.backup.15",
-        "/absolute/path/to/greenpi/logs/log.backup.16",
-        "/absolute/path/to/greenpi/logs/log.backup.17",
-        "/absolute/path/to/greenpi/logs/log.backup.18",
-        "/absolute/path/to/greenpi/logs/log.backup.19",
-        "/absolute/path/to/greenpi/logs/log.backup.20",
-        "/absolute/path/to/greenpi/logs/log.backup.21",
-        "/absolute/path/to/greenpi/logs/log.backup.22",
-        "/absolute/path/to/greenpi/logs/log.backup.23"
-      ]
-    },
-    server: {
-      host: '0.0.0.0',
-      port: 28777
-    }
-  }
+  cp config/harvester.sample.conf ~/.log.io/harvester.conf
   ```
 
 ###each time
