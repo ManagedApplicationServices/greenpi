@@ -234,7 +234,7 @@ Just go to any browser fro your admin laptop and access
 
 ###1. initial setup
 
-1. **Install**: [raspbian](http://www.raspberrypi.org/downloads/) with Noobs on a 8GB SD Card (speed 10x)
+1. **Install**: [raspbian](http://www.raspberrypi.org/downloads/) **Jessie** on a 8GB SD Card (speed 10x)
 1. **bootup**: rpi and login with default credntials:
 
   ```
@@ -258,6 +258,12 @@ Just go to any browser fro your admin laptop and access
   
     ```
     sudo nano /etc/default/keyboard
+    ```
+    
+    in the file
+    
+    ```
+    XKBLAYOUT="us"
     ```
 
 1. **add new user**
@@ -288,7 +294,9 @@ Just go to any browser fro your admin laptop and access
   framebuffer_width=1280
   framebuffer_height=800
   ``` 
-1. install `nvm`
+1. **install** login GUI with `startx`
+	1. [install](https://github.com/creationix/nvm#install-script) `nvm`
+	1. chromium browser
 1. **setup ssh**: ensure the ssh keys are stored in user folder `/home/developer/.ssh` and not under the root
 1. **shutdown / restart**
 
