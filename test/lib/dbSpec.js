@@ -1,5 +1,6 @@
 'use strict';
 
+require('dotenv').load();
 var expect = require('chai').expect;
 var dbLib = require('../../lib/db');
 var nconf = require('nconf').argv().env().file({

@@ -11,20 +11,18 @@
 
 <div style="page-break-after: always;"></div>
 
-
 ##Getting started
 
 1. plug in the RaspberryPI to the small LCD with a HDMI connector
-1. plug in the Raspberry PI to power with a micro-usb connector
-1. Wait for about **90 seconds**
-1. You should see the main screen on the tiny LCD
+- plug in the Raspberry PI to power with a micro-usb connector
+- Wait for about **90 seconds**
+- You should see the main screen on the tiny LCD
 
   ![](readme-img/main.png)
-
-1. In your administrator computer, find out the IP address of this RaspberryPI by scanning the connected devices to your router. E.g. `192.168.1.149`
-1. Visit the IP address in your computer's Chrome browser. E.g. `192.168.1.149:8000`  
-1. Visit the status your computer's Chrome browser. E.g. `192.168.1.149:8000/status`  
-1. Visit the admin page in your computer's Chrome browser. E.g. `192.168.1.149:8000/admin`. The default login credentials are:
+- In your administrator computer, find out the IP address of this RaspberryPI by scanning the connected devices to your router. E.g. `172.16.1.0`
+- Visit the IP address in your computer's Chrome browser. E.g. `{GREENPI_IP_ADDRESS}:8000`
+- Visit the status your computer's Chrome browser. E.g. `{GREENPI_IP_ADDRESS}:8000/status`
+- Visit the admin page in your computer's Chrome browser. E.g. `{GREENPI_IP_ADDRESS}:8000/admin`. The default login credentials are:
 
   ```
   User Name: sprout
@@ -32,37 +30,17 @@
   ``` 
   
   ![](readme-img/admin.png) 
-  
-1. Add the admin details accordingly on the admin page after logging in succesfully:
-
-  ```
-  Current printer IP [192.168.1.172]
-  Organisation CAP [1000000] # a million for example
-  Total printers [4]
-  
-  Company Logo  [upload an image]  
-  
-  Posters     
-            [upload an image]
-            [upload an image]
-            [upload an image]
-            [upload an image]
-            [upload an image]
-  
-  New password
-  Confirm password
-  ```
+- Add the admin details accordingly on the admin page after logging in successfully
   
   ![](readme-img/admin-success.png)
-  
-1. Go to the main page `192.168.1.149:8000` from your admin computer and click start.
+- Go to the main page `{GREENPI_IP_ADDRESS}:8000` from your admin computer and click start.
 
 ###future changes
 
-Just go to any browser fro your admin laptop and access
+Just go to any browser from your admin laptop and access
 
-1. **Change Settings**: To change any admin settings such as posters or logo access the raspberry pi's ip from your admin computer's browser again. E.g. `192.168.1.149:8000/admin`
-1. **Stop simulation**: To stop the simulation and restart it clikc the hidden `STOP` simulation button as shown below.
+1. **Change Settings**: To change any admin settings such as posters or logo access the raspberry pi's ip from your admin computer's browser again. E.g. `{GREENPI_IP_ADDRESS}:8000/admin`
+1. **Stop simulation**: To stop the simulation and restart it click the hidden `PAUSE` simulation button as shown below.
 
   ![](readme-img/stop-click.jpg)
 
@@ -70,14 +48,13 @@ Just go to any browser fro your admin laptop and access
 
   ![](readme-img/start-click.jpg)
 
-
 <div style="page-break-after: always;"></div>
 
 ##Equipment
 
-1. Raspberry PI Model 2
+1. Raspberry PI Model B+ (waiting for Model 2 to have Graphic support for Chromium)
 1. Micro USB power adapter for pi
-1. LCD screen
+1. LCD screen 1280 x 800
 1. HDMI cable for the LCD
 1. Power cable for the LCD
 1. 8GB SD Card (Speed 10x) 
@@ -91,7 +68,7 @@ Just go to any browser fro your admin laptop and access
   ```
   ssh greenpi 
   ```
-1. go to `~/greenpi` and get the latest repo code
+1. go to `~/apps/greenpi` and get the latest repo code
 
   ```
   git pull && npm i
@@ -106,14 +83,13 @@ Just go to any browser fro your admin laptop and access
   ```
   redis-server
   ```
-  
 1. start kraken with node and visit browser [localhost:8000](http://localhost:8000/)
 
   ```
-  NODE_ENV={ENVIRONMENT} node server.js 
+  node server.js 
   ```
 
-##install in a raspberry pi
+##install fresh in a raspberry pi
 
 1. clone the repo
 
@@ -128,56 +104,66 @@ Just go to any browser fro your admin laptop and access
   ```
   cp config.sample.js config.js
   ```
-1. edit the config file `sudo nano config.js`
+  edit `printerIP`, `paperUsageCap`, `totalPrinters` in the config file `sudo nano config.js`
 
   ```
   module.exports = {
-      "printerIP": "172.19.107.61",
-      "paperUsageCap": 1000,
-      "totalPrinters": 4,
-      ...
+    "printerIP": "172.19.107.61",
+    "paperUsageCap": 1000,
+    "totalPrinters": 4,
+    ...
   }
   ``` 
 1. create app specific config file
 
 	```
 	cp config/development.json config/production.json
-	```  
+	```
 	
-	amend `development` to `production` and edit the wifi access:
+	amend `development` to `production` and edit the wifi network access:
 	
 	```
 	...
 	{
-  		"production": {
-    		"num": 1,
-    		"wifi": "wlan0"
-  		}	
-	}
+    "production": {
+      "num": 1,
+      "wifi": "wlan0"
+    }	
+  }
 	```
+1. create `.env` file from sample:
 
-1. initialise logging
+  ```
+  cp .env.sample .env
+  ```
+
+  edit `NODE_ENV`:
+
+  ```
+  NODE_ENV=development
+  ```
 1. install npm packages
 
   ```
-  npm i # bower not needed as css / js files are compiled
+  npm i -g log.io
+  npm i # bower not needed as compiled css / js files are in the repo
   ```
+1. initialise logging
 1. start the server in any one of the 2 ways:
 
   1. to reset the db
 
     ```
-    $ npm run reset # node server.js reset
+    $ npm run reset
     ```
   - to start the server without any reset and continue automatically from last left state
     ```
-    $ npm start # npm node server.js
+    $ npm start
     ```
 1. go to url [localhost:8000/admin](localhost:8000/admin) to amend the settings. default settings are:
 
   - username: `sprout`
   - password: `greenpi`
-
 
 ##logging
 
@@ -208,32 +194,30 @@ Just go to any browser fro your admin laptop and access
   http://{GREENPI_IP_ADDRESS}:28778
   ```
 
-
-
 ##prepare sd card for brand new rpi
 
 ###1. initial setup
 
 1. **Install**: [raspbian](http://www.raspberrypi.org/downloads/) **Jessie** on a 8GB SD Card (speed 10x)
-1. **bootup**: rpi and login with default credntials:
+- **bootup**: rpi and login with default credentials:
 
   ```
   login: pi
   password: raspberry
   ```
-1. general configuration with `sudo raspi-config`
-1. **Hostname and Hosts**
+- general configuration with `sudo raspi-config`
+- **Hostname and Hosts**
   1. set hostname of the rpi in file `/etc/hostname`
 
     ```
     greenpi
     ```
-  1. set host of the rpi in file `/etc/hosts` in the last line
+  - set host of the rpi in file `/etc/hosts` in the last line
 
     ```
     127.0.1.1 greenpi
     ```
-1. **Keyboard**
+- **Keyboard**
   1. change the keyboard layout to US
   
     ```
@@ -246,7 +230,7 @@ Just go to any browser fro your admin laptop and access
     XKBLAYOUT="us"
     ```
 
-1. **add new user**
+- **add new user**
   1. add new user `developer` and its password
   
     ```
@@ -258,7 +242,8 @@ Just go to any browser fro your admin laptop and access
     ```
     developer ALL=(ALL) NOPASSWD: ALL
     ``` 
-
+1. reboot the pi with `sudo reboot`
+1. setup wifi accordingly
 1. **update** packages with an ethernet connection
 
   ```
@@ -266,7 +251,11 @@ Just go to any browser fro your admin laptop and access
   sudo apt-get upgrade
   ```
 
-1. setup wifi accordingly
+###2. install
+
+1. Chromium browser with Raspbian Wheezy `sudo apt-get install chromium`
+- Redis with `sudo apt-get install redis-server`
+
 1. setup logging
 	1. Access URL in the browser `{GREENPI_IP_ADDRESS}:28778`
 
@@ -279,8 +268,7 @@ Just go to any browser fro your admin laptop and access
 
 1. **install** login GUI with `startx`
 	1. [install](https://github.com/creationix/nvm#install-script) `nvm`
-	- chromium browser with Raspbian Wheezy `sudo apt-get install chromium`
-	- redis with `sudo apt-get install redis-server`
+	
 1. **setup ssh**: 
 	1. ensure the ssh keys are stored in user folder `/home/developer/.ssh` and not under the root
 	- create ssh keys with `ssh-keygen -t rsa -f greenpi -C "rspapps@ricoh.sg"`
@@ -335,7 +323,6 @@ Just go to any browser fro your admin laptop and access
   ```
   Ctrl + Alt + F2
   ```
-
 
 ##configure RPi Wifi (WPA personal)
 
@@ -409,7 +396,7 @@ Just go to any browser fro your admin laptop and access
   ```
   tar -zvxf greenpi.img.gz
   ``` 
-1. insert SD Card into your computer to [install the image](http://www.raspberrypi.org/documentation/installation/installing-images/mac.md)   
+1. insert SD Card into your computer to [install the image](http://www.raspberrypi.org/documentation/installation/installing-images/mac.md)
 1. run `diskutil` to find out which disk name e.g. `/dev/disk1`
 
   ```
@@ -458,8 +445,6 @@ Just go to any browser fro your admin laptop and access
   ```
 1. Store it somewhere. E.g. Upload to AWS S3 bucket `rspdeveloper`
 
-
-
 ##changelog
 
 1. `v0.14.0` minor adjustments 
@@ -473,10 +458,6 @@ Just go to any browser fro your admin laptop and access
 1. `v0.6.0` simplified tree branches, removed animations
 1. `v0.2.0` simulation at every interval 1 Apr 2014
 1. `v0.1.0` reducing trees [e357d9a](https://github.com/ManagedApplicationServices/greenpi/commit/e357d9a0338ca0231798968c26b68fec6caadef3) 26 Mar 2014
-
-  
-
-
 
 </xmp>
 <script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
@@ -496,11 +477,3 @@ Just go to any browser fro your admin laptop and access
 +"</style>");
   $head.append(style);
 </script>
-
-
-
-
-
-
-
-
