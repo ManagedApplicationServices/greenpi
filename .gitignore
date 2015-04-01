@@ -5,6 +5,7 @@ node_modules
 *.iml
 dump.rdb
 logs/
+.env
 
 # build files
 css/**/*.css

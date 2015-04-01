@@ -6,7 +6,7 @@ cd ~/greenpi
 nvm use iojs
 log.io-server &
 log.io-harvester &
-NODE_ENV=production node server.js & > greenpi_xinitrc_log.log 2> greenpi_xinitrc_error.log
+/home/developer/.nvm/versions/io.js/v1.6.2/bin/node server.js & > greenpi_xinitrc_log.log 2> greenpi_xinitrc_error.log
 sleep 10
 
 while true; do
