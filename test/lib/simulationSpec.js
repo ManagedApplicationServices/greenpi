@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var simulationLib = require('../../lib/simulation');
+var forestLib = require('../../lib/forest');
 
 describe('from Simulation Library', function() {
   describe('#setDemoMode', function() {
@@ -11,7 +11,7 @@ describe('from Simulation Library', function() {
       it('returns demo "false"', function(done) {
         var model = {};
 
-        simulationLib.setDemoMode(model, function(error, reply) {
+        forestLib.setDemoMode(model, function(error, reply) {
           expect(reply.demo).to.be.false;
           expect(error).to.not.exist;
           done();
