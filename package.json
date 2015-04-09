@@ -3,15 +3,31 @@
   "version": "1.2.3",
   "description": "raising environmental consciousness within an organization",
   "author": "rspapps developers",
-  "main": "index.js",
+  "homepage": "localhost",
+  "bugs": "https://trello.com/b/aCzyAr1j/greenpi",
+  "private": true,
+  "main": "server.js",
+  "repository": {
+    "type" : "git",
+    "url" : "git@github.com:ManagedApplicationServices/greenpi.git"
+  },
   "scripts": {
     "test": "gulp check && mocha && npm outdated --depth 0 && bower list",
     "start": "node server.js",
     "reset": "node server.js reset"
   },
   "engines": {
-    "iojs": "1.6.2"
+    "iojs": "1.6.2",
+    "npm" : "2.7.1"
   },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "cpu": [
+    "x64",
+    "armv6"
+  ],
   "dependencies": {
     "async": "0.9.0",
     "basic-auth": "1.0.0",
