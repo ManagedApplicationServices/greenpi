@@ -29,3 +29,5 @@ server.on('listening', function() {
   console.log('Server listening on http://localhost:%d', this.address().port);
   require('./lib/socket').listen(server, logger);
 });
+
+exports.server = server;
