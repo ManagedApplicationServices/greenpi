@@ -58,6 +58,24 @@
                     <input type="password" class="form-control" placeholder="secret" name="passwordConfirm">
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <p class="col-lg-4 setting-label">Change Settings</p>
+                  <div class="col-lg-8">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="setting" id="thispi" value="thispi" checked="">
+                        For this greenpi only
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="setting" id="allpi" value="allpi">
+                        For all connected greenpi
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="col-lg-6">
