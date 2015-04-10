@@ -487,20 +487,6 @@ Just go to any browser from your admin laptop and access
   ```
 1. Store it somewhere. E.g. Upload to AWS S3 bucket `rspdeveloper`
 
-##changelog
-
-1. `v0.14.0` minor adjustments 
-1. `v0.13.0` printer info is gotten upon clicking the start button
-1. `v0.12.0` refresh page, async pattern and demo mode
-1. `v0.10.0` connected to live printer data
-1. `v0.9.0` rotating posters at intervals of 2.5 minutes
-1. `v0.8.1` moved the last tree away from the right scrollbar and positioned the graph
-1. `v0.8.0` moved everything away from right scrollbar of the browser
-1. `v0.7.0` simplified to static cloud messages
-1. `v0.6.0` simplified tree branches, removed animations
-1. `v0.2.0` simulation at every interval 1 Apr 2014
-1. `v0.1.0` reducing trees [e357d9a](https://github.com/ManagedApplicationServices/greenpi/commit/e357d9a0338ca0231798968c26b68fec6caadef3) 26 Mar 2014
-
 </xmp>
 <script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
