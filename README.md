@@ -78,16 +78,57 @@ Just go to any browser from your admin laptop and access
 
 ##install for development
 
-1. start redis (it should already be started by the daemon)
+1. git clone 
 
   ```
-  redis-server
+  $ git@github.com:ManagedApplicationServices/greenpi.git
+  $ cd greenpi
   ```
-1. start kraken with node and visit browser [localhost:8000](http://localhost:8000/)
+1. install packages
+  
+  ```
+  $ brew install redis
+  $ npm i -g bower log.io
+  $ npm i && bower i
+  ```
+1. setup config files
 
   ```
-  node server.js 
+  $ cp config.sample.js config.js # amend appPath
+  $ cp config/harvester.sample.conf ~/.log.io/harvester.conf # edit greenpi path for all 24 lines
   ```
+1. create log folder and files
+
+  ```
+  $ mkdir logs
+  $ cd logs
+  $ for file in log.backup.{00..23}; do touch "$file"; done
+  $ ls
+  log.backup.00 log.backup.03 log.backup.06 log.backup.09 log.backup.12 log.backup.15 log.backup.18 log.backup.21
+  log.backup.01 log.backup.04 log.backup.07 log.backup.10 log.backup.13 log.backup.16 log.backup.19 log.backup.22
+  log.backup.02 log.backup.05 log.backup.08 log.backup.11 log.backup.14 log.backup.17 log.backup.20 log.backup.23
+  ```
+1. start redis (it should already be started by the daemon) and log server - run them in background or another shell
+
+  ```
+  $ redis-server &
+  $ log.io-server &
+  $ log.io-harvester &
+  ```
+1. start kraken with node and visit browser 
+
+  ```
+  # reset or start
+  $ npm run reset 
+  $ npm start 
+  ```
+1. visit the browser
+
+  1. [localhost:8000](http://localhost:8000/) - simulation
+  - [localhost:8000](http://localhost:8000/status) - status page
+  - [localhost:8000](http://localhost:8000/admin) - admin settings
+  - [localhost:28778](http://localhost:28778/) - log
+
 
 ##install fresh in a raspberry pi
 
