@@ -295,18 +295,18 @@ Just go to any browser from your admin laptop and access
   xset -dpms &
   xset s off &
   
-  cd ~/greenpi
+  cd ~/apps/greenpi
   nvm use iojs
   log.io-server &
   log.io-harvester &
-  NODE_ENV=production node server.js & > greenpi_xinitrc_log.log 2> greenpi_xinitrc_error.log
+  /home/developer/.nvm/versions/io.js/v1.6.2/bin/node server.js & > greenpi_xinitrc_log.log 2> greenpi_xinitrc_error.log
   sleep 10
   
   while true; do
     killall -TERM chromium 2>/dev/null;
     sleep 2;
     killall -9 chromium 2>/dev/null;
-    chromium --incognito --kiosk --window-size=1280,800 --window-position=0,0 http://localhost:9000
+    chromium --incognito --kiosk --window-size=1280,800 --window-position=0,0 http://localhost:8000
   done;
   ```
 1. edit file `/etc/rc.local` with login as user `developer` and `startx`

@@ -225,8 +225,14 @@
     }, false);
   }
 
-  // resume simulation sent to other clients
+  // resume due to user clicking resume on UI
   socket.on('resumed', function() {
+    resumeSimulation();
+  });
+
+  // resume due to sudden shutdown of server
+  socket.on('restart', function() {
+    socket.emit('restarted');
     resumeSimulation();
   });
 
