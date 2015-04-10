@@ -96,6 +96,7 @@ Just go to any browser from your admin laptop and access
   ```
   $ cp config.sample.js config.js # amend appPath
   $ cp config/harvester.sample.conf ~/.log.io/harvester.conf # edit greenpi path for all 24 lines
+  $ cp .env.sample .env # edit environment variable
   ```
 1. create log folder and files
 
