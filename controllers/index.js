@@ -31,11 +31,17 @@ module.exports = function(router) {
   });
 
   router.post('/admin', function(req, res) {
-    adminLib.createNewConfig(config, req.body);
-    adminLib.transferUploadedImages(req.files, res, config);
-    adminLib.insertToModel(model, req);
-
-    res.render('admin-done');
+    if (req.body.setting === 'thispi') {
+      adminLib.createNewConfig(config, req.body);
+      adminLib.transferUploadedImages(req.files, res, config);
+      adminLib.insertToModel(model, req);
+      res.render('admin-done');
+    } else {
+      adminLib.getIPofOtherPis(function(error, otherIPs) {
+        console.log('Admin settings triggered in: ' + otherIPs)
+        res.render('admin-done');
+      });
+    }
   })
 
   router.post('/reset', function(req, res) {
