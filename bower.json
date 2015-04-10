@@ -2,7 +2,7 @@
   "name": "greenpi",
   "version": "1.2.3",
   "dependencies": {
-    "momentjs": "2.9.0",
+    "momentjs": "2.10.2",
     "socket.io-client": "1.3.5",
     "d3": "3.5.5",
     "jquery": "2.1.3"
