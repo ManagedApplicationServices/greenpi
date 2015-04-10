@@ -131,6 +131,10 @@
     initGraph(singlePrinterCap);
   });
 
+  socket.on('started', function() {
+    initGraph(singlePrinterCap);
+  });
+
   // ----------- WITH EACH LEAF / PRINT JOB --------
 
   // if new month, then add another array data
