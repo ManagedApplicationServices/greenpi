@@ -35,7 +35,7 @@ module.exports = function(router) {
   router.post('/admin', function(req, res) {
     if (req.body.setting === 'allpi') {
       adminLib.getIPofOtherPis(function(error, otherIPs) {
-        adminLib.updateAllPi(otherIPs, function() {
+        adminLib.updateAllPi(req, otherIPs, function() {
           res.render('admin-done');
         })
       });
@@ -53,6 +53,7 @@ module.exports = function(router) {
 
   // PUT - no csrf
   router.put('/update', function(req, res) {
+    console.log(req)
     res.json({ message: 'Success!!!!!' });
   })
 
