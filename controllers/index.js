@@ -45,6 +45,10 @@ module.exports = function(router) {
     }
   })
 
+  router.get('/update', function(req, res) {
+    res.json({message: 'Success'});
+  })
+
   router.post('/reset', function(req, res) {
     res.render('reset');
   })
