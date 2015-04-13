@@ -13,6 +13,7 @@ module.exports = function(router) {
   var status = new StatusModel();
   var admin = new AdminModel();
 
+  // GET
   router.get('/', function(req, res) {
     routesLib.start(model, function(reply) {
       res.render('index', reply);
@@ -30,6 +31,7 @@ module.exports = function(router) {
     res.render('admin', admin);
   });
 
+  // POST
   router.post('/admin', function(req, res) {
     if (req.body.setting === 'allpi') {
       adminLib.getIPofOtherPis(function(error, otherIPs) {
@@ -45,12 +47,13 @@ module.exports = function(router) {
     }
   })
 
-  router.put('/update', function(req, res) {
-    res.json({ message: 'Success!!!!!' });
-  })
-
   router.post('/reset', function(req, res) {
     res.render('reset');
+  })
+
+  // PUT - no csrf
+  router.put('/update', function(req, res) {
+    res.json({ message: 'Success!!!!!' });
   })
 
 };
