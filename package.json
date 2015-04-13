@@ -43,7 +43,7 @@
     "express": "4.12.3",
     "express-session": "1.11.1",
     "is-online": "3.2.0",
-    "jsdom": "4.2.0",
+    "jsdom": "4.3.0",
     "kraken-js": "1.0.5",
     "local-ip": "1.0.1",
     "log.io": "0.3.4",
@@ -66,7 +66,7 @@
     "gulp-plumber": "1.0.0",
     "gulp-rimraf": "0.1.1",
     "gulp-stylus": "2.0.1",
-    "gulp-uglify": "1.1.0",
+    "gulp-uglify": "1.2.0",
     "mocha": "2.2.4",
     "supertest": "0.15.0"
   },
