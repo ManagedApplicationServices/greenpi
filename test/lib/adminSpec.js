@@ -22,28 +22,6 @@ describe('From Admin library', function() {
       }
     })
 
-    describe('when printer ip is amended', function() {
-      it('returns printer ip amended', function() {
-        var req = {
-          body: {
-            printerIP: '192.168.1.20'
-          },
-          files: {
-            poster1: {},
-            poster2: {},
-            poster3: {},
-            poster4: {},
-            poster5: {},
-            logo: {}
-          }
-        }
-
-        expect(model.printerIP).to.equal('192.168.1.10');
-        adminLib.insertToModel(model, req)
-        expect(model.printerIP).to.equal('192.168.1.20');
-      })
-    })
-
     describe('when printer cap is amended', function() {
       it('returns printer cap amended', function() {
         var req = {
