@@ -57,11 +57,17 @@ module.exports = function(router) {
 
   // PUT - no csrf
   router.put('/update', function(req, res) {
-    console.log('HEADER: ' + req.headers['auth-token']);
-    console.log('BODY: ')
-    console.log(req.body)
+    var authToken = req.headers['auth-token'];
 
-    res.json({ message: 'Successfully updated pi' });
+    if (authToken === config.authToken) {
+      console.log('BODY: ')
+      console.log(req.body)
+
+      res.json({ message: 'Successfully updated pi' });
+    } else {
+      res.json({ message: 'Unauthorised' });
+    }
+
   })
 
 };
