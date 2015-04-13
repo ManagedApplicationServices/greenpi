@@ -53,7 +53,8 @@ module.exports = function(router) {
 
   // PUT - no csrf
   router.put('/update', function(req, res) {
-    console.log(req)
+    console.log(req.headers)
+    console.log(req.response.body)
     res.json({ message: 'Success!!!!!' });
   })
 
