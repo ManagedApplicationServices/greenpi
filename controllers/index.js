@@ -35,7 +35,11 @@ module.exports = function(router) {
   router.post('/admin', function(req, res) {
     if (req.body.setting === 'allpi') {
       adminLib.getIPofOtherPis(function(error, otherIPs) {
-        adminLib.updateAllPi(req, otherIPs, function() {
+        adminLib.updateAllPi(req, otherIPs, function(error, response) {
+          if (error) {
+            console.log('Error in updating other pi: ' + error);
+          }
+          console.log('Success in updating other pi: ' + response)
           res.render('admin-done');
         })
       });
@@ -57,7 +61,7 @@ module.exports = function(router) {
     console.log('BODY: ')
     console.log(req.body)
 
-    res.json({ message: 'Success!!!!!' });
+    res.json({ message: 'Successfully updated pi' });
   })
 
 };
