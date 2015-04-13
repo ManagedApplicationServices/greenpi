@@ -21,7 +21,6 @@ module.exports = {
 
   "printerIP": "ip.address",
   "paperUsageCap": 1000,
-  "totalPrinters": 4,
   "interval": 5000,
   "appPath": "/path/to/app",
   "paperUsagePath": "/web/guest/en/websys/status/getUnificationCounter.cgi",

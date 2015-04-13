@@ -146,17 +146,8 @@ Just go to any browser from your admin laptop and access
   ```
   cp config.sample.js config.js
   ```
-  edit `printerIP`, `paperUsageCap`, `totalPrinters` in the config file `sudo nano config.js`
-
-  ```
-  module.exports = {
-    "printerIP": "172.19.107.61",
-    "paperUsageCap": 1000,
-    "totalPrinters": 4,
-    ...
-  }
-  ``` 
-1. create app specific config file
+  edit config file `sudo nano config.js` accordingly
+- create app specific config file
 
 	```
 	cp config/development.json config/production.json

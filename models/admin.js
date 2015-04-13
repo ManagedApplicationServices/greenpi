@@ -6,6 +6,6 @@ module.exports = function AdminModel() {
   return {
     printerIP: config.printerIP,
     paperUsageCap: config.paperUsageCap,
-    totalPrinters: config.totalPrinters
+    totalPrinters: config.greenpiIP.length
   };
 };
