@@ -1,25 +1,24 @@
 module.exports = {
-  "greenpiIP": [
+  "greenpiList": [
     {
-      "greenpi": "xxx.xxx.xx.xx",
+      "greenpiIP": "xxx.xxx.xx.xx",
       "printerIP": "xxx.xxx.xx.xx"
     },
     {
-      "greenpi": "xxx.xxx.xx.xx",
+      "greenpiIP": "xxx.xxx.xx.xx",
       "printerIP": "xxx.xxx.xx.xx"
     },
     {
-      "greenpi": "xxx.xxx.xx.xx",
+      "greenpiIP": "xxx.xxx.xx.xx",
       "printerIP": "xxx.xxx.xx.xx"
     },
     {
-      "greenpi": "xxx.xxx.xx.xx",
+      "greenpiIP": "xxx.xxx.xx.xx",
       "printerIP": "xxx.xxx.xx.xx"
     }
   ],
   "thispiIndex": 0,
 
-  "printerIP": "ip.address",
   "paperUsageCap": 1000,
   "interval": 5000,
   "appPath": "/path/to/app",

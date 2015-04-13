@@ -41,15 +41,14 @@ module.exports = function(router) {
           } else {
             console.log('Success in updating other pi: ' + response)
           }
-          res.render('admin-done');
         })
       });
-    } else {
-      adminLib.createNewConfig(config, req.body);
-      adminLib.transferUploadedImages(req.files, res, config);
-      adminLib.insertToModel(model, req);
-      res.render('admin-done');
     }
+
+    adminLib.createNewConfig(config, req.body);
+    adminLib.transferUploadedImages(req.files, res, config);
+    adminLib.insertToModel(model, req);
+    res.render('admin-done');
   })
 
   router.post('/reset', function(req, res) {
