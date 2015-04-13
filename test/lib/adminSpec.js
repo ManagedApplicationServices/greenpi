@@ -65,27 +65,6 @@ describe('From Admin library', function() {
       })
     })
 
-    describe('when printer number is amended', function() {
-      it('returns printer number amended', function() {
-        var req = {
-          body: {
-            totalPrinters: 5
-          },
-          files: {
-            poster1: {},
-            poster2: {},
-            poster3: {},
-            poster4: {},
-            poster5: {},
-            logo: {}
-          }
-        }
-        expect(model.totalPrinters).to.equal(4);
-        adminLib.insertToModel(model, req)
-        expect(model.totalPrinters).to.equal(5);
-      })
-    })
-
     describe('when poster 1 is uploaded', function() {
       it('returns new poster', function() {
         var req = {
