@@ -64,6 +64,9 @@ module.exports = function(router) {
       console.log('BODY: ')
       console.log(req.body)
       console.log('success')
+      adminLib.createNewConfig(config, req.body);
+      // adminLib.transferUploadedImages(req.files, res, config);
+      adminLib.insertToModel(model, req);
 
       res.json({ message: 'Successfully updated pi' });
     } else {
