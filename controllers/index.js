@@ -55,9 +55,6 @@ module.exports = function(router) {
     var authToken = req.headers['auth-token'];
 
     if (authToken === config.authToken) {
-      console.log('BODY: ')
-      console.log(req.body)
-      console.log('success')
       adminLib.createNewConfig(config, req.body);
       // adminLib.transferUploadedImages(req.files, res, config);
       adminLib.insertToModel(model, req);
