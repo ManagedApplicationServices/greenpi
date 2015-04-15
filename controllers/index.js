@@ -39,13 +39,7 @@ module.exports = function(router) {
 
     if (req.body.setting === 'allpi') {
       adminLib.getIPofOtherPis(function(error, otherIPs) {
-        adminLib.updateAllPi(req, otherIPs, function(error, response) {
-          if (error) {
-            console.log('Error in updating other pi: ' + error);
-          } else {
-            console.log('Success in updating other pi: ' + JSON.parse(response).message)
-          }
-        })
+        adminLib.updateAllPi(req, otherIPs);
       });
     }
 
