@@ -45,7 +45,7 @@
                 <div class="form-group">
                   <p class="col-lg-5 setting-label">Paper CAP</p>
                   <div class="col-lg-7">
-                    <input type="number" min=100 class="form-control" placeholder="1000000" name="paperUsageCap" value={paperUsageCap}>
+                    <input type="number" min=10 class="form-control" placeholder="1000000" name="paperUsageCap" value={paperUsageCap}>
                   </div>
                 </div>
 

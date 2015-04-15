@@ -33,21 +33,22 @@ module.exports = function(router) {
 
   // POST
   router.post('/admin', function(req, res) {
+    adminLib.createNewConfig(config, req.body);
+    adminLib.transferUploadedImages(req.files, res, config);
+    adminLib.insertToModel(model, req);
+
     if (req.body.setting === 'allpi') {
       adminLib.getIPofOtherPis(function(error, otherIPs) {
         adminLib.updateAllPi(req, otherIPs, function(error, response) {
           if (error) {
             console.log('Error in updating other pi: ' + JSON.parse(error.body).message);
           } else {
-            console.log('Success in updating other pi: ' + response)
+            console.log('Success in updating other pi: ' + JSON.parse(response).message)
           }
         })
       });
     }
 
-    adminLib.createNewConfig(config, req.body);
-    adminLib.transferUploadedImages(req.files, res, config);
-    adminLib.insertToModel(model, req);
     res.render('admin-done');
   })
 
