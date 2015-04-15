@@ -38,9 +38,9 @@ module.exports = function(router) {
     adminLib.insertToModel(model, req);
 
     if (req.body.setting === 'allpi') {
-      adminLib.getIPofOtherPis(function(error, otherIPs) {
-        adminLib.updateAllPi(req, otherIPs);
-      });
+      adminLib.getIPofOtherPis().forEach(function(ip) {
+        adminLib.updateOtherPi(req, ip);
+      })
     }
 
     res.render('admin-done');
