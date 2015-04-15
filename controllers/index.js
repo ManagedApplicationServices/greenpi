@@ -62,6 +62,7 @@ module.exports = function(router) {
     if (authToken === config.authToken) {
       console.log('BODY: ')
       console.log(req.body)
+      console.log('success')
 
       res.json({ message: 'Successfully updated pi' });
     } else {
