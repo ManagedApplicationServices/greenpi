@@ -22,42 +22,33 @@
 
               <div class="col-lg-6">
 
+                {#greenpiList}
+                  <div class="form-group {@eq key=thispi value="yes"}has-success{/eq}">
+                    <p class="col-lg-5 setting-label">({$idx}) {@eq key=thispi value="yes"}This{/eq} Printer IP</p>
+                    <div class="col-lg-7">
+                      <input type="text" class="form-control" placeholder="printer ip address {$idx}" name="printerIP{$idx}" value={printerIP}>
+                    </div>
+                  </div>
+                  <div class="form-group {@eq key=thispi value="yes"}has-success{/eq}">
+                    <p class="col-lg-5 setting-label">({$idx}) {@eq key=thispi value="yes"}This{/eq} Pi IP</p>
+                    <div class="col-lg-7">
+                      <input type="text" class="form-control" placeholder="pi ip address {$idx}" name="greenpiIP{$idx}" value={greenpiIP}>
+
+                    </div>
+                  </div>
+
+                  <hr>
+                {/greenpiList}
+
+
+
                 <div class="form-group">
-                  <p class="col-lg-4 setting-label">Printer IP</p>
-                  <div class="col-lg-8">
-                    <input type="text" class="form-control" placeholder="172.19.107.61" name="printerIP" value={printerIP}>
+                  <p class="col-lg-5 setting-label">Paper CAP</p>
+                  <div class="col-lg-7">
+                    <input type="number" min=10 class="form-control" placeholder="1000000" name="paperUsageCap" value={paperUsageCap}>
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <p class="col-lg-4 setting-label">Paper CAP</p>
-                  <div class="col-lg-8">
-                    <input type="number" min=100 class="form-control" placeholder="1000000" name="paperUsageCap" value={paperUsageCap}>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <p class="col-lg-4 setting-label">Total printers</p>
-                  <div class="col-lg-8">
-                    <input type="number" min=1 class="form-control" placeholder="4" name="totalPrinters" value="{totalPrinters}">
-                  </div>
-                </div>
-
-                <hr>
-
-                <div class="form-group">
-                  <p class="col-lg-4 setting-label">New password</p>
-                  <div class="col-lg-8">
-                    <input type="password" class="form-control" placeholder="secret" name="password">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <p class="col-lg-4 setting-label">Confirm password</p>
-                  <div class="col-lg-8">
-                    <input type="password" class="form-control" placeholder="secret" name="passwordConfirm">
-                  </div>
-                </div>
               </div>
 
               <div class="col-lg-6">
@@ -160,6 +151,40 @@
                         </span>
                       </span>
                       <input type="text" class="form-control" readonly placeholder="1280px x 800px">
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                  <p class="col-lg-4 setting-label">New password</p>
+                  <div class="col-lg-8">
+                    <input type="password" class="form-control" placeholder="secret" name="password">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="col-lg-4 setting-label">Confirm password</p>
+                  <div class="col-lg-8">
+                    <input type="password" class="form-control" placeholder="secret" name="passwordConfirm">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="col-lg-4 setting-label">Change Settings</p>
+                  <div class="col-lg-8">
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="setting" id="thispi" value="thispi" checked="">
+                        For this greenpi only
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="setting" id="allpi" value="allpi">
+                        For all connected greenpi
+                      </label>
                     </div>
                   </div>
                 </div>

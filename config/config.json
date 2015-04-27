@@ -29,6 +29,39 @@
         "arguments": [ "path:./public" ]
       }
     },
+    "appsec": {
+      "priority": 110,
+      "module": {
+        "name": "lusca",
+        "arguments": [
+        {
+          "csrf": false,
+          "xframe": "SAMEORIGIN",
+          "p3p": false,
+          "csp": false
+        }
+        ]
+      }
+    },
+
+    "appsecadmin": {
+      "route": "/admin",
+      "enabled": true,
+      "priority": 111,
+      "module": {
+        "name": "lusca",
+        "arguments": [ { "csrf": true } ]
+      }
+    },
+    "appsecreset": {
+      "route": "/reset",
+      "enabled": true,
+      "priority": 111,
+      "module": {
+        "name": "lusca",
+        "arguments": [ { "csrf": true } ]
+      }
+    },
     "router": {
       "module": {
         "arguments": [{ "directory": "path:./controllers" }]

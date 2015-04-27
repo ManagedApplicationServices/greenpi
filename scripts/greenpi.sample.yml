@@ -1,12 +1,12 @@
 name: greenpi
-root: ~/Workspace/greenpi
+root: ~/Workspace/greenpi # amend to your working directory
 windows:
   - app:
       layout: main-vertical
       panes:
-        - cd app && npm outdated --depth 0 && bower list && git status
-        - cd app && gulp check
-        - cd app && node server.js
+        - cd app && npm outdated --depth 0 && bower list && git status # amend to your working directory
+        - cd app && gulp check # amend to your working directory
+        - cd app && node server.js # amend to your working directory
   - logs:
       layout: even-horizontal
       panes:
@@ -22,12 +22,12 @@ windows:
       panes:
         - cd app && npm test
         - cd app && http-server test/fixtures
-  - production:
+  - production: # optional
       layout: even-horizontal
       panes:
         - ssh greenpi -t "cd ~/apps/greenpi ; /bin/zsh"
         - ls
-  - experiments:
+  - experiments: # optional
       layout: even-horizontal
       panes:
         - cd spiking

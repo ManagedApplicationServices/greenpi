@@ -13,6 +13,7 @@ module.exports = function(router) {
   var status = new StatusModel();
   var admin = new AdminModel();
 
+  // GET
   router.get('/', function(req, res) {
     routesLib.start(model, function(reply) {
       res.render('index', reply);
@@ -30,16 +31,39 @@ module.exports = function(router) {
     res.render('admin', admin);
   });
 
+  // POST
   router.post('/admin', function(req, res) {
     adminLib.createNewConfig(config, req.body);
     adminLib.transferUploadedImages(req.files, res, config);
     adminLib.insertToModel(model, req);
+
+    if (req.body.setting === 'allpi') {
+      adminLib.getIPofOtherPis().forEach(function(ip) {
+        adminLib.updateOtherPi(req, ip);
+      })
+    }
 
     res.render('admin-done');
   })
 
   router.post('/reset', function(req, res) {
     res.render('reset');
+  })
+
+  // PUT - no csrf
+  router.put('/update', function(req, res) {
+    var authToken = req.headers['auth-token'];
+
+    if (authToken === config.authToken) {
+      adminLib.createNewConfig(config, req.body);
+      // adminLib.transferUploadedImages(req.files, res, config);
+      adminLib.insertToModel(model, req);
+
+      res.json({ message: 'Successfully updated pi' });
+    } else {
+      res.json({ message: 'Unauthorised' });
+    }
+
   })
 
 };
