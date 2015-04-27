@@ -22,28 +22,6 @@ describe('From Admin library', function() {
       }
     })
 
-    describe('when printer ip is amended', function() {
-      it('returns printer ip amended', function() {
-        var req = {
-          body: {
-            printerIP: '192.168.1.20'
-          },
-          files: {
-            poster1: {},
-            poster2: {},
-            poster3: {},
-            poster4: {},
-            poster5: {},
-            logo: {}
-          }
-        }
-
-        expect(model.printerIP).to.equal('192.168.1.10');
-        adminLib.insertToModel(model, req)
-        expect(model.printerIP).to.equal('192.168.1.20');
-      })
-    })
-
     describe('when printer cap is amended', function() {
       it('returns printer cap amended', function() {
         var req = {
@@ -62,27 +40,6 @@ describe('From Admin library', function() {
         expect(model.paperUsageCap).to.equal(10000);
         adminLib.insertToModel(model, req)
         expect(model.paperUsageCap).to.equal(1000000);
-      })
-    })
-
-    describe('when printer number is amended', function() {
-      it('returns printer number amended', function() {
-        var req = {
-          body: {
-            totalPrinters: 5
-          },
-          files: {
-            poster1: {},
-            poster2: {},
-            poster3: {},
-            poster4: {},
-            poster5: {},
-            logo: {}
-          }
-        }
-        expect(model.totalPrinters).to.equal(4);
-        adminLib.insertToModel(model, req)
-        expect(model.totalPrinters).to.equal(5);
       })
     })
 

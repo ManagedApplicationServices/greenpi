@@ -17,10 +17,6 @@
             <li class="list-group-item"><h2><strong>Organisation CAP:</strong> {paperUsageCap}</h2></li>
           {/paperUsageCap}
 
-          {?totalPrinters}
-            <li class="list-group-item"><h2><strong>Total printers:</strong> {totalPrinters}</h2></li>
-          {/totalPrinters}
-
           {?logo}
             <li class="list-group-item"><h2>New company logo uploaded</h2></li>
           {/logo}

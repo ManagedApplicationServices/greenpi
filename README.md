@@ -78,16 +78,58 @@ Just go to any browser from your admin laptop and access
 
 ##install for development
 
-1. start redis (it should already be started by the daemon)
+1. git clone 
 
   ```
-  redis-server
+  $ git@github.com:ManagedApplicationServices/greenpi.git
+  $ cd greenpi
   ```
-1. start kraken with node and visit browser [localhost:8000](http://localhost:8000/)
+1. install packages
+  
+  ```
+  $ brew install redis
+  $ npm i -g bower log.io
+  $ npm i && bower i
+  ```
+1. setup config files
 
   ```
-  node server.js 
+  $ cp config.sample.js config.js # amend appPath
+  $ cp config/harvester.sample.conf ~/.log.io/harvester.conf # edit greenpi path for all 24 lines
+  $ cp .env.sample .env # edit environment variable
   ```
+1. create log folder and files
+
+  ```
+  $ mkdir logs
+  $ cd logs
+  $ for file in log.backup.{00..23}; do touch "$file"; done
+  $ ls
+  log.backup.00 log.backup.03 log.backup.06 log.backup.09 log.backup.12 log.backup.15 log.backup.18 log.backup.21
+  log.backup.01 log.backup.04 log.backup.07 log.backup.10 log.backup.13 log.backup.16 log.backup.19 log.backup.22
+  log.backup.02 log.backup.05 log.backup.08 log.backup.11 log.backup.14 log.backup.17 log.backup.20 log.backup.23
+  ```
+1. start redis (it should already be started by the daemon) and log server - run them in background or another shell
+
+  ```
+  $ redis-server &
+  $ log.io-server &
+  $ log.io-harvester &
+  ```
+1. start kraken with node and visit browser 
+
+  ```
+  # reset or start
+  $ npm run reset 
+  $ npm start 
+  ```
+1. visit the browser
+
+  1. [localhost:8000](http://localhost:8000/) - simulation
+  - [localhost:8000](http://localhost:8000/status) - status page
+  - [localhost:8000](http://localhost:8000/admin) - admin settings
+  - [localhost:28778](http://localhost:28778/) - log
+
 
 ##install fresh in a raspberry pi
 
@@ -104,17 +146,8 @@ Just go to any browser from your admin laptop and access
   ```
   cp config.sample.js config.js
   ```
-  edit `printerIP`, `paperUsageCap`, `totalPrinters` in the config file `sudo nano config.js`
-
-  ```
-  module.exports = {
-    "printerIP": "172.19.107.61",
-    "paperUsageCap": 1000,
-    "totalPrinters": 4,
-    ...
-  }
-  ``` 
-1. create app specific config file
+  edit config file `sudo nano config.js` accordingly
+- create app specific config file
 
 	```
 	cp config/development.json config/production.json
@@ -444,20 +477,6 @@ Just go to any browser from your admin laptop and access
   tar -cvzf greenpiV0.14.0.img.gz greenpiV0.14.0.img
   ```
 1. Store it somewhere. E.g. Upload to AWS S3 bucket `rspdeveloper`
-
-##changelog
-
-1. `v0.14.0` minor adjustments 
-1. `v0.13.0` printer info is gotten upon clicking the start button
-1. `v0.12.0` refresh page, async pattern and demo mode
-1. `v0.10.0` connected to live printer data
-1. `v0.9.0` rotating posters at intervals of 2.5 minutes
-1. `v0.8.1` moved the last tree away from the right scrollbar and positioned the graph
-1. `v0.8.0` moved everything away from right scrollbar of the browser
-1. `v0.7.0` simplified to static cloud messages
-1. `v0.6.0` simplified tree branches, removed animations
-1. `v0.2.0` simulation at every interval 1 Apr 2014
-1. `v0.1.0` reducing trees [e357d9a](https://github.com/ManagedApplicationServices/greenpi/commit/e357d9a0338ca0231798968c26b68fec6caadef3) 26 Mar 2014
 
 </xmp>
 <script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
